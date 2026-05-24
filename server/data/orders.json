@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "ord_1o4wr8q8g",
+    "customerName": "Test Customer",
+    "customerEmail": "test@example.com",
+    "items": [
+      {
+        "productId": "prod_1",
+        "name": "Obsidian Heavyweight Tee",
+        "price": 120,
+        "quantity": 2
+      }
+    ],
+    "total": 240,
+    "status": "Pending",
+    "createdAt": "2026-05-24T12:27:08.637Z"
+  }
+]

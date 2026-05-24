@@ -19,6 +19,13 @@
 </head>
 <body>
 
+    <!-- --- CUSTOM CURSOR --- -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- --- SCROLL PROGRESS BAR --- -->
+    <div class="progress-bar" id="progress-bar"></div>
+
     <!-- --- GLASSMORPHIC NAVIGATION BAR --- -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -30,7 +37,20 @@
                 <li><a href="#customizer">Customizer</a></li>
                 <li><a href="#brandbook">Brand Book</a></li>
             </ul>
-            <div class="nav-right-controls" style="display: flex; align-items: center; gap: 20px;">
+            <div class="nav-right-controls" style="display: flex; align-items: center; gap: 15px;">
+                <!-- Audio Toggle Button (Micro clicks) -->
+                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle interface sounds" title="Toggle audio feedback">
+                    <!-- Speaker icon showing playing/muted states -->
+                    <svg class="audio-icon audio-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                    <svg class="audio-icon audio-playing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </button>
                 <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light and dark theme">
                     <!-- Sun icon shown in dark mode -->
                     <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -60,8 +80,15 @@
 
     <!-- --- HERO SECTION --- -->
     <section id="hero" class="hero">
+        <div class="hero-video-bg">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-dark-studio-in-fashion-clothes-43006-large.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="hero-bg"></div>
         <div class="hero-bg-texture"></div>
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-noise"></div>
         <div class="container">
             <div class="hero-content">
                 <span class="accent-text">ESTABLISHED IN ABSENCE</span>
@@ -84,14 +111,37 @@
         </a>
     </section>
 
+    <!-- --- BRAND MARQUEE --- -->
+    <div class="marquee-section">
+        <div class="marquee-track" id="marquee-track">
+            <span class="marquee-item">Quiet Luxury <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Organic Materials <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Architectural Form <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Tactile Craftsmanship <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">No Logo Policy <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Premium Textiles <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Zero Noise <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Pure Garment <span class="marquee-sep">✦</span></span>
+            <!-- Repeat to ensure seamless scrolling -->
+            <span class="marquee-item">Quiet Luxury <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Organic Materials <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Architectural Form <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Tactile Craftsmanship <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">No Logo Policy <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Premium Textiles <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Zero Noise <span class="marquee-sep">✦</span></span>
+            <span class="marquee-item">Pure Garment <span class="marquee-sep">✦</span></span>
+        </div>
+    </div>
+
     <!-- --- PHILOSOPHY SECTION --- -->
     <section id="philosophy" class="section-padding philosophy">
         <div class="container">
             <div class="philosophy-grid">
-                <div class="philosophy-image-container">
+                <div class="philosophy-image-container reveal-left">
                     <img src="./logo_facade_mockup.png" alt="thelogoless boutique facade" class="philosophy-image" id="philosophy-mockup-img" width="600" height="600">
                 </div>
-                <div class="philosophy-text-content">
+                <div class="philosophy-text-content reveal-right">
                     <span class="accent-text">Our Philosophy</span>
                     <h2 class="section-title">Luxury does not advertise.</h2>
                     <p class="philosophy-lead">
@@ -103,6 +153,23 @@
                     <p class="philosophy-paragraph">
                         Our logo is not a billboard. It is a stitch, a slash, a tactile impression. It is felt by the wearer, not broadcast to the world.
                     </p>
+                    
+                    <!-- Premium Statistics Grid -->
+                    <div class="philosophy-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">320</div>
+                            <div class="stat-label">GSM Weight</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">12</div>
+                            <div class="stat-label">Stitches / Inch</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">0</div>
+                            <div class="stat-label">Logos</div>
+                        </div>
+                    </div>
+
                     <div style="margin-top: 40px;">
                         <a href="#concepts" class="btn-secondary" id="read-concepts-btn">Explore Design Elements</a>
                     </div>
@@ -114,7 +181,7 @@
     <!-- --- BRAND CONCEPTS SECTION --- -->
     <section id="concepts" class="section-padding concepts">
         <div class="container">
-            <div class="text-center">
+            <div class="text-center reveal">
                 <span class="accent-text">Design System</span>
                 <h2 class="section-title">The Four Design Signatures</h2>
                 <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;" class="philosophy-paragraph">
@@ -125,14 +192,14 @@
 
             <div class="concepts-grid">
                 <!-- Concept 1 -->
-                <div class="concept-card" id="card-concept-1">
+                <div class="concept-card reveal reveal-delay-1" id="card-concept-1">
                     <div class="concept-icon">/</div>
                     <h3 class="concept-title">The Elegant Slash</h3>
                     <p class="concept-desc">A subtle, diagonal line representing an empty space or missing label. An architectural slash carved into buttons or embroidered in tone-on-tone thread.</p>
                 </div>
                 
                 <!-- Concept 2 -->
-                <div class="concept-card" id="card-concept-2">
+                <div class="concept-card reveal reveal-delay-2" id="card-concept-2">
                     <div class="concept-icon">
                         <svg class="concept-icon-svg" viewBox="0 0 24 24">
                             <line x1="6" y1="6" x2="18" y2="18" />
@@ -144,14 +211,14 @@
                 </div>
 
                 <!-- Concept 3 -->
-                <div class="concept-card" id="card-concept-3">
+                <div class="concept-card reveal reveal-delay-3" id="card-concept-3">
                     <div class="concept-icon" style="font-family: var(--font-display);">TL</div>
                     <h3 class="concept-title">Architectural Monogram</h3>
                     <p class="concept-desc">A highly-stylized, single-stroke monogram combining T and L in a fluid geometric layout. Primarily used for custom customizer hardware.</p>
                 </div>
 
                 <!-- Concept 4 -->
-                <div class="concept-card" id="card-concept-4">
+                <div class="concept-card reveal reveal-delay-4" id="card-concept-4">
                     <div class="concept-icon">
                         <svg class="concept-icon-svg" viewBox="0 0 24 24">
                             <rect x="4" y="4" width="16" height="16" rx="1" />
@@ -165,17 +232,31 @@
         </div>
     </section>
 
+    <!-- --- MANIFESTO VIDEO INTERLUDE --- -->
+    <section class="video-interlude reveal" id="video-interlude">
+        <div class="interlude-video-container">
+            <video autoplay muted loop playsinline class="interlude-video" id="interlude-video">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-in-a-dark-studio-43010-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="interlude-overlay"></div>
+        <div class="interlude-content container">
+            <blockquote>"The garment speaks when you cannot."</blockquote>
+            <cite>thelogoless brand manifesto</cite>
+        </div>
+    </section>
+
     <!-- --- LOOKBOOK CAROUSEL SECTION --- -->
     <section id="lookbook" class="section-padding lookbook">
         <div class="container">
-            <div class="text-center">
+            <div class="text-center reveal">
                 <span class="accent-text">Brand Book Showcase</span>
                 <h2 class="section-title">Visual Identity in Environment</h2>
                 <div class="divider"></div>
             </div>
 
             <!-- Carousel Component -->
-            <div class="carousel-container" id="lookbook-carousel">
+            <div class="carousel-container reveal" id="lookbook-carousel">
                 <div class="carousel-track-wrapper">
                     <div class="carousel-track" id="carousel-track">
                         <!-- Slide 1 -->
@@ -353,7 +434,7 @@
     <!-- --- INTERACTIVE BRAND CUSTOMIZER --- -->
     <section id="customizer" class="section-padding customizer">
         <div class="container">
-            <div class="text-center">
+            <div class="text-center reveal">
                 <span class="accent-text">Simulator</span>
                 <h2 class="section-title">Interactive Brand Customizer</h2>
                 <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;" class="philosophy-paragraph">
@@ -364,16 +445,28 @@
 
             <div class="customizer-layout">
                 <!-- SVG Canvas Container -->
-                <div class="canvas-container" id="customizer-canvas">
+                <div class="canvas-container reveal-left" id="customizer-canvas">
                     <span class="placement-badge" id="badge-placement">Placement: Chest</span>
                     
                     <!-- SVG T-Shirt Model -->
-                    <svg class="tshirt-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="tshirt-svg" id="tshirt-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- High-end procedural fabric texture filter -->
+                            <filter id="fabric-texture" x="0%" y="0%" width="100%" height="100%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" result="noise" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0
+                                                                     0 0 0 0 0
+                                                                     0 0 0 0 0
+                                                                     0 0 0 0.12 0" in="noise" result="coloredNoise" />
+                                <feComposite operator="in" in2="SourceGraphic" in="coloredNoise" result="textureOverlay" />
+                                <feBlend mode="multiply" in="SourceGraphic" in2="textureOverlay" />
+                            </filter>
+                        </defs>
                         <!-- T-shirt collar back fold -->
                         <path d="M41 18 C45 20.5, 55 20.5, 59 18 C58 14.5, 42 14.5, 41 18 Z" fill="#060607" opacity="0.3" />
                         
                         <!-- Main T-shirt body and sleeves -->
-                        <path class="tshirt-fabric" d="M30 18 C33 19, 37 19, 40 18 C43 15, 57 15, 60 18 C63 19, 67 19, 70 18 L76 29 C77.5 31.5, 75 33, 73 33 L67 31 L67 85 C67 87.5, 65 89, 62 89 L38 89 C35 89, 33 87.5, 33 85 L33 31 L27 33 C25 33, 22.5 31.5, 24 29 Z" fill="#0D0E10" />
+                        <path class="tshirt-fabric" id="tshirt-fabric" filter="url(#fabric-texture)" d="M30 18 C33 19, 37 19, 40 18 C43 15, 57 15, 60 18 C63 19, 67 19, 70 18 L76 29 C77.5 31.5, 75 33, 73 33 L67 31 L67 85 C67 87.5, 65 89, 62 89 L38 89 C35 89, 33 87.5, 33 85 L33 31 L27 33 C25 33, 22.5 31.5, 24 29 Z" fill="#0D0E10" />
                         
                         <!-- Collar Trim detail overlay -->
                         <path class="tshirt-collar" d="M40 18 C43 22, 57 22, 60 18" fill="none" stroke="#FFFFFF" stroke-width="0.6" opacity="0.08" />
@@ -417,7 +510,18 @@
                 </div>
 
                 <!-- Customizer Control panel -->
-                <div class="customizer-settings">
+                <div class="customizer-settings reveal-right">
+                    
+                    <!-- Curated Presets Selector -->
+                    <div class="setting-group" id="preset-group">
+                        <div class="setting-title">Curated Aesthetics <span style="text-transform: none;">Select a preset style</span></div>
+                        <div class="option-grid">
+                            <button class="btn-pill" data-preset="obsidian-core">Obsidian Core</button>
+                            <button class="btn-pill" data-preset="linen-nomad">Linen Nomad</button>
+                            <button class="btn-pill" data-preset="selvedge-artist">Selvedge Artist</button>
+                            <button class="btn-pill" data-preset="bronze-signature">Bronze Signature</button>
+                        </div>
+                    </div>
                     
                     <!-- Fabric Color Selector -->
                     <div class="setting-group" id="fabric-group">
@@ -480,7 +584,7 @@
     <section id="brandbook" class="section-padding brandbook">
         <div class="container">
             <div class="brandbook-layout">
-                <div class="brandbook-intro">
+                <div class="brandbook-intro reveal-left">
                     <span class="accent-text">Brand Book excerpt</span>
                     <h2 class="section-title">The Omission Guidelines</h2>
                     <p class="philosophy-paragraph" style="margin-bottom: 0;">
@@ -488,7 +592,7 @@
                     </p>
                 </div>
                 
-                <div class="accordion">
+                <div class="accordion reveal-right">
                     <!-- Accordion Item 1 -->
                     <div class="accordion-item active" id="acc-item-1">
                         <div class="accordion-header">

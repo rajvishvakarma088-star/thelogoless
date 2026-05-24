@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "prod_1",
+    "name": "Obsidian Heavyweight Tee",
+    "price": 120,
+    "material": "320GSM Long-Staple Egyptian Cotton",
+    "image": "/logo_tee_mockup.png"
+  },
+  {
+    "_id": "prod_2",
+    "name": "Normandy Linen Shirt",
+    "price": 160,
+    "material": "Pure Normandy Linen-Cotton Weave",
+    "image": "/logo_tag_mockup.png"
+  },
+  {
+    "_id": "prod_3",
+    "name": "Okayama Selvedge Denim",
+    "price": 220,
+    "material": "Raw Selvedge Denim on Vintage Looms",
+    "image": "/logo_concept_seam.png"
+  },
+  {
+    "_id": "prod_4",
+    "name": "Sage Terry Hoodie",
+    "price": 190,
+    "material": "380GSM Organic Terry Fleece",
+    "image": "/logo_concept_dots.png"
+  },
+  {
+    "_id": "prod_5",
+    "name": "Bronze Cashmere Coat",
+    "price": 380,
+    "material": "Brushed Italian Cashmere Blend",
+    "image": "/logo_concept_fold.png"
+  },
+  {
+    "_id": "prod_6",
+    "name": "Bronze Sculptural Hanger",
+    "price": 80,
+    "material": "Solid Engraved Bronze Boutique Hardware",
+    "image": "/logo_concept_hanger.png"
+  }
+]
