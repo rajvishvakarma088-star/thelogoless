@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     /* ==========================================================================
        0. PREMIUM CORE INTERACTIONS (CURSOR, SCROLL, AUDIO SYNTH)
        ========================================================================== */
-    
+
     // Custom Cursor Easing (mouse trailing)
     const cursorDot = document.getElementById('cursor-dot');
     const cursorRing = document.getElementById('cursor-ring');
@@ -81,20 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!audioEnabled) return;
         initAudio();
         if (!audioCtx) return;
-        
+
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        
+
         // Custom wood-click oscillator structure
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.06);
-        
+
         gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
-        
+
         osc.start(audioCtx.currentTime);
         osc.stop(audioCtx.currentTime + 0.06);
     }
@@ -152,13 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Header on Scroll
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    
+
     // Apply saved theme on load
     const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
         document.body.classList.add('theme-light');
     }
-    
+
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             const isLight = document.body.classList.toggle('theme-light');
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-        
+
         // Active Link Highlight
         let current = '';
         sections.forEach(section => {
@@ -209,6 +209,334 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================================================
+       1.5 CENTER-PEEK HERO CAROUSEL & DETAILS MODAL
+       ========================================================================== */
+    const heroTrack = document.getElementById('hero-slider-track');
+    const heroPanes = Array.from(document.querySelectorAll('.hero-slide-pane'));
+    const heroNextBtn = document.getElementById('hero-next-btn');
+    const heroPrevBtn = document.getElementById('hero-prev-btn');
+    const heroIndicators = document.getElementById('hero-indicators');
+
+    let currentHeroIndex = 0;
+    const totalHeroSlides = heroPanes.length;
+
+    const heroProductsData = [
+        {
+            id: 'hero_1',
+            name: 'Zero-Logo Heavyweight Hoodie',
+            category: 'HOODIE',
+            price: 180,
+            material: '400GSM Organic Cotton Loopback Terry',
+            image: './hero_slide_1.png',
+            description: 'An architectural hoodie with a double-layered structured hood, drop shoulders, and no visible branding. Clean ribbing and blind side-seam pockets.',
+            sizes: ['S', 'M', 'L', 'XL']
+        },
+        {
+            id: 'hero_2',
+            name: 'Okayama Selvedge Denim Pants',
+            category: 'PANTS',
+            price: 220,
+            material: '14.5oz Raw Indigo Selvedge Denim',
+            image: './hero_slide_2.png',
+            description: 'Indigo dyed raw selvedge jeans woven on vintage shuttle looms in Okayama. Features clean hidden copper rivets and a classic straight-leg cut.',
+            sizes: ['30', '32', '34', '36']
+        },
+        {
+            id: 'hero_3',
+            name: 'Minimalist Linen Utility Pants',
+            category: 'JEANS & PANTS',
+            price: 160,
+            material: '100% Pure French Linen',
+            image: './hero_slide_3.png',
+            description: 'Lightweight structured trousers with clean slash pockets, elasticated waist with hidden drawstrings, and a tapered silhouette.',
+            sizes: ['S', 'M', 'L']
+        },
+        {
+            id: 'hero_4',
+            name: 'Oversized Cotton Seed Tee',
+            category: 'OVERSIZE TSHIRT',
+            price: 110,
+            material: '300GSM GOTS Organic Cotton',
+            image: './hero_slide_4.png',
+            description: 'A relaxed, structured heavyweight tee with high crewneck collar, dropped shoulders, and tiny raw-edge cotton seed speckles embedded in the weave.',
+            sizes: ['S', 'M', 'L', 'XL']
+        },
+        {
+            id: 'hero_5',
+            name: 'Architectural Zip Jacket',
+            category: 'JACKETS',
+            price: 260,
+            material: 'Water-Repellent High-Density Nylon Blend',
+            image: './hero_slide_5.png',
+            description: 'Modern silhouette jacket with an asymmetric dual-way zipper, storm cuffs, and clean heat-bonded seam construction.',
+            sizes: ['S', 'M', 'L', 'XL']
+        },
+        {
+            id: 'hero_6',
+            name: 'Structured Terry Sweatpants',
+            category: 'SWEATPANTS',
+            price: 140,
+            material: '380GSM French Terry Fleece',
+            image: './hero_slide_6.png',
+            description: 'Heavy-fleece loungewear pants with flatlock stitching, elasticated ankle cuffs, and minimal interior branding.',
+            sizes: ['S', 'M', 'L', 'XL']
+        },
+        {
+            id: 'hero_7',
+            name: 'Minimalist Linen Short Kurti',
+            category: 'KURTI',
+            price: 150,
+            material: 'Pure Normandy Linen-Cotton Weave',
+            image: './hero_slide_7.png',
+            description: 'A premium architectural short kurti blending traditional silhouettes with modern geometric cuts and clean flat seams.',
+            sizes: ['XS', 'S', 'M', 'L']
+        },
+        {
+            id: 'hero_8',
+            name: 'Normandy Structured Shirt',
+            category: 'SHIRTS',
+            price: 170,
+            material: 'Pure Normandy Long-Staple Linen',
+            image: './hero_slide_8.png',
+            description: 'A relaxed button-down shirt featuring French seams, hidden mother-of-pearl buttons, and a clean structured collar.',
+            sizes: ['S', 'M', 'L', 'XL']
+        },
+        {
+            id: 'hero_9',
+            name: 'Brushed Cashmere Cocoon Coat',
+            category: 'COATS & JACKETS',
+            price: 390,
+            material: '85% Brushed Cashmere, 15% Silk Blend',
+            image: './hero_slide_9.png',
+            description: 'Luxurious outerwear with a soft double-breasted drape, unstructured drop-shoulders, and deep welt pockets.',
+            sizes: ['S', 'M', 'L']
+        },
+        {
+            id: 'hero_10',
+            name: 'Fine Knit Wool Cardigan',
+            category: 'CARDIGANS',
+            price: 210,
+            material: '100% Fine Merino Wool',
+            image: './hero_slide_10.png',
+            description: 'Minimalist buttonless cardigan with flat-knit ribbed edges, low drop armholes, and an elegant structural drape.',
+            sizes: ['S', 'M', 'L']
+        }
+    ];
+
+    // Create Indicator Dots (10 dots for original slides)
+    if (heroIndicators) {
+        heroIndicators.innerHTML = '';
+        for (let index = 0; index < 10; index++) {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                moveToHeroSlide(index);
+                resetHeroAutoPlay();
+            });
+            heroIndicators.appendChild(dot);
+        }
+    }
+
+    const heroDots = Array.from(document.querySelectorAll('.hero-slider-indicators .slider-dot'));
+
+    function moveToHeroSlide(index) {
+        const originalCount = 10;
+        if (index < 0) index = originalCount - 1;
+        if (index >= originalCount) index = 0;
+
+        currentHeroIndex = index;
+
+        // Apply CSS transform, adding 2 to skip the prepended clones!
+        if (heroTrack) {
+            heroTrack.style.transform = `translate3d(calc(var(--slide-peek) - var(--slide-width) * ${currentHeroIndex + 2}), 0, 0)`;
+        }
+
+        // Toggle Active pane class
+        heroPanes.forEach((pane, i) => {
+            // pane index i - 2 corresponds to original index
+            pane.classList.toggle('active', (i - 2) === currentHeroIndex);
+        });
+
+        // Toggle Active indicator dot
+        heroDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentHeroIndex);
+        });
+    }
+
+    // Set initial position
+    setTimeout(() => {
+        moveToHeroSlide(0);
+    }, 100);
+
+    // Event listeners for hero controls
+    if (heroNextBtn) {
+        heroNextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moveToHeroSlide(currentHeroIndex + 1);
+            resetHeroAutoPlay();
+        });
+    }
+    if (heroPrevBtn) {
+        heroPrevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moveToHeroSlide(currentHeroIndex - 1);
+            resetHeroAutoPlay();
+        });
+    }
+
+    // Autoplay hero slides
+    let heroAutoPlay = setInterval(() => {
+        moveToHeroSlide(currentHeroIndex + 1);
+    }, 6000);
+
+    function resetHeroAutoPlay() {
+        clearInterval(heroAutoPlay);
+        heroAutoPlay = setInterval(() => {
+            moveToHeroSlide(currentHeroIndex + 1);
+        }, 6000);
+    }
+
+    // Handle clicks directly on hero slide panes
+    heroPanes.forEach((pane, idx) => {
+        const originalIndex = idx - 2;
+        pane.addEventListener('click', (e) => {
+            // Map index to original slides range [0, 9]
+            let targetIdx = originalIndex;
+            if (originalIndex < 0) targetIdx = originalIndex + 10;
+            if (originalIndex >= 10) targetIdx = originalIndex - 10;
+
+            if (targetIdx !== currentHeroIndex) {
+                e.preventDefault();
+                e.stopPropagation();
+                moveToHeroSlide(targetIdx);
+                resetHeroAutoPlay();
+            } else {
+                // If it's already active, open the product details modal
+                const exploreBtn = e.target.closest('.hero-slide-explore-btn') || e.target.closest('.hero-slide-pane');
+                if (exploreBtn) {
+                    openHeroProductModal(heroProductsData[targetIdx]);
+                }
+            }
+        });
+    });
+
+
+    /* --- PRODUCT DETAILS MODAL LOGIC --- */
+    const detailModal = document.getElementById('product-detail-modal');
+    const modalClose = document.getElementById('modal-close-btn');
+    const modalImage = document.getElementById('modal-image');
+    const modalCategory = document.getElementById('modal-category');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalMaterial = document.getElementById('modal-material');
+    const modalSizeGrid = document.getElementById('modal-size-grid');
+    const modalAddCartBtn = document.getElementById('modal-add-cart-btn');
+    const modalBuyBtn = document.getElementById('modal-buy-btn');
+    const modalSimulateBtn = document.getElementById('modal-simulate-btn');
+
+    let activeModalProduct = null;
+    let selectedModalSize = '';
+
+    function openHeroProductModal(product) {
+        clearInterval(heroAutoPlay); // pause auto slide
+        activeModalProduct = product;
+        selectedModalSize = product.sizes[0];
+
+        if (modalImage) {
+            modalImage.src = product.image;
+            modalImage.alt = product.name;
+        }
+        if (modalCategory) modalCategory.textContent = product.category;
+        if (modalTitle) modalTitle.textContent = product.name;
+        if (modalPrice) modalPrice.textContent = `$${product.price}`;
+        if (modalDesc) modalDesc.textContent = product.description;
+        if (modalMaterial) modalMaterial.textContent = product.material;
+
+        // Render size options
+        if (modalSizeGrid) {
+            modalSizeGrid.innerHTML = '';
+            product.sizes.forEach(sz => {
+                const btn = document.createElement('button');
+                btn.classList.add('size-btn');
+                if (sz === selectedModalSize) btn.classList.add('active');
+                btn.textContent = sz;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#modal-size-grid .size-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedModalSize = sz;
+                });
+                modalSizeGrid.appendChild(btn);
+            });
+        }
+
+        if (detailModal) detailModal.style.display = 'flex';
+    }
+
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            if (detailModal) detailModal.style.display = 'none';
+            resetHeroAutoPlay();
+        });
+    }
+
+    if (detailModal) {
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) {
+                detailModal.style.display = 'none';
+                resetHeroAutoPlay();
+            }
+        });
+    }
+
+    if (modalAddCartBtn) {
+        modalAddCartBtn.addEventListener('click', () => {
+            alert(`${activeModalProduct.name} (${selectedModalSize}) has been added to your cart.`);
+            if (detailModal) detailModal.style.display = 'none';
+            resetHeroAutoPlay();
+        });
+    }
+
+    if (modalBuyBtn) {
+        modalBuyBtn.addEventListener('click', () => {
+            alert(`Thank you. Your order for ${activeModalProduct.name} (${selectedModalSize}) has been processed successfully.`);
+            if (detailModal) detailModal.style.display = 'none';
+            resetHeroAutoPlay();
+        });
+    }
+
+    if (modalSimulateBtn) {
+        modalSimulateBtn.addEventListener('click', () => {
+            if (detailModal) detailModal.style.display = 'none';
+            resetHeroAutoPlay();
+
+            // Scroll to customizer
+            const customizer = document.getElementById('customizer');
+            if (customizer) {
+                customizer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Adapt customizer fabric color based on product
+            let fabricColor = 'obsidian';
+            if (activeModalProduct.id === 'hero_3' || activeModalProduct.id === 'hero_7' || activeModalProduct.id === 'hero_8') {
+                fabricColor = 'cream';
+            } else if (activeModalProduct.id === 'hero_2' || activeModalProduct.id === 'hero_6') {
+                fabricColor = 'sage';
+            } else if (activeModalProduct.id === 'hero_9' || activeModalProduct.id === 'hero_10') {
+                fabricColor = 'bronze';
+            }
+
+            // Simulate clicking the swatch in customizer
+            const swatch = document.querySelector(`.swatch[data-fabric="${fabricColor}"]`);
+            if (swatch) {
+                swatch.click();
+            }
+        });
+    }
+
+
+    /* ==========================================================================
        2. LOOKBOOK SLIDER / CAROUSEL
        ========================================================================== */
     const track = document.querySelector('.carousel-track');
@@ -216,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.carousel-btn-next');
     const prevBtn = document.querySelector('.carousel-btn-prev');
     const dotsContainer = document.querySelector('.carousel-indicators');
-    
+
     let currentIndex = 0;
     const totalSlides = slides.length;
 
@@ -235,13 +563,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function moveToSlide(index) {
         if (index < 0) index = totalSlides - 1;
         if (index >= totalSlides) index = 0;
-        
+
         track.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
-        
+
         // Update dots
         dots.forEach(dot => dot.classList.remove('active'));
         dots[index].classList.add('active');
-        
+
         currentIndex = index;
     }
 
@@ -278,19 +606,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const tshirtFabric = document.querySelector('.tshirt-fabric');
     const teeLogoGroup = document.getElementById('tee-logo-group');
     const tshirtSvg = document.getElementById('tshirt-svg');
-    
+
     // Logo Art SVG groups
     const logoSlash = document.getElementById('logo-art-slash');
     const logoStitch = document.getElementById('logo-art-stitch');
     const logoText = document.getElementById('logo-art-text');
-    
+
     // Config option containers
     const fabricSwatches = document.querySelectorAll('[data-fabric]');
     const logoArtOptions = document.querySelectorAll('[data-logo-art]');
     const logoColors = document.querySelectorAll('[data-logo-color]');
     const placementBtns = document.querySelectorAll('[data-placement]');
     const presetBtns = document.querySelectorAll('[data-preset]');
-    
+
     // Feedback Display Labels
     const fabricLabel = document.getElementById('selected-fabric');
     const logoLabel = document.getElementById('selected-logo');
@@ -380,7 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logoText) logoText.style.display = customizerState.logoArt === 'text' ? 'block' : 'none';
         if (logoLabel) {
             logoLabel.textContent = customizerState.logoArt === 'slash' ? 'Elegant Slash' :
-                                      customizerState.logoArt === 'stitch' ? 'Craft Stitch' : 'Minimal Text';
+                customizerState.logoArt === 'stitch' ? 'Craft Stitch' : 'Minimal Text';
         }
 
         // 4. Update logo color / fill
@@ -388,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (colorLabel) {
             colorLabel.textContent = customizerState.logoColor;
         }
-        
+
         // Apply color to all vector paths inside logo group
         if (logoSlash) logoSlash.setAttribute('stroke', colorHex);
         if (logoStitch) logoStitch.querySelectorAll('line').forEach(line => line.setAttribute('stroke', colorHex));
@@ -458,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fabricSwatches.forEach(s => s.classList.remove('active'));
             swatch.classList.add('active');
             customizerState.fabric = swatch.getAttribute('data-fabric');
-            
+
             // Subtle zoom overview feedback when changing fabric textures
             if (tshirtSvg) {
                 tshirtSvg.style.transform = 'scale(1.2) translate(0%, 0%)';
@@ -466,7 +794,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tshirtSvg.style.transform = tshirtZoomMap[customizerState.placement];
                 }, 500);
             }
-            
+
             updateCustomizerUI();
         });
     });
@@ -517,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const item = header.parentElement;
             const isActive = item.classList.contains('active');
-            
+
             // Close all items
             document.querySelectorAll('.accordion-item').forEach(accItem => {
                 accItem.classList.remove('active');
@@ -541,12 +869,12 @@ document.addEventListener('DOMContentLoaded', () => {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
-            
+
             if (emailInput.value.trim() !== '') {
                 emailInput.value = '';
                 formMsg.textContent = 'YOU HAVE BEEN INCLUDED.';
                 formMsg.classList.add('active');
-                
+
                 setTimeout(() => {
                     formMsg.classList.remove('active');
                 }, 5000);

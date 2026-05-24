@@ -7,42 +7,42 @@ const defaultProducts = [
         name: 'Obsidian Heavyweight Tee',
         price: 120,
         material: '320GSM Long-Staple Egyptian Cotton',
-        image: '/logo_tee_mockup.png'
+        image: './logo_tee_mockup.png'
     },
     {
         _id: 'prod_2',
         name: 'Normandy Linen Shirt',
         price: 160,
         material: 'Pure Normandy Linen-Cotton Weave',
-        image: '/logo_tag_mockup.png'
+        image: './logo_tag_mockup.png'
     },
     {
         _id: 'prod_3',
         name: 'Okayama Selvedge Denim',
         price: 220,
         material: 'Raw Selvedge Denim on Vintage Looms',
-        image: '/logo_concept_seam.png'
+        image: './logo_concept_seam.png'
     },
     {
         _id: 'prod_4',
         name: 'Sage Terry Hoodie',
         price: 190,
         material: '380GSM Organic Terry Fleece',
-        image: '/logo_concept_dots.png'
+        image: './logo_concept_dots.png'
     },
     {
         _id: 'prod_5',
         name: 'Bronze Cashmere Coat',
         price: 380,
         material: 'Brushed Italian Cashmere Blend',
-        image: '/logo_concept_fold.png'
+        image: './logo_concept_fold.png'
     },
     {
         _id: 'prod_6',
         name: 'Bronze Sculptural Hanger',
         price: 80,
         material: 'Solid Engraved Bronze Boutique Hardware',
-        image: '/logo_concept_hanger.png'
+        image: './logo_concept_hanger.png'
     }
 ];
 
@@ -84,19 +84,123 @@ const presetsMap = {
 
 // Lookbook Slides
 const lookbookSlides = [
-    { tag: "Primary Logo", title: "Typography & Slash Concept", num: "01", img: "/logo_typography_dark.png" },
-    { tag: "Packaging Mockup", title: "Debossed Cotton Paper Clothing Tag", num: "02", img: "/logo_tag_mockup.png" },
-    { tag: "Apparel Mockup", title: "Heavyweight Tee with Tone-on-Tone Stitch", num: "03", img: "/logo_tee_mockup.png" },
-    { tag: "Retail Facade", title: "Limestone boutique with backlit bronze metal letters", num: "04", img: "/logo_facade_mockup.png" },
-    { tag: "Detail Mockup", title: "Hand-Tied Cotton Thread Knot", num: "05", img: "/logo_concept_knot.png" },
-    { tag: "Tailoring Detail", title: "Indigo Denim with Gold Stitch Line", num: "06", img: "/logo_concept_seam.png" },
-    { tag: "Stamp Signature", title: "Minimal Japanese Hanko Seal", num: "07", img: "/logo_concept_hanko.png" },
-    { tag: "Boutique Hardware", title: "Engraved Sculptural Bronze Hanger", num: "08", img: "/logo_concept_hanger.png" },
-    { tag: "Collar Detail", title: "Origami Fabric Fold Seam Label", num: "09", img: "/logo_concept_fold.png" },
-    { tag: "Embroidery Mockup", title: "Embroidered Cotton Seed Cashmere", num: "10", img: "/logo_concept_seed.png" },
-    { tag: "Packaging Mockup", title: "Minimal Matte Black Wax Seal", num: "11", img: "/logo_concept_wax.png" },
-    { tag: "Hardware Detail", title: "Brushed Silver Blank Pin Label", num: "12", img: "/logo_concept_metal.png" },
-    { tag: "Sleeve Detail", title: "Triple Silk Thread Alignment Dots", num: "13", img: "/logo_concept_dots.png" }
+    { tag: "Primary Logo", title: "Typography & Slash Concept", num: "01", img: "./logo_typography_dark.png" },
+    { tag: "Packaging Mockup", title: "Debossed Cotton Paper Clothing Tag", num: "02", img: "./logo_tag_mockup.png" },
+    { tag: "Apparel Mockup", title: "Heavyweight Tee with Tone-on-Tone Stitch", num: "03", img: "./logo_tee_mockup.png" },
+    { tag: "Retail Facade", title: "Limestone boutique with backlit bronze metal letters", num: "04", img: "./logo_facade_mockup.png" },
+    { tag: "Detail Mockup", title: "Hand-Tied Cotton Thread Knot", num: "05", img: "./logo_concept_knot.png" },
+    { tag: "Tailoring Detail", title: "Indigo Denim with Gold Stitch Line", num: "06", img: "./logo_concept_seam.png" },
+    { tag: "Stamp Signature", title: "Minimal Japanese Hanko Seal", num: "07", img: "./logo_concept_hanko.png" },
+    { tag: "Boutique Hardware", title: "Engraved Sculptural Bronze Hanger", num: "08", img: "./logo_concept_hanger.png" },
+    { tag: "Collar Detail", title: "Origami Fabric Fold Seam Label", num: "09", img: "./logo_concept_fold.png" },
+    { tag: "Embroidery Mockup", title: "Embroidered Cotton Seed Cashmere", num: "10", img: "./logo_concept_seed.png" },
+    { tag: "Packaging Mockup", title: "Minimal Matte Black Wax Seal", num: "11", img: "./logo_concept_wax.png" },
+    { tag: "Hardware Detail", title: "Brushed Silver Blank Pin Label", num: "12", img: "./logo_concept_metal.png" },
+    { tag: "Sleeve Detail", title: "Triple Silk Thread Alignment Dots", num: "13", img: "./logo_concept_dots.png" }
+];
+
+// Center Peek Hero Slider Products Data
+const heroSlidesData = [
+    {
+        id: 'hero_1',
+        name: 'Zero-Logo Heavyweight Hoodie',
+        category: 'HOODIE',
+        price: 180,
+        material: '400GSM Organic Cotton Loopback Terry',
+        image: './hero_slide_1.png',
+        description: 'An architectural hoodie with a double-layered structured hood, drop shoulders, and no visible branding. Clean ribbing and blind side-seam pockets.',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'hero_2',
+        name: 'Okayama Selvedge Denim Pants',
+        category: 'PANTS',
+        price: 220,
+        material: '14.5oz Raw Indigo Selvedge Denim',
+        image: './hero_slide_2.png',
+        description: 'Indigo dyed raw selvedge jeans woven on vintage shuttle looms in Okayama. Features clean hidden copper rivets and a classic straight-leg cut.',
+        sizes: ['30', '32', '34', '36']
+    },
+    {
+        id: 'hero_3',
+        name: 'Minimalist Linen Utility Pants',
+        category: 'JEANS & PANTS',
+        price: 160,
+        material: '100% Pure French Linen',
+        image: './hero_slide_3.png',
+        description: 'Lightweight structured trousers with clean slash pockets, elasticated waist with hidden drawstrings, and a tapered silhouette.',
+        sizes: ['S', 'M', 'L']
+    },
+    {
+        id: 'hero_4',
+        name: 'Oversized Cotton Seed Tee',
+        category: 'OVERSIZE TSHIRT',
+        price: 110,
+        material: '300GSM GOTS Organic Cotton',
+        image: './hero_slide_4.png',
+        description: 'A relaxed, structured heavyweight tee with high crewneck collar, dropped shoulders, and tiny raw-edge cotton seed speckles embedded in the weave.',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'hero_5',
+        name: 'Architectural Zip Jacket',
+        category: 'JACKETS',
+        price: 260,
+        material: 'Water-Repellent High-Density Nylon Blend',
+        image: './hero_slide_5.png',
+        description: 'Modern silhouette jacket with an asymmetric dual-way zipper, storm cuffs, and clean heat-bonded seam construction.',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'hero_6',
+        name: 'Structured Terry Sweatpants',
+        category: 'SWEATPANTS',
+        price: 140,
+        material: '380GSM French Terry Fleece',
+        image: './hero_slide_6.png',
+        description: 'Heavy-fleece loungewear pants with flatlock stitching, elasticated ankle cuffs, and minimal interior branding.',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'hero_7',
+        name: 'Minimalist Linen Short Kurti',
+        category: 'KURTI',
+        price: 150,
+        material: 'Pure Normandy Linen-Cotton Weave',
+        image: './hero_slide_7.png',
+        description: 'A premium architectural short kurti blending traditional silhouettes with modern geometric cuts and clean flat seams.',
+        sizes: ['XS', 'S', 'M', 'L']
+    },
+    {
+        id: 'hero_8',
+        name: 'Normandy Structured Shirt',
+        category: 'SHIRTS',
+        price: 170,
+        material: 'Pure Normandy Long-Staple Linen',
+        image: './hero_slide_8.png',
+        description: 'A relaxed button-down shirt featuring French seams, hidden mother-of-pearl buttons, and a clean structured collar.',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'hero_9',
+        name: 'Brushed Cashmere Cocoon Coat',
+        category: 'COATS & JACKETS',
+        price: 390,
+        material: '85% Brushed Cashmere, 15% Silk Blend',
+        image: './hero_slide_9.png',
+        description: 'Luxurious outerwear with a soft double-breasted drape, unstructured drop-shoulders, and deep welt pockets.',
+        sizes: ['S', 'M', 'L']
+    },
+    {
+        id: 'hero_10',
+        name: 'Fine Knit Wool Cardigan',
+        category: 'CARDIGANS',
+        price: 210,
+        material: '100% Fine Merino Wool',
+        image: './hero_slide_10.png',
+        description: 'Minimalist buttonless cardigan with flat-knit ribbed edges, low drop armholes, and an elegant structural drape.',
+        sizes: ['S', 'M', 'L']
+    }
 ];
 
 export default function App() {
@@ -106,6 +210,11 @@ export default function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('philosophy');
     const [scrollProgress, setScrollProgress] = useState(0);
+
+    // --- HERO AUTO-SLIDER STATES ---
+    const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+    const [selectedHeroProduct, setSelectedHeroProduct] = useState(null);
+    const [selectedSize, setSelectedSize] = useState('M');
 
     // --- PRODUCTS & CART & CHECKOUT STATES ---
     const [products, setProducts] = useState(defaultProducts);
@@ -318,15 +427,25 @@ export default function App() {
         return () => clearInterval(timer);
     }, []);
 
+    // Auto Advance hero slider
+    useEffect(() => {
+        const timer = setInterval(() => {
+            if (!selectedHeroProduct) { // Pause while inspecting
+                setCurrentHeroSlide(prev => (prev + 1) % heroSlidesData.length);
+            }
+        }, 6000);
+        return () => clearInterval(timer);
+    }, [selectedHeroProduct]);
+
     // --- CART FUNCTIONALITY ---
     const addToCart = (product) => {
         setCart(prev => {
             const exists = prev.find(item => item.product._id === product._id);
             if (exists) {
-                return prev.map(item => 
-                    item.product._id === product._id 
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
+                return prev.map(item =>
+                    item.product._id === product._id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
                 );
             }
             return [...prev, { product, quantity: 1 }];
@@ -382,22 +501,22 @@ export default function App() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderData)
         })
-        .then(res => res.json())
-        .then(data => {
-            setCheckoutLoading(false);
-            if (data.success) {
-                setCheckoutSuccess(true);
-                setCart([]);
-            }
-        })
-        .catch(() => {
-            // Local simulation fallback
-            setTimeout(() => {
+            .then(res => res.json())
+            .then(data => {
                 setCheckoutLoading(false);
-                setCheckoutSuccess(true);
-                setCart([]);
-            }, 1800);
-        });
+                if (data.success) {
+                    setCheckoutSuccess(true);
+                    setCart([]);
+                }
+            })
+            .catch(() => {
+                // Local simulation fallback
+                setTimeout(() => {
+                    setCheckoutLoading(false);
+                    setCheckoutSuccess(true);
+                    setCart([]);
+                }, 1800);
+            });
     };
 
     // --- NEWSLETTER FORM SUBMISSION ---
@@ -410,20 +529,20 @@ export default function App() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: newsletterEmail })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setNewsletterMsg('YOU HAVE BEEN INCLUDED.');
+                    setNewsletterEmail('');
+                    setTimeout(() => setNewsletterMsg(''), 5000);
+                }
+            })
+            .catch(() => {
+                // Fallback simulation
                 setNewsletterMsg('YOU HAVE BEEN INCLUDED.');
                 setNewsletterEmail('');
                 setTimeout(() => setNewsletterMsg(''), 5000);
-            }
-        })
-        .catch(() => {
-            // Fallback simulation
-            setNewsletterMsg('YOU HAVE BEEN INCLUDED.');
-            setNewsletterEmail('');
-            setTimeout(() => setNewsletterMsg(''), 5000);
-        });
+            });
     };
 
     // --- PRODUCTS CAROUSEL SCROLL/DRAG DRAG HANDLERS ---
@@ -448,6 +567,14 @@ export default function App() {
         const walk = (x - startXRef.current) * 1.5;
         collectionTrackRef.current.scrollLeft = scrollLeftRef.current - walk;
     };
+
+    const renderedSlides = [
+        { ...heroSlidesData[heroSlidesData.length - 2], id: 'hero_clone_9' },
+        { ...heroSlidesData[heroSlidesData.length - 1], id: 'hero_clone_10' },
+        ...heroSlidesData,
+        { ...heroSlidesData[0], id: 'hero_clone_1' },
+        { ...heroSlidesData[1], id: 'hero_clone_2' }
+    ];
 
     return (
         <>
@@ -523,44 +650,100 @@ export default function App() {
             </nav>
 
             {/* --- HERO SECTION --- */}
-            <section id="hero" className="hero">
-                <div className="hero-bg"></div>
-                <div className="hero-bg-texture"></div>
-                <div className="hero-grid-overlay"></div>
-                <div className="hero-noise"></div>
-                <div className="container hero-container">
-                    <div className="hero-split-grid">
-                        {/* Left Column: Content */}
-                        <div className="hero-content-col">
-                            <div className="hero-content">
-                                <span className="accent-text">ESTABLISHED IN ABSENCE</span>
-                                <h1 className="hero-title">
-                                    The elegance of
-                                    <span>O M I S S I O N</span>
-                                </h1>
-                                <p className="hero-description">
-                                    A premium clothing brand that rejects loud, ostentatious branding. We focus entirely on high-end craftsmanship, architectural silhouettes, and quiet luxury.
-                                </p>
-                                <div className="hero-buttons">
-                                    <a href="#customizer" className="btn-primary">Simulate Brand</a>
-                                    <a href="#lookbook" className="btn-secondary">View Lookbook</a>
+            <section id="hero" className="hero-slider-mode">
+                <div className="hero-slider-track-wrapper">
+                    <div
+                        className="hero-slider-track"
+                        style={{
+                            transform: `translate3d(calc(var(--slide-peek) - var(--slide-width) * ${currentHeroSlide + 2}), 0, 0)`
+                        }}
+                    >
+                        {renderedSlides.map((slide, idx) => {
+                            const originalIdx = idx - 2;
+                            const isActive = originalIdx === currentHeroSlide;
+                            return (
+                                <div
+                                    key={slide.id + '-' + idx}
+                                    className={`hero-slide-pane ${isActive ? 'active' : ''}`}
+                                    onClick={() => {
+                                        if (originalIdx >= 0 && originalIdx < heroSlidesData.length) {
+                                            if (isActive) {
+                                                setSelectedHeroProduct(slide);
+                                                setSelectedSize(slide.sizes[0]);
+                                            } else {
+                                                setCurrentHeroSlide(originalIdx);
+                                            }
+                                        } else {
+                                            // Click on a clone card jumps to the original slide index
+                                            const targetOrigIdx = originalIdx < 0 ? (originalIdx + heroSlidesData.length) : (originalIdx - heroSlidesData.length);
+                                            setCurrentHeroSlide(targetOrigIdx);
+                                        }
+                                    }}
+                                >
+                                    <div
+                                        className="hero-slide-bg-img"
+                                        style={{ backgroundImage: `url(${slide.image})` }}
+                                    ></div>
+                                    <div className="hero-slide-overlay"></div>
+                                    <div className="container hero-slide-container">
+                                        <div className="hero-slide-content">
+                                            <h1 className="hero-slide-title">
+                                                {slide.name.split(' ').slice(0, -1).join(' ')} <span>{slide.name.split(' ').slice(-1)[0]}</span>
+                                            </h1>
+                                            <p className="hero-slide-tagline">
+                                                {slide.id === 'hero_1' && '400GSM LOOPBACK TERRY. ZERO LOGO.'}
+                                                {slide.id === 'hero_2' && 'OKAYAMA RAW INDIGO. CLASSIC CUT.'}
+                                                {slide.id === 'hero_3' && '100% PURE FRENCH LINEN. TAILORED.'}
+                                                {slide.id === 'hero_4' && '300GSM GOTS COTTON. COTTON SEED DETAIL.'}
+                                                {slide.id === 'hero_5' && 'HIGH-DENSITY SHELL. ARCHITECTURAL FORMS.'}
+                                                {slide.id === 'hero_6' && 'HEAVY FLEECE LOUNGEWEAR. QUIET LUXURY.'}
+                                                {slide.id === 'hero_7' && 'GEOMETRIC CUTS. MODERN SILHOUETTE.'}
+                                                {slide.id === 'hero_8' && 'PURE LINEN WEAVE. FRENCH SEAMS.'}
+                                                {slide.id === 'hero_9' && 'ITALIAN CASHMERE SILK. SEAMLESS DRAPE.'}
+                                                {slide.id === 'hero_10' && 'FINE MERINO WOOL. BUTTONLESS CARDIGAN.'}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        {/* Right Column: Visual Showcase */}
-                        <div className="hero-image-col">
-                            <div className="hero-image-wrapper">
-                                <img src="/hero_fashion_models.png" alt="thelogoless minimalist models wearing premium cotton shirt, jeans, and short kurti" className="hero-showcase-image" />
-                                <div className="hero-image-border"></div>
-                            </div>
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
-                <a href="#philosophy" className="scroll-indicator">
-                    <span>Scroll</span>
-                    <div className="scroll-line"></div>
-                </a>
+
+                {/* Arrows and Indicators */}
+                <button
+                    className="hero-slider-btn prev"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentHeroSlide(prev => (prev - 1 + heroSlidesData.length) % heroSlidesData.length);
+                    }}
+                    aria-label="Previous slide"
+                >
+                    &#8592;
+                </button>
+                <button
+                    className="hero-slider-btn next"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentHeroSlide(prev => (prev + 1) % heroSlidesData.length);
+                    }}
+                    aria-label="Next slide"
+                >
+                    &#8594;
+                </button>
+
+                <div className="hero-slider-indicators">
+                    {heroSlidesData.map((_, idx) => (
+                        <div
+                            key={idx}
+                            className={`slider-dot ${idx === currentHeroSlide ? 'active' : ''}`}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCurrentHeroSlide(idx);
+                            }}
+                        ></div>
+                    ))}
+                </div>
             </section>
 
             {/* --- BRAND MARQUEE --- */}
@@ -599,7 +782,7 @@ export default function App() {
                     </div>
 
                     <div className="collection-slider-container reveal">
-                        <div 
+                        <div
                             className="collection-slider-track"
                             ref={collectionTrackRef}
                             onMouseDown={handleMouseDown}
@@ -695,7 +878,7 @@ export default function App() {
                             <h3 className="concept-title">The Elegant Slash</h3>
                             <p className="concept-desc">A subtle, diagonal line representing an empty space or missing label. An architectural slash carved into buttons or embroidered in tone-on-tone thread.</p>
                         </div>
-                        
+
                         {/* Concept 2 */}
                         <div className="concept-card reveal reveal-delay-2" id="card-concept-2">
                             <div className="concept-icon">
@@ -803,7 +986,7 @@ export default function App() {
                         {/* Canvas */}
                         <div className="canvas-container reveal-left" id="customizer-canvas">
                             <span className="placement-badge">Placement: {customizerState.placement}</span>
-                            
+
                             <svg className="tshirt-svg" id="tshirt-svg" style={{ transform: tshirtTransform }} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <filter id="fabric-texture" x="0%" y="0%" width="100%" height="100%">
@@ -825,25 +1008,25 @@ export default function App() {
                                 <path d="M67 31 C65 48, 65 68, 63 89" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.25" />
                                 <path d="M38 18 C36 40, 42 65, 40 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
                                 <path d="M60 18 C62 40, 56 65, 58 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
-                                
+
                                 <g id="tee-logo-group" className="tee-logo-element" transform={placementMap[customizerState.placement]}>
-                                    <line 
-                                        id="logo-art-slash" 
-                                        x1="-1.5" y1="-3.5" x2="1.5" y2="3.5" 
-                                        stroke={logoColorMap[customizerState.color]} 
-                                        strokeWidth="0.6" strokeLinecap="round" 
+                                    <line
+                                        id="logo-art-slash"
+                                        x1="-1.5" y1="-3.5" x2="1.5" y2="3.5"
+                                        stroke={logoColorMap[customizerState.color]}
+                                        strokeWidth="0.6" strokeLinecap="round"
                                         style={{ display: customizerState.logo === 'slash' ? 'block' : 'none' }}
                                     />
                                     <g id="logo-art-stitch" style={{ display: customizerState.logo === 'stitch' ? 'block' : 'none' }}>
                                         <line x1="-1.5" y1="-1.5" x2="1.5" y2="1.5" stroke={logoColorMap[customizerState.color]} strokeWidth="0.5" />
                                         <line x1="1.5" y1="-1.5" x2="-1.5" y2="1.5" stroke={logoColorMap[customizerState.color]} strokeWidth="0.5" />
                                     </g>
-                                    <text 
-                                        id="logo-art-text" 
-                                        x="0" y="0.8" 
-                                        fontFamily="'Cinzel', serif" fontSize="1.2" letterSpacing="0.1" 
-                                        fill={logoColorMap[customizerState.color]} 
-                                        textAnchor="middle" 
+                                    <text
+                                        id="logo-art-text"
+                                        x="0" y="0.8"
+                                        fontFamily="'Cinzel', serif" fontSize="1.2" letterSpacing="0.1"
+                                        fill={logoColorMap[customizerState.color]}
+                                        textAnchor="middle"
                                         style={{ display: customizerState.logo === 'text' ? 'block' : 'none' }}
                                     >
                                         TL
@@ -870,9 +1053,9 @@ export default function App() {
                                 <div className="setting-title">Fabric & Color <span>{customizerState.fabric}</span></div>
                                 <div className="option-grid">
                                     {Object.keys(fabricColorMap).map(f => (
-                                        <div 
+                                        <div
                                             key={f}
-                                            className={`swatch swatch-${f} ${customizerState.fabric === f ? 'active' : ''}`} 
+                                            className={`swatch swatch-${f} ${customizerState.fabric === f ? 'active' : ''}`}
                                             title={f}
                                             onClick={() => {
                                                 clearPresetSelection();
@@ -907,7 +1090,7 @@ export default function App() {
                                 <div className="setting-title">Thread Color <span>{customizerState.color}</span></div>
                                 <div className="option-grid">
                                     {Object.keys(logoColorMap).map(c => (
-                                        <button 
+                                        <button
                                             key={c}
                                             className={`btn-pill ${customizerState.color === c ? 'active' : ''}`}
                                             onClick={() => {
@@ -926,7 +1109,7 @@ export default function App() {
                                 <div className="setting-title">Placement <span>{customizerState.placement}</span></div>
                                 <div className="option-grid">
                                     {Object.keys(placementMap).map(p => (
-                                        <button 
+                                        <button
                                             key={p}
                                             className={`btn-pill ${customizerState.placement === p ? 'active' : ''}`}
                                             onClick={() => {
@@ -955,7 +1138,7 @@ export default function App() {
                                 An internal guide outlining visual design systems, quality control metrics, and material standards that preserve the "thelogoless" identity across physical space.
                             </p>
                         </div>
-                        
+
                         <div className="accordion reveal-right">
                             {/* Accordion Item 1 */}
                             <div className={`accordion-item ${accordionOpen === 1 ? 'active' : ''}`}>
@@ -1039,13 +1222,13 @@ export default function App() {
                             </p>
                             <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
                                 <div className="input-group">
-                                    <input 
-                                        type="email" 
-                                        placeholder="EMAIL ADDRESS" 
+                                    <input
+                                        type="email"
+                                        placeholder="EMAIL ADDRESS"
                                         value={newsletterEmail}
                                         onChange={(e) => setNewsletterEmail(e.target.value)}
-                                        required 
-                                        aria-label="Email address for updates" 
+                                        required
+                                        aria-label="Email address for updates"
                                     />
                                     <button type="submit" className="submit-btn" aria-label="Submit email address">
                                         &#8594;
@@ -1099,8 +1282,8 @@ export default function App() {
                             <span>Subtotal</span>
                             <span>${subtotal}</span>
                         </div>
-                        <button 
-                            className="btn-primary checkout-btn" 
+                        <button
+                            className="btn-primary checkout-btn"
                             onClick={() => {
                                 setCartOpen(false);
                                 setCheckoutSuccess(false);
@@ -1123,32 +1306,32 @@ export default function App() {
                             <form className="checkout-form" onSubmit={handleCheckoutSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="chk-name">Full Name</label>
-                                    <input 
-                                        type="text" 
-                                        id="chk-name" 
-                                        required 
-                                        value={checkoutForm.name} 
-                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, name: e.target.value }))} 
+                                    <input
+                                        type="text"
+                                        id="chk-name"
+                                        required
+                                        value={checkoutForm.name}
+                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, name: e.target.value }))}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="chk-email">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        id="chk-email" 
-                                        required 
-                                        value={checkoutForm.email} 
-                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, email: e.target.value }))} 
+                                    <input
+                                        type="email"
+                                        id="chk-email"
+                                        required
+                                        value={checkoutForm.email}
+                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, email: e.target.value }))}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="chk-location">Shipping City</label>
-                                    <input 
-                                        type="text" 
-                                        id="chk-location" 
-                                        required 
-                                        value={checkoutForm.location} 
-                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, location: e.target.value }))} 
+                                    <input
+                                        type="text"
+                                        id="chk-location"
+                                        required
+                                        value={checkoutForm.location}
+                                        onChange={(e) => setCheckoutForm(prev => ({ ...prev, location: e.target.value }))}
                                     />
                                 </div>
                                 <div className="checkout-total-row">
@@ -1177,6 +1360,109 @@ export default function App() {
                     )}
                 </div>
             </div>
+
+            {/* --- PRODUCT DETAILS MODAL --- */}
+            {selectedHeroProduct && (
+                <div className="look-modal-overlay" onClick={() => setSelectedHeroProduct(null)}>
+                    <div className="look-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="look-modal-close" onClick={() => setSelectedHeroProduct(null)}>&times;</button>
+                        <div className="look-modal-grid">
+                            {/* Left: Image Pane */}
+                            <div className="look-modal-image-pane">
+                                <img src={selectedHeroProduct.image} alt={selectedHeroProduct.name} className="look-modal-img" />
+                            </div>
+                            {/* Right: Details Pane */}
+                            <div className="look-modal-details-pane">
+                                <span className="look-modal-category">{selectedHeroProduct.category}</span>
+                                <h3 className="look-modal-title">{selectedHeroProduct.name}</h3>
+                                <div className="look-modal-price">${selectedHeroProduct.price}</div>
+                                <div className="look-modal-divider"></div>
+                                
+                                <p className="look-modal-desc">{selectedHeroProduct.description}</p>
+                                <p className="look-modal-material">Material: <strong>{selectedHeroProduct.material}</strong></p>
+                                
+                                {/* Sizes Selection */}
+                                <div className="look-modal-sizes">
+                                    <span className="look-modal-section-title">Select Size</span>
+                                    <div className="size-options-grid">
+                                        {selectedHeroProduct.sizes.map(sz => (
+                                            <button
+                                                key={sz}
+                                                className={`size-btn ${selectedSize === sz ? 'active' : ''}`}
+                                                onClick={() => setSelectedSize(sz)}
+                                            >
+                                                {sz}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                {/* Actions */}
+                                <div className="look-modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    <div style={{ display: 'flex', gap: '12px' }}>
+                                        <button
+                                            className="btn-primary"
+                                            style={{ flex: 1 }}
+                                            onClick={() => {
+                                                const productToCart = {
+                                                    ...selectedHeroProduct,
+                                                    _id: selectedHeroProduct.id,
+                                                    name: `${selectedHeroProduct.name} (${selectedSize})`
+                                                };
+                                                addToCart(productToCart);
+                                                setSelectedHeroProduct(null);
+                                            }}
+                                        >
+                                            Add To Cart
+                                        </button>
+                                        <button
+                                            className="btn-secondary"
+                                            style={{ flex: 1, color: 'var(--color-text-light)', border: '1px solid var(--color-border-dark)' }}
+                                            onClick={() => {
+                                                const productToCart = {
+                                                    ...selectedHeroProduct,
+                                                    _id: selectedHeroProduct.id,
+                                                    name: `${selectedHeroProduct.name} (${selectedSize})`
+                                                };
+                                                handleQuickBuy(productToCart);
+                                                setSelectedHeroProduct(null);
+                                            }}
+                                        >
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                    <button
+                                        className="btn-secondary"
+                                        style={{ width: '100%', borderColor: 'var(--color-accent-gold)', color: 'var(--color-accent-gold)' }}
+                                        onClick={() => {
+                                            setSelectedHeroProduct(null);
+                                            const customizerSection = document.getElementById('customizer');
+                                            if (customizerSection) {
+                                                customizerSection.scrollIntoView({ behavior: 'smooth' });
+                                            }
+                                            // Adapt customizer fabric color based on product
+                                            let fabricColor = 'obsidian';
+                                            if (selectedHeroProduct.id === 'hero_3' || selectedHeroProduct.id === 'hero_7' || selectedHeroProduct.id === 'hero_8') {
+                                                fabricColor = 'cream';
+                                            } else if (selectedHeroProduct.id === 'hero_2' || selectedHeroProduct.id === 'hero_6') {
+                                                fabricColor = 'sage';
+                                            } else if (selectedHeroProduct.id === 'hero_9' || selectedHeroProduct.id === 'hero_10') {
+                                                fabricColor = 'bronze';
+                                            }
+                                            setCustomizerState(prev => ({
+                                                ...prev,
+                                                fabric: fabricColor
+                                            }));
+                                        }}
+                                    >
+                                        Simulate Brand Signature
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
