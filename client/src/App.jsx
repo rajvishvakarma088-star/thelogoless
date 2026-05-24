@@ -522,39 +522,38 @@ export default function App() {
                 </div>
             </nav>
 
-            {/* --- HERO SECTION WITH SPLIT-SCREEN BACKGROUND VIDEOS --- */}
+            {/* --- HERO SECTION --- */}
             <section id="hero" className="hero">
-                <div className="hero-video-bg">
-                    {/* Left Pane: Boy in hoodie */}
-                    <div className="hero-video-pane">
-                        <video autoPlay muted loop playsInline>
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-man-in-a-black-hoodie-standing-in-the-dark-43015-large.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                    {/* Right Pane: Girl in t-shirt/clothing */}
-                    <div className="hero-video-pane">
-                        <video autoPlay muted loop playsInline>
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-dark-studio-in-fashion-clothes-43006-large.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                </div>
                 <div className="hero-bg"></div>
                 <div className="hero-bg-texture"></div>
                 <div className="hero-grid-overlay"></div>
                 <div className="hero-noise"></div>
-                <div className="container">
-                    <div className="hero-content">
-                        <span className="accent-text">ESTABLISHED IN ABSENCE</span>
-                        <h1 className="hero-title">
-                            The elegance of
-                            <span>O M I S S I O N</span>
-                        </h1>
-                        <p className="hero-description">
-                            A premium clothing brand that rejects loud, ostentatious branding. We focus entirely on high-end craftsmanship, architectural silhouettes, and quiet luxury.
-                        </p>
-                        <div className="hero-buttons">
-                            <a href="#customizer" className="btn-primary">Simulate Brand</a>
-                            <a href="#lookbook" className="btn-secondary" style={{ marginLeft: '20px' }}>View Lookbook</a>
+                <div className="container hero-container">
+                    <div className="hero-split-grid">
+                        {/* Left Column: Content */}
+                        <div className="hero-content-col">
+                            <div className="hero-content">
+                                <span className="accent-text">ESTABLISHED IN ABSENCE</span>
+                                <h1 className="hero-title">
+                                    The elegance of
+                                    <span>O M I S S I O N</span>
+                                </h1>
+                                <p className="hero-description">
+                                    A premium clothing brand that rejects loud, ostentatious branding. We focus entirely on high-end craftsmanship, architectural silhouettes, and quiet luxury.
+                                </p>
+                                <div className="hero-buttons">
+                                    <a href="#customizer" className="btn-primary">Simulate Brand</a>
+                                    <a href="#lookbook" className="btn-secondary">View Lookbook</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Right Column: Visual Showcase */}
+                        <div className="hero-image-col">
+                            <div className="hero-image-wrapper">
+                                <img src="/hero_fashion_models.png" alt="thelogoless minimalist models wearing premium cotton shirt, jeans, and short kurti" className="hero-showcase-image" />
+                                <div className="hero-image-border"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
