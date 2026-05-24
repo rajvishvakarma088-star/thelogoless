@@ -7,42 +7,42 @@ const defaultProducts = [
         name: 'Obsidian Heavyweight Tee',
         price: 120,
         material: '320GSM Long-Staple Egyptian Cotton',
-        image: './logo_tee_mockup.png'
+        image: '/logo_tee_mockup.png'
     },
     {
         _id: 'prod_2',
         name: 'Normandy Linen Shirt',
         price: 160,
         material: 'Pure Normandy Linen-Cotton Weave',
-        image: './logo_tag_mockup.png'
+        image: '/logo_tag_mockup.png'
     },
     {
         _id: 'prod_3',
         name: 'Okayama Selvedge Denim',
         price: 220,
         material: 'Raw Selvedge Denim on Vintage Looms',
-        image: './logo_concept_seam.png'
+        image: '/logo_concept_seam.png'
     },
     {
         _id: 'prod_4',
         name: 'Sage Terry Hoodie',
         price: 190,
         material: '380GSM Organic Terry Fleece',
-        image: './logo_concept_dots.png'
+        image: '/logo_concept_dots.png'
     },
     {
         _id: 'prod_5',
         name: 'Bronze Cashmere Coat',
         price: 380,
         material: 'Brushed Italian Cashmere Blend',
-        image: './logo_concept_fold.png'
+        image: '/logo_concept_fold.png'
     },
     {
         _id: 'prod_6',
         name: 'Bronze Sculptural Hanger',
         price: 80,
         material: 'Solid Engraved Bronze Boutique Hardware',
-        image: './logo_concept_hanger.png'
+        image: '/logo_concept_hanger.png'
     }
 ];
 
@@ -84,19 +84,19 @@ const presetsMap = {
 
 // Lookbook Slides
 const lookbookSlides = [
-    { tag: "Primary Logo", title: "Typography & Slash Concept", num: "01", img: "./logo_typography_dark.png" },
-    { tag: "Packaging Mockup", title: "Debossed Cotton Paper Clothing Tag", num: "02", img: "./logo_tag_mockup.png" },
-    { tag: "Apparel Mockup", title: "Heavyweight Tee with Tone-on-Tone Stitch", num: "03", img: "./logo_tee_mockup.png" },
-    { tag: "Retail Facade", title: "Limestone boutique with backlit bronze metal letters", num: "04", img: "./logo_facade_mockup.png" },
-    { tag: "Detail Mockup", title: "Hand-Tied Cotton Thread Knot", num: "05", img: "./logo_concept_knot.png" },
-    { tag: "Tailoring Detail", title: "Indigo Denim with Gold Stitch Line", num: "06", img: "./logo_concept_seam.png" },
-    { tag: "Stamp Signature", title: "Minimal Japanese Hanko Seal", num: "07", img: "./logo_concept_hanko.png" },
-    { tag: "Boutique Hardware", title: "Engraved Sculptural Bronze Hanger", num: "08", img: "./logo_concept_hanger.png" },
-    { tag: "Collar Detail", title: "Origami Fabric Fold Seam Label", num: "09", img: "./logo_concept_fold.png" },
-    { tag: "Embroidery Mockup", title: "Embroidered Cotton Seed Cashmere", num: "10", img: "./logo_concept_seed.png" },
-    { tag: "Packaging Mockup", title: "Minimal Matte Black Wax Seal", num: "11", img: "./logo_concept_wax.png" },
-    { tag: "Hardware Detail", title: "Brushed Silver Blank Pin Label", num: "12", img: "./logo_concept_metal.png" },
-    { tag: "Sleeve Detail", title: "Triple Silk Thread Alignment Dots", num: "13", img: "./logo_concept_dots.png" }
+    { tag: "Primary Logo", title: "Typography & Slash Concept", num: "01", img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000" },
+    { tag: "Packaging Mockup", title: "Debossed Cotton Paper Clothing Tag", num: "02", img: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000" },
+    { tag: "Apparel Mockup", title: "Heavyweight Tee with Tone-on-Tone Stitch", num: "03", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000" },
+    { tag: "Retail Facade", title: "Limestone boutique with backlit bronze metal letters", num: "04", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000" },
+    { tag: "Detail Mockup", title: "Hand-Tied Cotton Thread Knot", num: "05", img: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1000" },
+    { tag: "Tailoring Detail", title: "Indigo Denim with Gold Stitch Line", num: "06", img: "https://images.unsplash.com/photo-1582457380690-685c2297d023?q=80&w=1000" },
+    { tag: "Stamp Signature", title: "Minimal Japanese Hanko Seal", num: "07", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1000" },
+    { tag: "Boutique Hardware", title: "Engraved Sculptural Bronze Hanger", num: "08", img: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1000" },
+    { tag: "Collar Detail", title: "Origami Fabric Fold Seam Label", num: "09", img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?q=80&w=1000" },
+    { tag: "Embroidery Mockup", title: "Embroidered Cotton Seed Cashmere", num: "10", img: "https://images.unsplash.com/photo-1614975058789-41316d0e2e9c?q=80&w=1000" },
+    { tag: "Packaging Mockup", title: "Minimal Matte Black Wax Seal", num: "11", img: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?q=80&w=1000" },
+    { tag: "Hardware Detail", title: "Brushed Silver Blank Pin Label", num: "12", img: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?q=80&w=1000" },
+    { tag: "Sleeve Detail", title: "Triple Silk Thread Alignment Dots", num: "13", img: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=1000" }
 ];
 
 // Center Peek Hero Slider Products Data
@@ -107,7 +107,7 @@ const heroSlidesData = [
         category: 'HOODIE',
         price: 180,
         material: '400GSM Organic Cotton Loopback Terry',
-        image: './hero_slide_1.png',
+        image: '/hero_slide_1.png',
         description: 'An architectural hoodie with a double-layered structured hood, drop shoulders, and no visible branding. Clean ribbing and blind side-seam pockets.',
         sizes: ['S', 'M', 'L', 'XL']
     },
@@ -117,7 +117,7 @@ const heroSlidesData = [
         category: 'PANTS',
         price: 220,
         material: '14.5oz Raw Indigo Selvedge Denim',
-        image: './hero_slide_2.png',
+        image: '/hero_slide_2.png',
         description: 'Indigo dyed raw selvedge jeans woven on vintage shuttle looms in Okayama. Features clean hidden copper rivets and a classic straight-leg cut.',
         sizes: ['30', '32', '34', '36']
     },
@@ -127,7 +127,7 @@ const heroSlidesData = [
         category: 'JEANS & PANTS',
         price: 160,
         material: '100% Pure French Linen',
-        image: './hero_slide_3.png',
+        image: '/hero_slide_3.png',
         description: 'Lightweight structured trousers with clean slash pockets, elasticated waist with hidden drawstrings, and a tapered silhouette.',
         sizes: ['S', 'M', 'L']
     },
@@ -137,7 +137,7 @@ const heroSlidesData = [
         category: 'OVERSIZE TSHIRT',
         price: 110,
         material: '300GSM GOTS Organic Cotton',
-        image: './hero_slide_4.png',
+        image: '/hero_slide_4.png',
         description: 'A relaxed, structured heavyweight tee with high crewneck collar, dropped shoulders, and tiny raw-edge cotton seed speckles embedded in the weave.',
         sizes: ['S', 'M', 'L', 'XL']
     },
@@ -147,7 +147,7 @@ const heroSlidesData = [
         category: 'JACKETS',
         price: 260,
         material: 'Water-Repellent High-Density Nylon Blend',
-        image: './hero_slide_5.png',
+        image: '/hero_slide_5.png',
         description: 'Modern silhouette jacket with an asymmetric dual-way zipper, storm cuffs, and clean heat-bonded seam construction.',
         sizes: ['S', 'M', 'L', 'XL']
     },
@@ -157,7 +157,7 @@ const heroSlidesData = [
         category: 'SWEATPANTS',
         price: 140,
         material: '380GSM French Terry Fleece',
-        image: './hero_slide_6.png',
+        image: '/hero_slide_6.png',
         description: 'Heavy-fleece loungewear pants with flatlock stitching, elasticated ankle cuffs, and minimal interior branding.',
         sizes: ['S', 'M', 'L', 'XL']
     },
@@ -167,7 +167,7 @@ const heroSlidesData = [
         category: 'KURTI',
         price: 150,
         material: 'Pure Normandy Linen-Cotton Weave',
-        image: './hero_slide_7.png',
+        image: '/hero_slide_7.png',
         description: 'A premium architectural short kurti blending traditional silhouettes with modern geometric cuts and clean flat seams.',
         sizes: ['XS', 'S', 'M', 'L']
     },
@@ -177,7 +177,7 @@ const heroSlidesData = [
         category: 'SHIRTS',
         price: 170,
         material: 'Pure Normandy Long-Staple Linen',
-        image: './hero_slide_8.png',
+        image: '/hero_slide_8.png',
         description: 'A relaxed button-down shirt featuring French seams, hidden mother-of-pearl buttons, and a clean structured collar.',
         sizes: ['S', 'M', 'L', 'XL']
     },
@@ -187,7 +187,7 @@ const heroSlidesData = [
         category: 'COATS & JACKETS',
         price: 390,
         material: '85% Brushed Cashmere, 15% Silk Blend',
-        image: './hero_slide_9.png',
+        image: '/hero_slide_9.png',
         description: 'Luxurious outerwear with a soft double-breasted drape, unstructured drop-shoulders, and deep welt pockets.',
         sizes: ['S', 'M', 'L']
     },
@@ -197,7 +197,7 @@ const heroSlidesData = [
         category: 'CARDIGANS',
         price: 210,
         material: '100% Fine Merino Wool',
-        image: './hero_slide_10.png',
+        image: '/hero_slide_10.png',
         description: 'Minimalist buttonless cardigan with flat-knit ribbed edges, low drop armholes, and an elegant structural drape.',
         sizes: ['S', 'M', 'L']
     }
@@ -937,8 +937,8 @@ export default function App() {
                     </div>
 
                     <div className="carousel-container reveal" id="lookbook-carousel">
-                        <div className="carousel-track-wrapper">
-                            <div className="carousel-track" style={{ transform: `translateX(-${lookbookIndex * 100}%)`, width: `${lookbookSlides.length * 100}%` }}>
+                        <div class="carousel-track-wrapper">
+                            <div className="carousel-track" style={{ transform: `translateX(-${lookbookIndex * (100 / lookbookSlides.length)}%)`, width: `${lookbookSlides.length * 100}%` }}>
                                 {lookbookSlides.map((slide, idx) => (
                                     <div className="carousel-slide" key={idx} style={{ width: `${100 / lookbookSlides.length}%` }}>
                                         <img src={slide.img} alt={slide.title} className="carousel-image" />
