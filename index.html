@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thelogoless — Quiet Luxury & Premium Minimalist Clothing</title>
+    
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="thelogoless is a premium minimalist clothing brand built on the philosophy of quiet luxury, exceptional tailoring, and the rejection of loud branding. Discover understated luxury.">
+    <meta name="keywords" content="thelogoless, premium clothing, minimalist fashion, quiet luxury, sustainable fashion, designer wardrobe">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="thelogoless — Quiet Luxury & Premium Minimalist Clothing">
+    <meta property="og:description" content="Understated luxury, premium organic materials, and minimalist craftsmanship. The brand without a logo.">
+    <meta property="og:type" content="website">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- --- GLASSMORPHIC NAVIGATION BAR --- -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo" id="nav-logo">T H E L O G O L E S S</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#philosophy" class="active">Philosophy</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
+                <li><a href="#customizer">Customizer</a></li>
+                <li><a href="#brandbook">Brand Book</a></li>
+            </ul>
+            <div class="nav-right-controls" style="display: flex; align-items: center; gap: 20px;">
+                <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light and dark theme">
+                    <!-- Sun icon shown in dark mode -->
+                    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon icon shown in light mode -->
+                    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="nav-menu-btn" id="nav-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- HERO SECTION --- -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-texture"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="accent-text">ESTABLISHED IN ABSENCE</span>
+                <h1 class="hero-title">
+                    The elegance of
+                    <span>O M I S S I O N</span>
+                </h1>
+                <p class="hero-description">
+                    A premium clothing brand that rejects loud, ostentatious branding. We focus entirely on high-end craftsmanship, architectural silhouettes, and quiet luxury.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#customizer" class="btn-primary" id="explore-customizer-btn">Simulate Brand</a>
+                    <a href="#lookbook" class="btn-secondary" style="margin-left: 20px;" id="view-lookbook-btn">View Lookbook</a>
+                </div>
+            </div>
+        </div>
+        <a href="#philosophy" class="scroll-indicator" id="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </a>
+    </section>
+
+    <!-- --- PHILOSOPHY SECTION --- -->
+    <section id="philosophy" class="section-padding philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-image-container">
+                    <img src="./logo_facade_mockup.png" alt="thelogoless boutique facade" class="philosophy-image" id="philosophy-mockup-img" width="600" height="600">
+                </div>
+                <div class="philosophy-text-content">
+                    <span class="accent-text">Our Philosophy</span>
+                    <h2 class="section-title">Luxury does not advertise.</h2>
+                    <p class="philosophy-lead">
+                        In an era of loud consumerism, true luxury speaks through tactile quality, impeccable drape, and invisible details.
+                    </p>
+                    <p class="philosophy-paragraph">
+                        "thelogoless" is curated for the individual who values personal expression over commercial branding. By removing external logos, we restore the focus to what matters: the finest Italian linen, Japanese raw denim, GOTS certified organic Egyptian cotton, and the unique architecture of the garment itself.
+                    </p>
+                    <p class="philosophy-paragraph">
+                        Our logo is not a billboard. It is a stitch, a slash, a tactile impression. It is felt by the wearer, not broadcast to the world.
+                    </p>
+                    <div style="margin-top: 40px;">
+                        <a href="#concepts" class="btn-secondary" id="read-concepts-btn">Explore Design Elements</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- BRAND CONCEPTS SECTION --- -->
+    <section id="concepts" class="section-padding concepts">
+        <div class="container">
+            <div class="text-center">
+                <span class="accent-text">Design System</span>
+                <h2 class="section-title">The Four Design Signatures</h2>
+                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;" class="philosophy-paragraph">
+                    We replace traditional branding with four subtle architectural marks that carry the brand's identity quietly.
+                </p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="concepts-grid">
+                <!-- Concept 1 -->
+                <div class="concept-card" id="card-concept-1">
+                    <div class="concept-icon">/</div>
+                    <h3 class="concept-title">The Elegant Slash</h3>
+                    <p class="concept-desc">A subtle, diagonal line representing an empty space or missing label. An architectural slash carved into buttons or embroidered in tone-on-tone thread.</p>
+                </div>
+                
+                <!-- Concept 2 -->
+                <div class="concept-card" id="card-concept-2">
+                    <div class="concept-icon">
+                        <svg class="concept-icon-svg" viewBox="0 0 24 24">
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                        </svg>
+                    </div>
+                    <h3 class="concept-title">The Single Stitch</h3>
+                    <p class="concept-desc">An abstract single hand-stitch or four corner threads at the neck seam. It emphasizes physical craftsmanship, tailoring, and textile construction.</p>
+                </div>
+
+                <!-- Concept 3 -->
+                <div class="concept-card" id="card-concept-3">
+                    <div class="concept-icon" style="font-family: var(--font-display);">TL</div>
+                    <h3 class="concept-title">Architectural Monogram</h3>
+                    <p class="concept-desc">A highly-stylized, single-stroke monogram combining T and L in a fluid geometric layout. Primarily used for custom customizer hardware.</p>
+                </div>
+
+                <!-- Concept 4 -->
+                <div class="concept-card" id="card-concept-4">
+                    <div class="concept-icon">
+                        <svg class="concept-icon-svg" viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="1" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                    </div>
+                    <h3 class="concept-title">The Pure Void</h3>
+                    <p class="concept-desc">Blind debossed branding pressed into thick cotton clothing tags or fine paper wrap. No ink, no dye, only depth and tactile shadows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- LOOKBOOK CAROUSEL SECTION --- -->
+    <section id="lookbook" class="section-padding lookbook">
+        <div class="container">
+            <div class="text-center">
+                <span class="accent-text">Brand Book Showcase</span>
+                <h2 class="section-title">Visual Identity in Environment</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Carousel Component -->
+            <div class="carousel-container" id="lookbook-carousel">
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_typography_dark.png" alt="thelogoless primary brandmark dark mode typography" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Primary Logo</span>
+                                    <h3 class="caption-title">Typography & Slash Concept</h3>
+                                </div>
+                                <span class="caption-number">01</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_tag_mockup.png" alt="debossed luxury cardboard tag on cashmere fabric" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Packaging Mockup</span>
+                                    <h3 class="caption-title">Debossed Cotton Paper Clothing Tag</h3>
+                                </div>
+                                <span class="caption-number">02</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_tee_mockup.png" alt="heavyweight black cotton t-shirt close up mockup with minimal embroidery logo" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Apparel Mockup</span>
+                                    <h3 class="caption-title">Heavyweight Tee with Tone-on-Tone Stitch</h3>
+                                </div>
+                                <span class="caption-number">03</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_facade_mockup.png" alt="thelogoless flagship boutique storefront facade" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Retail Facade</span>
+                                    <h3 class="caption-title">Limestone boutique with backlit bronze metal letters</h3>
+                                </div>
+                                <span class="caption-number">04</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_knot.png" alt="thelogoless thread knot branding" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Detail Mockup</span>
+                                    <h3 class="caption-title">Hand-Tied Cotton Thread Knot</h3>
+                                </div>
+                                <span class="caption-number">05</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_seam.png" alt="indigo denim blind stitch detail" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Tailoring Detail</span>
+                                    <h3 class="caption-title">Indigo Denim with Gold Stitch Line</h3>
+                                </div>
+                                <span class="caption-number">06</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 7 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_hanko.png" alt="minimal red hanko stamp on washi paper" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Stamp Signature</span>
+                                    <h3 class="caption-title">Minimal Japanese Hanko Seal</h3>
+                                </div>
+                                <span class="caption-number">07</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 8 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_hanger.png" alt="sculptural bronze clothing hanger" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Boutique Hardware</span>
+                                    <h3 class="caption-title">Engraved Sculptural Bronze Hanger</h3>
+                                </div>
+                                <span class="caption-number">08</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 9 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_fold.png" alt="origami fabric label fold on wool coat neck" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Collar Detail</span>
+                                    <h3 class="caption-title">Origami Fabric Fold Seam Label</h3>
+                                </div>
+                                <span class="caption-number">09</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 10 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_seed.png" alt="fine line cotton seed pod embroidery on cashmere scarf" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Embroidery Mockup</span>
+                                    <h3 class="caption-title">Embroidered Cotton Seed Cashmere</h3>
+                                </div>
+                                <span class="caption-number">10</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 11 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_wax.png" alt="matte black wax seal slash logo on tissue wrap" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Packaging Mockup</span>
+                                    <h3 class="caption-title">Minimal Matte Black Wax Seal</h3>
+                                </div>
+                                <span class="caption-number">11</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 12 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_metal.png" alt="flat silver metal pin label on coat collar" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Hardware Detail</span>
+                                    <h3 class="caption-title">Brushed Silver Blank Pin Label</h3>
+                                </div>
+                                <span class="caption-number">12</span>
+                            </div>
+                        </div>
+
+                        <!-- Slide 13 -->
+                        <div class="carousel-slide">
+                            <img src="./logo_concept_dots.png" alt="three embroidered alignment dots on sweatshirt edge" class="carousel-image">
+                            <div class="carousel-caption">
+                                <div class="caption-details">
+                                    <span class="caption-tag">Sleeve Detail</span>
+                                    <h3 class="caption-title">Triple Silk Thread Alignment Dots</h3>
+                                </div>
+                                <span class="caption-number">13</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <button class="carousel-btn carousel-btn-prev" id="carousel-prev" aria-label="Previous image">
+                    &#8592;
+                </button>
+                <button class="carousel-btn carousel-btn-next" id="carousel-next" aria-label="Next image">
+                    &#8594;
+                </button>
+            </div>
+
+            <!-- Dots Indicators -->
+            <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+    </section>
+
+    <!-- --- INTERACTIVE BRAND CUSTOMIZER --- -->
+    <section id="customizer" class="section-padding customizer">
+        <div class="container">
+            <div class="text-center">
+                <span class="accent-text">Simulator</span>
+                <h2 class="section-title">Interactive Brand Customizer</h2>
+                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;" class="philosophy-paragraph">
+                    Experiment with the placement, tone, and design of our minimalist signatures on a luxury organic t-shirt.
+                </p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="customizer-layout">
+                <!-- SVG Canvas Container -->
+                <div class="canvas-container" id="customizer-canvas">
+                    <span class="placement-badge" id="badge-placement">Placement: Chest</span>
+                    
+                    <!-- SVG T-Shirt Model -->
+                    <svg class="tshirt-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- T-shirt collar back fold -->
+                        <path d="M41 18 C45 20.5, 55 20.5, 59 18 C58 14.5, 42 14.5, 41 18 Z" fill="#060607" opacity="0.3" />
+                        
+                        <!-- Main T-shirt body and sleeves -->
+                        <path class="tshirt-fabric" d="M30 18 C33 19, 37 19, 40 18 C43 15, 57 15, 60 18 C63 19, 67 19, 70 18 L76 29 C77.5 31.5, 75 33, 73 33 L67 31 L67 85 C67 87.5, 65 89, 62 89 L38 89 C35 89, 33 87.5, 33 85 L33 31 L27 33 C25 33, 22.5 31.5, 24 29 Z" fill="#0D0E10" />
+                        
+                        <!-- Collar Trim detail overlay -->
+                        <path class="tshirt-collar" d="M40 18 C43 22, 57 22, 60 18" fill="none" stroke="#FFFFFF" stroke-width="0.6" opacity="0.08" />
+                        
+                        <!-- Inner neck shadow / seam line -->
+                        <path d="M40.5 18 C43.5 21.5, 56.5 21.5, 59.5 18" fill="none" stroke="#000000" stroke-width="0.8" opacity="0.4" />
+                        
+                        <!-- Underarm Creases -->
+                        <path d="M33 31 C34 33, 35 34, 37 35" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.3" />
+                        <path d="M67 31 C66 33, 65 34, 63 35" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.3" />
+                        
+                        <!-- Sleeve cuffs folds -->
+                        <path d="M24 29 L27.2 32.5" fill="none" stroke="#000000" stroke-width="0.4" opacity="0.2" />
+                        <path d="M76 29 L72.8 32.5" fill="none" stroke="#000000" stroke-width="0.4" opacity="0.2" />
+                        
+                        <!-- Subtle shadows to emphasize fabric depth -->
+                        <!-- Left side shadow -->
+                        <path d="M33 31 C35 48, 35 68, 37 89" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.25" />
+                        <!-- Right side shadow -->
+                        <path d="M67 31 C65 48, 65 68, 63 89" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.25" />
+                        
+                        <!-- Soft fabric fold shading (overlay style) -->
+                        <path d="M38 18 C36 40, 42 65, 40 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
+                        <path d="M60 18 C62 40, 56 65, 58 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
+                        
+                        <!-- Interactive Logo Mark Group -->
+                        <g id="tee-logo-group" class="tee-logo-element" transform="translate(42, 33)">
+                            <!-- Slash Concept Mark -->
+                            <line id="logo-art-slash" x1="-1.5" y1="-3.5" x2="1.5" y2="3.5" stroke="#C5B49E" stroke-width="0.6" stroke-linecap="round" />
+                            
+                            <!-- Stitch Concept Mark -->
+                            <g id="logo-art-stitch" style="display: none;">
+                                <line x1="-1.5" y1="-1.5" x2="1.5" y2="1.5" stroke="#C5B49E" stroke-width="0.5" />
+                                <line x1="1.5" y1="-1.5" x2="-1.5" y2="1.5" stroke="#C5B49E" stroke-width="0.5" />
+                            </g>
+                            
+                            <!-- Typography Text Mark -->
+                            <text id="logo-art-text" x="0" y="0.8" font-family="'Cinzel', serif" font-size="1.2" letter-spacing="0.1" fill="#C5B49E" text-anchor="middle" style="display: none;">THELOGOLESS</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Customizer Control panel -->
+                <div class="customizer-settings">
+                    
+                    <!-- Fabric Color Selector -->
+                    <div class="setting-group" id="fabric-group">
+                        <div class="setting-title">Fabric Type & Color <span id="selected-fabric">obsidian</span></div>
+                        <div class="option-grid">
+                            <div class="swatch swatch-obsidian active" data-fabric="obsidian" title="Obsidian Black Organic Cotton"></div>
+                            <div class="swatch swatch-cream" data-fabric="cream" title="Warm Off-White Linen-Cotton"></div>
+                            <div class="swatch swatch-sage" data-fabric="sage" title="Sage Green Heavyweight Terry"></div>
+                            <div class="swatch swatch-bronze" data-fabric="bronze" title="Bronze Brushed Cashmere blend"></div>
+                        </div>
+                    </div>
+
+                    <!-- Logo Concept Selector -->
+                    <div class="setting-group" id="concept-group">
+                        <div class="setting-title">Brand Signature <span id="selected-logo">Elegant Slash</span></div>
+                        <div class="option-grid">
+                            <div class="logo-art-option active" data-logo-art="slash">
+                                <div class="logo-art-preview">/</div>
+                                <div class="logo-art-label">The Slash</div>
+                            </div>
+                            <div class="logo-art-option" data-logo-art="stitch">
+                                <div class="logo-art-preview">X</div>
+                                <div class="logo-art-label">The Stitch</div>
+                            </div>
+                            <div class="logo-art-option" data-logo-art="text">
+                                <div class="logo-art-preview" style="font-size: 0.6rem; letter-spacing: 0.05em;">T L</div>
+                                <div class="logo-art-label">Typography</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thread/Embroidery Color Selector -->
+                    <div class="setting-group" id="thread-group">
+                        <div class="setting-title">Thread / Mark Color <span id="selected-color">gold</span></div>
+                        <div class="option-grid">
+                            <button class="btn-pill active" data-logo-color="gold">Champagne Gold</button>
+                            <button class="btn-pill" data-logo-color="black">Matte Black</button>
+                            <button class="btn-pill" data-logo-color="white">Silk White</button>
+                            <button class="btn-pill" data-logo-color="sage">Muted Sage</button>
+                        </div>
+                    </div>
+
+                    <!-- Placement Selector -->
+                    <div class="setting-group" id="placement-group">
+                        <div class="setting-title">Embroidery Placement <span id="selected-placement">chest</span></div>
+                        <div class="option-grid">
+                            <button class="btn-pill active" data-placement="chest">Left Chest</button>
+                            <button class="btn-pill" data-placement="sleeve">Sleeve Cuff</button>
+                            <button class="btn-pill" data-placement="tag">Bottom Hem</button>
+                            <button class="btn-pill" data-placement="collar">Inner Neck</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- BRAND BOOK DETAILS (ACCORDION) --- -->
+    <section id="brandbook" class="section-padding brandbook">
+        <div class="container">
+            <div class="brandbook-layout">
+                <div class="brandbook-intro">
+                    <span class="accent-text">Brand Book excerpt</span>
+                    <h2 class="section-title">The Omission Guidelines</h2>
+                    <p class="philosophy-paragraph" style="margin-bottom: 0;">
+                        An internal guide outlining the visual design systems, quality control metrics, and material standards that preserve the "thelogoless" identity across physical space.
+                    </p>
+                </div>
+                
+                <div class="accordion">
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item active" id="acc-item-1">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">01 / Material Standards</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We source raw fibers from sustainable, traceably verified family farms. Every thread and weave is optimized for maximum structural memory and natural texture.</p>
+                            <ul>
+                                <li>Heavyweight 320GSM certified organic Egyptian cotton (long-staple).</li>
+                                <li>Eco-friendly linen-blend spun and milled in small batches in Normandy, France.</li>
+                                <li>Raw Japanese selvedge denim woven on vintage shuttle looms in Okayama.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item" id="acc-item-2">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">02 / Stitching & Architecture</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Without printed branding, structural seams become the decorative voice of the garment. Every stitch line serves an ergonomic and visual purpose.</p>
+                            <ul>
+                                <li>Reinforced french seams with 12 stitches per inch to prevent fraying and structural distortion.</li>
+                                <li>Double-needle drop stitching on necklines for structural longevity.</li>
+                                <li>A singular offset lock-stitch at the rear hem signifying tailors' authenticity.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item" id="acc-item-3">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">03 / The Omission Philosophy</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Branding is not a display; it is an intimate conversation between the garment and its owner. We believe in quiet sophistication.</p>
+                            <ul>
+                                <li>No external branded graphics or words on outer surfaces.</li>
+                                <li>Physical tags should be easily removable, leaving no stitch scars on the garment.</li>
+                                <li>Tone-on-tone embroidery should never exceed 1cm in size.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- FOOTER --- -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1 -->
+                <div class="footer-brand">
+                    <div class="footer-logo">T H E L O G O L E S S</div>
+                    <p class="footer-brand-desc">
+                        A modern design project returning clothing to the purity of textiles, geometry, and quiet elegance. Made for the discerning individual.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <div class="footer-links">
+                        <a href="#philosophy">Philosophy</a>
+                        <a href="#concepts">Design Signatures</a>
+                        <a href="#lookbook">Lookbook Mockups</a>
+                        <a href="#customizer">Brand Simulator</a>
+                        <a href="#brandbook">Brand Book</a>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="footer-title">Include Yourself</h4>
+                    <p class="footer-brand-desc" style="margin-bottom: 20px;">
+                        Receive notification of private releases and visual essays. Understated updates, never spam.
+                    </p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" placeholder="EMAIL ADDRESS" required aria-label="Email address for updates">
+                            <button type="submit" class="submit-btn" aria-label="Submit email address">
+                                &#8594;
+                            </button>
+                        </div>
+                        <div class="form-response-msg" id="form-msg"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="footer-bottom">
+                <div>&copy; 2026 thelogoless. All rights observed.</div>
+                <div>Quiet Luxury Brand Suite</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="./app.js"></script>
+</body>
+</html>
