@@ -7,42 +7,48 @@ const defaultProducts = [
         name: 'Obsidian Heavyweight Tee',
         price: 120,
         material: '320GSM Long-Staple Egyptian Cotton',
-        image: '/logo_tee_mockup.png'
+        image: '/logo_tee_mockup.png',
+        hoverImage: '/hero_slide_4.png'
     },
     {
         _id: 'prod_2',
         name: 'Normandy Linen Shirt',
         price: 160,
         material: 'Pure Normandy Linen-Cotton Weave',
-        image: '/logo_tag_mockup.png'
+        image: '/logo_tag_mockup.png',
+        hoverImage: '/hero_slide_8.png'
     },
     {
         _id: 'prod_3',
         name: 'Okayama Selvedge Denim',
         price: 220,
         material: 'Raw Selvedge Denim on Vintage Looms',
-        image: '/logo_concept_seam.png'
+        image: '/logo_concept_seam.png',
+        hoverImage: '/hero_slide_2.png'
     },
     {
         _id: 'prod_4',
         name: 'Sage Terry Hoodie',
         price: 190,
         material: '380GSM Organic Terry Fleece',
-        image: '/logo_concept_dots.png'
+        image: '/logo_concept_dots.png',
+        hoverImage: '/hero_slide_1.png'
     },
     {
         _id: 'prod_5',
         name: 'Bronze Cashmere Coat',
         price: 380,
         material: 'Brushed Italian Cashmere Blend',
-        image: '/logo_concept_fold.png'
+        image: '/logo_concept_fold.png',
+        hoverImage: '/hero_slide_9.png'
     },
     {
         _id: 'prod_6',
         name: 'Bronze Sculptural Hanger',
         price: 80,
         material: 'Solid Engraved Bronze Boutique Hardware',
-        image: '/logo_concept_hanger.png'
+        image: '/logo_concept_hanger.png',
+        hoverImage: '/hero_slide_5.png'
     }
 ];
 
@@ -81,23 +87,6 @@ const presetsMap = {
     'selvedge-artist': { fabric: 'sage', logo: 'stitch', color: 'sage', placement: 'collar' },
     'bronze-signature': { fabric: 'bronze', logo: 'slash', color: 'gold', placement: 'tag' }
 };
-
-// Lookbook Slides
-const lookbookSlides = [
-    { tag: "Primary Logo", title: "Typography & Slash Concept", num: "01", img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000" },
-    { tag: "Packaging Mockup", title: "Debossed Cotton Paper Clothing Tag", num: "02", img: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1000" },
-    { tag: "Apparel Mockup", title: "Heavyweight Tee with Tone-on-Tone Stitch", num: "03", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000" },
-    { tag: "Retail Facade", title: "Limestone boutique with backlit bronze metal letters", num: "04", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000" },
-    { tag: "Detail Mockup", title: "Hand-Tied Cotton Thread Knot", num: "05", img: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1000" },
-    { tag: "Tailoring Detail", title: "Indigo Denim with Gold Stitch Line", num: "06", img: "https://images.unsplash.com/photo-1582457380690-685c2297d023?q=80&w=1000" },
-    { tag: "Stamp Signature", title: "Minimal Japanese Hanko Seal", num: "07", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1000" },
-    { tag: "Boutique Hardware", title: "Engraved Sculptural Bronze Hanger", num: "08", img: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1000" },
-    { tag: "Collar Detail", title: "Origami Fabric Fold Seam Label", num: "09", img: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?q=80&w=1000" },
-    { tag: "Embroidery Mockup", title: "Embroidered Cotton Seed Cashmere", num: "10", img: "https://images.unsplash.com/photo-1614975058789-41316d0e2e9c?q=80&w=1000" },
-    { tag: "Packaging Mockup", title: "Minimal Matte Black Wax Seal", num: "11", img: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?q=80&w=1000" },
-    { tag: "Hardware Detail", title: "Brushed Silver Blank Pin Label", num: "12", img: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?q=80&w=1000" },
-    { tag: "Sleeve Detail", title: "Triple Silk Thread Alignment Dots", num: "13", img: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=1000" }
-];
 
 // Center Peek Hero Slider Products Data
 const heroSlidesData = [
@@ -203,18 +192,60 @@ const heroSlidesData = [
     }
 ];
 
+const storefrontFilters = [
+    'Delivery Time',
+    'Category',
+    'Size',
+    'Color',
+    'Pattern',
+    'Fit',
+    'Material',
+    'Collar',
+    'Sleeves',
+    'Price'
+];
+
+const storefrontCategories = ['ALL', 'NEW', 'SHIRTS', 'TROUSERS', 'SHORTS', 'SLIM', 'BAGGY', 'BOXY', 'RELAXED', 'CHECKS', 'LINEN'];
+
+const productDetailAccordions = [
+    {
+        title: 'DETAILS',
+        body: 'Relaxed premium tailoring with clean finishing, concealed placket engineering, breathable lining, and a sharp everyday silhouette built for repeat wear.'
+    },
+    {
+        title: 'REVIEWS',
+        body: 'Customers respond best to the fabric hand feel, fit balance, and polished look. This block is ready for ratings, UGC, or verified buyer reviews.'
+    },
+    {
+        title: 'DELIVERY',
+        body: 'Express dispatch in metro cities, standard shipping nationwide, and low-friction exchange handling designed for a startup DTC experience.'
+    },
+    {
+        title: 'RETURNS',
+        body: 'Easy size exchange within 7 days, structured return pickup flows, and a reusable packaging concept that fits your premium brand positioning.'
+    }
+];
+
 export default function App() {
     // --- STYLING & NAVIGATION STATES ---
     const [light, setLight] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('philosophy');
+    const [activeSection, setActiveSection] = useState('collection');
     const [scrollProgress, setScrollProgress] = useState(0);
 
     // --- HERO AUTO-SLIDER STATES ---
     const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
     const [selectedHeroProduct, setSelectedHeroProduct] = useState(null);
     const [selectedSize, setSelectedSize] = useState('M');
+    const [selectedStoreProduct, setSelectedStoreProduct] = useState(heroSlidesData[0]);
+    const [selectedStoreSize, setSelectedStoreSize] = useState(heroSlidesData[0].sizes[0]);
+    const [selectedStoreImage, setSelectedStoreImage] = useState(heroSlidesData[0].image);
+    const [selectedStoreCategory, setSelectedStoreCategory] = useState('ALL');
+    const [storeAccordionOpen, setStoreAccordionOpen] = useState('DETAILS');
+    const [routePath, setRoutePath] = useState(window.location.pathname);
+    const [routeTransitionPhase, setRouteTransitionPhase] = useState('idle');
+    const [routeTransitionDirection, setRouteTransitionDirection] = useState('forward');
 
     // --- PRODUCTS & CART & CHECKOUT STATES ---
     const [products, setProducts] = useState(defaultProducts);
@@ -240,18 +271,16 @@ export default function App() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
     const [newsletterMsg, setNewsletterMsg] = useState('');
     const [accordionOpen, setAccordionOpen] = useState(1);
-    const [lookbookIndex, setLookbookIndex] = useState(0);
 
     // --- WEB AUDIO API NODE ---
     const audioCtxRef = useRef(null);
+    const routeTransitionTimerRef = useRef(null);
 
     // --- ELEMENT REFS ---
     const collectionTrackRef = useRef(null);
     const isDownRef = useRef(false);
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
-    const interludeSecRef = useRef(null);
-    const interludeVidRef = useRef(null);
 
     // Initialize Web Audio
     const initAudio = useCallback(() => {
@@ -311,6 +340,44 @@ export default function App() {
         document.body.className = light ? 'light' : '';
     }, [light]);
 
+    useEffect(() => {
+        return () => {
+            if (routeTransitionTimerRef.current) {
+                window.clearTimeout(routeTransitionTimerRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const handlePopState = () => {
+            const nextPath = window.location.pathname;
+            if (nextPath === routePath) return;
+
+            const currentDepth = routePath.startsWith('/product/') ? 2 : routePath === '/shop' ? 1 : 0;
+            const nextDepth = nextPath.startsWith('/product/') ? 2 : nextPath === '/shop' ? 1 : 0;
+
+            if (routeTransitionTimerRef.current) {
+                window.clearTimeout(routeTransitionTimerRef.current);
+            }
+
+            setRouteTransitionDirection(nextDepth >= currentDepth ? 'forward' : 'backward');
+            setRouteTransitionPhase('exit');
+
+            routeTransitionTimerRef.current = window.setTimeout(() => {
+                setRoutePath(nextPath);
+                window.scrollTo({ top: 0, behavior: 'auto' });
+                setRouteTransitionPhase('enter');
+
+                routeTransitionTimerRef.current = window.setTimeout(() => {
+                    setRouteTransitionPhase('idle');
+                }, 440);
+            }, 220);
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [routePath]);
+
     // Fetch Products from API
     useEffect(() => {
         fetch('http://localhost:5001/api/products')
@@ -335,7 +402,7 @@ export default function App() {
             setScrollProgress((window.scrollY / docHeight) * 100);
 
             // Active Section Spy
-            const sections = ['philosophy', 'collection', 'concepts', 'lookbook', 'customizer', 'brandbook'];
+            const sections = ['collection', 'concepts', 'customizer', 'brandbook'];
             for (let sec of [...sections].reverse()) {
                 const el = document.getElementById(sec);
                 if (el && window.scrollY >= (el.offsetTop - 200)) {
@@ -344,15 +411,6 @@ export default function App() {
                 }
             }
 
-            // Parallax Interlude Video
-            if (interludeVidRef.current && interludeSecRef.current) {
-                const rect = interludeSecRef.current.getBoundingClientRect();
-                const viewHeight = window.innerHeight;
-                if (rect.top < viewHeight && rect.bottom > 0) {
-                    const scrollFactor = rect.top / viewHeight;
-                    interludeVidRef.current.style.transform = `translateY(${scrollFactor * 8}%) scale(1.05)`;
-                }
-            }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -409,23 +467,6 @@ export default function App() {
 
     // Clear active presets when custom settings are clicked
     const clearPresetSelection = () => setActivePreset('');
-
-    // --- CAROUSEL SLIDESHOW LOGIC ---
-    const handleLookbookNext = () => {
-        setLookbookIndex(prev => (prev + 1) % lookbookSlides.length);
-    };
-
-    const handleLookbookPrev = () => {
-        setLookbookIndex(prev => (prev - 1 + lookbookSlides.length) % lookbookSlides.length);
-    };
-
-    // Auto Advance lookbook slideshow
-    useEffect(() => {
-        const timer = setInterval(() => {
-            handleLookbookNext();
-        }, 5500);
-        return () => clearInterval(timer);
-    }, []);
 
     // Auto Advance hero slider
     useEffect(() => {
@@ -568,6 +609,99 @@ export default function App() {
         collectionTrackRef.current.scrollLeft = scrollLeftRef.current - walk;
     };
 
+    const navigateTo = (path) => {
+        if (window.location.pathname === path) return;
+
+        const currentDepth = routePath.startsWith('/product/') ? 2 : routePath === '/shop' ? 1 : 0;
+        const nextDepth = path.startsWith('/product/') ? 2 : path === '/shop' ? 1 : 0;
+
+        if (routeTransitionTimerRef.current) {
+            window.clearTimeout(routeTransitionTimerRef.current);
+        }
+
+        setRouteTransitionDirection(nextDepth >= currentDepth ? 'forward' : 'backward');
+        setRouteTransitionPhase('exit');
+
+        routeTransitionTimerRef.current = window.setTimeout(() => {
+            window.history.pushState({}, '', path);
+            setRoutePath(path);
+            window.scrollTo({ top: 0, behavior: 'auto' });
+            setRouteTransitionPhase('enter');
+
+            routeTransitionTimerRef.current = window.setTimeout(() => {
+                setRouteTransitionPhase('idle');
+            }, 440);
+        }, 220);
+    };
+
+    const openStorefrontProduct = (product) => {
+        setSelectedStoreProduct(product);
+        setSelectedStoreSize(product.sizes[0]);
+        setSelectedStoreImage(product.image);
+        setSelectedStoreCategory('ALL');
+        navigateTo('/shop');
+    };
+
+    const openStorefrontDetail = (product) => {
+        setSelectedStoreProduct(product);
+        setSelectedStoreSize(product.sizes[0]);
+        setSelectedStoreImage(product.image);
+        navigateTo(`/product/${product.id}`);
+    };
+
+    const filteredStoreProducts = heroSlidesData.filter((product) => {
+        if (selectedStoreCategory === 'ALL' || selectedStoreCategory === 'NEW') return true;
+        const matchTarget = `${product.category} ${product.name}`.toUpperCase();
+        return matchTarget.includes(selectedStoreCategory);
+    });
+
+    const relatedStoreProducts = heroSlidesData
+        .filter((product) => product.id !== selectedStoreProduct.id)
+        .slice(0, 5);
+
+    const storefrontGallery = [
+        selectedStoreProduct,
+        ...relatedStoreProducts.slice(0, 4)
+    ];
+
+    const productRouteMatch = routePath.match(/^\/product\/([^/]+)$/);
+    const routeProduct = productRouteMatch
+        ? heroSlidesData.find((product) => product.id === productRouteMatch[1]) || null
+        : null;
+    const isShopRoute = routePath === '/shop';
+    const isProductRoute = Boolean(routeProduct);
+    const listingTitle = selectedStoreCategory === 'ALL' || selectedStoreCategory === 'NEW'
+        ? 'LINEN EDIT'
+        : `${selectedStoreCategory} EDIT`;
+
+    useEffect(() => {
+        if (routeProduct) {
+            setSelectedStoreProduct(routeProduct);
+            setSelectedStoreSize(routeProduct.sizes[0]);
+            setSelectedStoreImage(routeProduct.image);
+        }
+    }, [routeProduct]);
+
+    useEffect(() => {
+        if (routePath.startsWith('/product/') && !routeProduct) {
+            navigateTo('/shop');
+        }
+    }, [routePath, routeProduct]);
+
+    useEffect(() => {
+        if (isProductRoute && routeProduct) {
+            document.title = `${routeProduct.name} | THELOGOLESS`;
+            return;
+        }
+
+        if (isShopRoute) {
+            document.title = 'Shop | THELOGOLESS';
+            return;
+        }
+
+        document.title = 'THELOGOLESS';
+    }, [isProductRoute, isShopRoute, routeProduct]);
+
     const renderedSlides = [
         { ...heroSlidesData[heroSlidesData.length - 2], id: 'hero_clone_9' },
         { ...heroSlidesData[heroSlidesData.length - 1], id: 'hero_clone_10' },
@@ -575,6 +709,13 @@ export default function App() {
         { ...heroSlidesData[0], id: 'hero_clone_1' },
         { ...heroSlidesData[1], id: 'hero_clone_2' }
     ];
+    const collectionProducts = products.map((prod, idx) => ({
+        ...prod,
+        primaryImage: prod.primaryImage || prod.image,
+        hoverImage: prod.hoverImage || heroSlidesData[idx % heroSlidesData.length].image
+    }));
+    const secondaryCollectionProducts = [...collectionProducts.slice(3), ...collectionProducts.slice(0, 3)];
+    const storefrontRouteTransitionClass = `storefront-route-layer route-${routeTransitionPhase} route-${routeTransitionDirection}`;
 
     return (
         <>
@@ -586,10 +727,9 @@ export default function App() {
                 <div className="container">
                     <a href="#hero" className="nav-logo">T H E L O G O L E S S</a>
                     <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-                        <li><a href="#philosophy" className={activeSection === 'philosophy' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Philosophy</a></li>
+                        <li><a href="/shop" onClick={(e) => { e.preventDefault(); navigateTo('/shop'); setMenuOpen(false); }}>Shop</a></li>
                         <li><a href="#collection" className={activeSection === 'collection' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Collection</a></li>
                         <li><a href="#concepts" className={activeSection === 'concepts' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Signatures</a></li>
-                        <li><a href="#lookbook" className={activeSection === 'lookbook' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Lookbook</a></li>
                         <li><a href="#customizer" className={activeSection === 'customizer' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Customizer</a></li>
                         <li><a href="#brandbook" className={activeSection === 'brandbook' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Brand Book</a></li>
                     </ul>
@@ -668,8 +808,7 @@ export default function App() {
                                     onClick={() => {
                                         if (originalIdx >= 0 && originalIdx < heroSlidesData.length) {
                                             if (isActive) {
-                                                setSelectedHeroProduct(slide);
-                                                setSelectedSize(slide.sizes[0]);
+                                                openStorefrontProduct(slide);
                                             } else {
                                                 setCurrentHeroSlide(originalIdx);
                                             }
@@ -782,77 +921,62 @@ export default function App() {
                     </div>
 
                     <div className="collection-slider-container reveal">
-                        <div
-                            className="collection-slider-track"
-                            ref={collectionTrackRef}
-                            onMouseDown={handleMouseDown}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseUp={handleMouseUp}
-                            onMouseMove={handleMouseMove}
-                        >
-                            {products.map((prod) => (
-                                <div className="product-card" key={prod._id || prod.id}>
-                                    <div className="product-img-wrapper">
-                                        <img src={prod.image} alt={prod.name} className="product-image" draggable="false" />
-                                        {/* Hover Actions */}
-                                        <div className="product-actions">
-                                            <button className="btn-primary" onClick={() => addToCart(prod)} style={{ width: '100%' }}>Add To Cart</button>
-                                            <button className="btn-secondary" onClick={() => handleQuickBuy(prod)} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
+                        <div className="collection-grid">
+                            <div
+                                className="collection-slider-track"
+                                ref={collectionTrackRef}
+                                onMouseDown={handleMouseDown}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseUp={handleMouseUp}
+                                onMouseMove={handleMouseMove}
+                            >
+                                {collectionProducts.map((prod) => (
+                                    <div className="product-card" key={prod._id || prod.id}>
+                                        <div className="product-img-wrapper">
+                                            <div className="product-image-stack">
+                                                <img src={prod.primaryImage} alt={prod.name} className="product-image product-image-primary" draggable="false" />
+                                                <img src={prod.hoverImage} alt={`${prod.name} worn by model`} className="product-image product-image-hover" draggable="false" />
+                                            </div>
+                                            {/* Hover Actions */}
+                                            <div className="product-actions">
+                                                <button className="btn-primary" onClick={() => addToCart(prod)} style={{ width: '100%' }}>Add To Cart</button>
+                                                <button className="btn-secondary" onClick={() => handleQuickBuy(prod)} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
+                                            </div>
+                                        </div>
+                                        <div className="product-info">
+                                            <h3 className="product-name">{prod.name}</h3>
+                                            <p className="product-material">{prod.material}</p>
+                                            <div className="product-price-row">
+                                                <span className="product-price">${prod.price}</span>
+                                                <button className="product-add-btn" onClick={() => addToCart(prod)}>+ Add</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="product-info">
-                                        <h3 className="product-name">{prod.name}</h3>
-                                        <p className="product-material">{prod.material}</p>
-                                        <div className="product-price-row">
-                                            <span className="product-price">${prod.price}</span>
-                                            <button className="product-add-btn" onClick={() => addToCart(prod)}>+ Add</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* --- PHILOSOPHY SECTION --- */}
-            <section id="philosophy" className="section-padding philosophy">
-                <div className="container">
-                    <div className="philosophy-grid">
-                        <div className="philosophy-image-container reveal-left">
-                            <img src="/logo_facade_mockup.png" alt="thelogoless boutique facade" className="philosophy-image" width="600" height="600" />
-                        </div>
-                        <div className="philosophy-text-content reveal-right">
-                            <span className="accent-text">Our Philosophy</span>
-                            <h2 className="section-title">Luxury does not advertise.</h2>
-                            <p className="philosophy-lead">
-                                In an era of loud consumerism, true luxury speaks through tactile quality, impeccable drape, and invisible details.
-                            </p>
-                            <p className="philosophy-paragraph">
-                                "thelogoless" is curated for the individual who values personal expression over commercial branding. By removing external logos, we restore the focus to what matters: the finest Italian linen, Japanese raw denim, GOTS certified organic Egyptian cotton, and the unique architecture of the garment itself.
-                            </p>
-                            <p className="philosophy-paragraph">
-                                Our logo is not a billboard. It is a stitch, a slash, a tactile impression. It is felt by the wearer, not broadcast to the world.
-                            </p>
-
-                            {/* Philosophy stat items */}
-                            <div className="philosophy-stats">
-                                <div className="stat-item">
-                                    <div className="stat-num">320</div>
-                                    <div className="stat-label">GSM Weight</div>
-                                </div>
-                                <div className="stat-item">
-                                    <div className="stat-num">12</div>
-                                    <div className="stat-label">Stitches / Inch</div>
-                                </div>
-                                <div className="stat-item">
-                                    <div className="stat-num">0</div>
-                                    <div className="stat-label">Logos</div>
-                                </div>
+                                ))}
                             </div>
-
-                            <div style={{ marginTop: '40px' }}>
-                                <a href="#concepts" className="btn-secondary">Explore Design Elements</a>
+                            <div className="collection-slider-track collection-slider-track-secondary">
+                                {secondaryCollectionProducts.map((prod) => (
+                                    <div className="product-card" key={`secondary-${prod._id || prod.id}`}>
+                                        <div className="product-img-wrapper">
+                                            <div className="product-image-stack">
+                                                <img src={prod.primaryImage} alt={prod.name} className="product-image product-image-primary" draggable="false" />
+                                                <img src={prod.hoverImage} alt={`${prod.name} worn by model`} className="product-image product-image-hover" draggable="false" />
+                                            </div>
+                                            <div className="product-actions">
+                                                <button className="btn-primary" onClick={() => addToCart(prod)} style={{ width: '100%' }}>Add To Cart</button>
+                                                <button className="btn-secondary" onClick={() => handleQuickBuy(prod)} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
+                                            </div>
+                                        </div>
+                                        <div className="product-info">
+                                            <h3 className="product-name">{prod.name}</h3>
+                                            <p className="product-material">{prod.material}</p>
+                                            <div className="product-price-row">
+                                                <span className="product-price">${prod.price}</span>
+                                                <button className="product-add-btn" onClick={() => addToCart(prod)}>+ Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -909,63 +1033,6 @@ export default function App() {
                             <h3 className="concept-title">The Pure Void</h3>
                             <p className="concept-desc">Blind debossed branding pressed into thick cotton clothing tags or fine paper wrap. No ink, no dye, only depth and tactile shadows.</p>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* --- MANIFESTO PARALLAX VIDEO INTERLUDE --- */}
-            <section className="video-interlude reveal" id="video-interlude" ref={interludeSecRef}>
-                <div className="interlude-video-container">
-                    <video autoPlay muted loop playsInline className="interlude-video" id="interlude-video" ref={interludeVidRef}>
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-in-a-dark-studio-43010-large.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div className="interlude-overlay"></div>
-                <div className="interlude-content container">
-                    <blockquote>"The garment speaks when you cannot."</blockquote>
-                    <cite>thelogoless brand manifesto</cite>
-                </div>
-            </section>
-
-            {/* --- LOOKBOOK CAROUSEL SECTION --- */}
-            <section id="lookbook" className="section-padding lookbook">
-                <div className="container">
-                    <div className="text-center reveal">
-                        <span className="accent-text">Brand Book Showcase</span>
-                        <h2 className="section-title">Visual Identity in Environment</h2>
-                        <div className="divider"></div>
-                    </div>
-
-                    <div className="carousel-container reveal" id="lookbook-carousel">
-                        <div class="carousel-track-wrapper">
-                            <div className="carousel-track" style={{ transform: `translateX(-${lookbookIndex * (100 / lookbookSlides.length)}%)`, width: `${lookbookSlides.length * 100}%` }}>
-                                {lookbookSlides.map((slide, idx) => (
-                                    <div className="carousel-slide" key={idx} style={{ width: `${100 / lookbookSlides.length}%` }}>
-                                        <img src={slide.img} alt={slide.title} className="carousel-image" />
-                                        <div className="carousel-caption">
-                                            <div className="caption-details">
-                                                <span className="caption-tag">{slide.tag}</span>
-                                                <h3 className="caption-title">{slide.title}</h3>
-                                            </div>
-                                            <span className="caption-number">{slide.num}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <button className="carousel-btn carousel-btn-prev" onClick={handleLookbookPrev} aria-label="Previous image">
-                            &#8592;
-                        </button>
-                        <button className="carousel-btn carousel-btn-next" onClick={handleLookbookNext} aria-label="Next image">
-                            &#8594;
-                        </button>
-                    </div>
-
-                    <div className="carousel-indicators">
-                        {lookbookSlides.map((_, idx) => (
-                            <div key={idx} className={`indicator-dot ${idx === lookbookIndex ? 'active' : ''}`} onClick={() => setLookbookIndex(idx)}></div>
-                        ))}
                     </div>
                 </div>
             </section>
@@ -1206,10 +1273,8 @@ export default function App() {
                         <div>
                             <h4 className="footer-title">Navigation</h4>
                             <div className="footer-links">
-                                <a href="#philosophy">Philosophy</a>
                                 <a href="#collection">Collection</a>
                                 <a href="#concepts">Design Signatures</a>
-                                <a href="#lookbook">Lookbook Mockups</a>
                                 <a href="#customizer">Brand Simulator</a>
                                 <a href="#brandbook">Brand Book</a>
                             </div>
@@ -1462,6 +1527,231 @@ export default function App() {
                         </div>
                     </div>
                 </div>
+            )}
+
+            {isShopRoute && (
+                <section className={storefrontRouteTransitionClass}>
+                    <div className="storefront-utility-bar">
+                        <button className="storefront-utility-btn" type="button" onClick={() => navigateTo('/')}>Home</button>
+                        <div className="storefront-utility-center">Shop</div>
+                        <button className="storefront-utility-btn" type="button" onClick={() => setCartOpen(true)}>Bag ({cartCount})</button>
+                    </div>
+                    <div className="storefront-route-shell storefront-route-shell-listing">
+                        <div className="storefront-layout storefront-layout-full">
+                            <aside className="storefront-sidebar">
+                                <div className="storefront-filter-list">
+                                    {storefrontFilters.map((filter) => (
+                                        <button className="storefront-filter-item" key={filter} type="button">
+                                            <span>{filter}</span>
+                                            <span>+</span>
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="storefront-sidebar-actions">
+                                    <button className="storefront-clear-btn" type="button">Clear</button>
+                                    <button className="storefront-apply-btn" type="button">Apply</button>
+                                </div>
+                            </aside>
+
+                            <div className="storefront-main storefront-main-full">
+                                <div className="storefront-toolbar">
+                                    <div>
+                                        <span className="accent-text">Featured Edit</span>
+                                        <h3>{listingTitle}</h3>
+                                    </div>
+                                    <div className="storefront-sort">Sort</div>
+                                </div>
+
+                                <div className="storefront-category-row">
+                                    {storefrontCategories.map((category) => (
+                                        <button
+                                            key={category}
+                                            type="button"
+                                            className={`storefront-category-chip ${selectedStoreCategory === category ? 'active' : ''}`}
+                                            onClick={() => setSelectedStoreCategory(category)}
+                                        >
+                                            {category}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="storefront-product-grid storefront-product-grid-full">
+                                    {filteredStoreProducts.map((product) => (
+                                        <article
+                                            key={product.id}
+                                            className={`store-card ${selectedStoreProduct.id === product.id ? 'active' : ''}`}
+                                            onClick={() => openStorefrontDetail(product)}
+                                        >
+                                            <div className="store-card-image-wrap">
+                                                <img src={product.image} alt={product.name} className="store-card-image" />
+                                                <button type="button" className="store-card-heart" aria-label={`Save ${product.name}`}>
+                                                    ♡
+                                                </button>
+                                            </div>
+                                            <div className="store-card-meta">
+                                                <h4>{product.name}</h4>
+                                                <p>{product.material}</p>
+                                                <div className="store-card-price-row">
+                                                    <span className="store-card-compare">₹{Math.round(product.price * 102)}</span>
+                                                    <strong>₹{Math.round(product.price * 72)}</strong>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {isProductRoute && routeProduct && (
+                <section className={storefrontRouteTransitionClass}>
+                    <div className="storefront-utility-bar">
+                        <button className="storefront-utility-btn" type="button" onClick={() => navigateTo('/shop')}>Back</button>
+                        <div className="storefront-utility-center">{routeProduct.name}</div>
+                        <button className="storefront-utility-btn" type="button" onClick={() => setCartOpen(true)}>Bag ({cartCount})</button>
+                    </div>
+                    <div className="storefront-route-shell storefront-route-shell-detail">
+                        <div className="storefront-detail-shell storefront-detail-shell-full">
+                            <div className="storefront-detail-grid">
+                                <div className="storefront-gallery-column">
+                                    <div className="storefront-thumb-rail">
+                                        {storefrontGallery.map((product) => (
+                                            <button
+                                                key={product.id}
+                                                type="button"
+                                                className={`storefront-thumb ${selectedStoreImage === product.image ? 'active' : ''}`}
+                                                onClick={() => setSelectedStoreImage(product.image)}
+                                            >
+                                                <img src={product.image} alt={product.name} />
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <div className="storefront-main-image-frame">
+                                        <img src={selectedStoreImage} alt={selectedStoreProduct.name} className="storefront-main-image" />
+                                    </div>
+                                </div>
+
+                                <div className="storefront-detail-panel">
+                                    <div className="storefront-detail-header">
+                                        <div>
+                                            <span className="storefront-detail-kicker">{selectedStoreProduct.category}</span>
+                                            <h3>{selectedStoreProduct.name}</h3>
+                                        </div>
+                                        <div className="storefront-price-block">
+                                            <span>₹{Math.round(selectedStoreProduct.price * 102)}</span>
+                                            <strong>₹{Math.round(selectedStoreProduct.price * 72)}</strong>
+                                        </div>
+                                    </div>
+
+                                    <p className="storefront-detail-copy">{selectedStoreProduct.description}</p>
+
+                                    <div className="storefront-detail-section">
+                                        <div className="storefront-section-label">COLORS</div>
+                                        <div className="storefront-color-swatches">
+                                            {storefrontGallery.slice(0, 3).map((product) => (
+                                                <button
+                                                    key={product.id}
+                                                    type="button"
+                                                    className={`storefront-swatch-card ${selectedStoreProduct.id === product.id ? 'active' : ''}`}
+                                                    onClick={() => openStorefrontDetail(product)}
+                                                >
+                                                    <img src={product.image} alt={product.name} />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="storefront-detail-section">
+                                        <div className="storefront-size-row">
+                                            <span className="storefront-section-label">SIZES</span>
+                                            <span className="storefront-size-chart">SIZE CHART</span>
+                                        </div>
+                                        <div className="storefront-size-grid">
+                                            {selectedStoreProduct.sizes.map((size) => (
+                                                <button
+                                                    key={size}
+                                                    type="button"
+                                                    className={`storefront-size-btn ${selectedStoreSize === size ? 'active' : ''}`}
+                                                    onClick={() => setSelectedStoreSize(size)}
+                                                >
+                                                    {size}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <p className="storefront-delivery-note">Free 1-2 day delivery on premium pin codes</p>
+                                    </div>
+
+                                    <div className="storefront-cta-stack">
+                                        <button
+                                            className="storefront-primary-cta"
+                                            type="button"
+                                            onClick={() => addToCart({
+                                                ...selectedStoreProduct,
+                                                _id: selectedStoreProduct.id,
+                                                name: `${selectedStoreProduct.name} (${selectedStoreSize})`
+                                            })}
+                                        >
+                                            Add To Bag
+                                        </button>
+                                        <button
+                                            className="storefront-secondary-cta"
+                                            type="button"
+                                            onClick={() => {
+                                                setSelectedSize(selectedStoreSize);
+                                                setSelectedHeroProduct(selectedStoreProduct);
+                                            }}
+                                        >
+                                            Open Quick View
+                                        </button>
+                                    </div>
+
+                                    <div className="storefront-accordion-list">
+                                        {productDetailAccordions.map((item) => (
+                                            <div className="storefront-accordion-item" key={item.title}>
+                                                <button
+                                                    type="button"
+                                                    className="storefront-accordion-trigger"
+                                                    onClick={() => setStoreAccordionOpen((prev) => prev === item.title ? '' : item.title)}
+                                                >
+                                                    <span>{item.title}</span>
+                                                    <span>{storeAccordionOpen === item.title ? '−' : '+'}</span>
+                                                </button>
+                                                {storeAccordionOpen === item.title && (
+                                                    <p className="storefront-accordion-body">{item.body}</p>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div className="storefront-recommendations">
+                                <h3>YOU MAY ALSO LIKE</h3>
+                                <div className="storefront-recommendation-grid">
+                                    {relatedStoreProducts.map((product) => (
+                                        <article
+                                            key={product.id}
+                                            className="storefront-recommendation-card"
+                                            onClick={() => openStorefrontDetail(product)}
+                                        >
+                                            <div className="storefront-recommendation-image-wrap">
+                                                <img src={product.image} alt={product.name} />
+                                                <button type="button" className="store-card-heart" aria-label={`Save ${product.name}`}>
+                                                    ♡
+                                                </button>
+                                            </div>
+                                            <h4>{product.name}</h4>
+                                            <strong>₹{Math.round(product.price * 72)}</strong>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             )}
         </>
     );
