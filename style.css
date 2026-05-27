@@ -459,9 +459,9 @@ img {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
-    font-weight: 300;
-    line-height: 1.1;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
     margin-bottom: 25px;
     color: var(--color-text-light);
 }
@@ -482,14 +482,16 @@ img {
 
 .btn-primary {
     display: inline-block;
-    padding: 15px 40px;
-    border: 1px solid var(--color-text-light);
-    color: var(--color-text-light);
+    padding: 16px 32px;
+    height: 48px;
+    border: none;
+    background-color: var(--color-text-light);
+    color: var(--color-bg-dark);
     font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0;
     position: relative;
     overflow: hidden;
     z-index: 1;
