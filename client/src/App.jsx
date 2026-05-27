@@ -765,10 +765,9 @@ export default function App() {
                             <span></span>
                         </button>
                     </div>
-                    <a href="#hero" className="nav-logo" aria-label="THELOGOLESS home">
-                        <span className="nav-logo-mark">TL</span>
-                        <span className="nav-logo-word">THELOGOLESS</span>
-                    </a>
+                    
+                    <a href="#hero" className="nav-logo">T H E L O G O L E S S</a>
+
                     <div className="nav-right-controls">
                         <button className="nav-search-btn" type="button" aria-label="Search catalog">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
