@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Default seeded products fallback
 const defaultProducts = [
@@ -92,120 +92,177 @@ const presetsMap = {
 const heroSlidesData = [
     {
         id: 'hero_1',
-        name: 'Zero-Logo Heavyweight Hoodie',
-        category: 'HOODIE',
-        price: 180,
-        material: '400GSM Organic Cotton Loopback Terry',
-        image: '/hero_slide_1.png',
-        description: 'An architectural hoodie with a double-layered structured hood, drop shoulders, and no visible branding. Clean ribbing and blind side-seam pockets.',
-        sizes: ['S', 'M', 'L', 'XL']
+        name: 'Classic Blue Cotton Shirt',
+        category: 'SHIRTS',
+        price: 1129,
+        material: '100% Normandy Long-Staple Cotton',
+        image: '/catalog/blue shirt man/WhatsApp Image 2026-05-26 at 16.11.43.jpeg',
+        tagline: '100% FRENCH SEAMS. STRUCTURED COLLAR.',
+        description: 'Clean structured collar and premium French seams. Woven from high-quality fibers for a refined feel and superior drape.',
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        gallery: [
+            '/catalog/blue shirt man/WhatsApp Image 2026-05-26 at 16.11.43.jpeg',
+            '/catalog/blue shirt man/WhatsApp Image 2026-05-26 at 16.11.43 (1).jpeg',
+            '/catalog/blue shirt man/WhatsApp Image 2026-05-26 at 16.11.43 (2).jpeg'
+        ]
     },
     {
         id: 'hero_2',
-        name: 'Okayama Selvedge Denim Pants',
-        category: 'PANTS',
-        price: 220,
+        name: 'High-Waist Classic Denim',
+        category: 'JEANS',
+        price: 1499,
         material: '14.5oz Raw Indigo Selvedge Denim',
-        image: '/hero_slide_2.png',
-        description: 'Indigo dyed raw selvedge jeans woven on vintage shuttle looms in Okayama. Features clean hidden copper rivets and a classic straight-leg cut.',
-        sizes: ['30', '32', '34', '36']
+        image: '/catalog/jeans girl/WhatsApp Image 2026-05-26 at 16.12.05.jpeg',
+        tagline: '14.5oz RAW DENIM. OKAYAMA LOOM-WOVEN.',
+        description: 'Straight-leg denim, woven on classic shuttle looms in Okayama. Features high-rise structured waistband and clean copper hardware.',
+        sizes: ['28', '30', '32', '34'],
+        gallery: [
+            '/catalog/jeans girl/WhatsApp Image 2026-05-26 at 16.12.05.jpeg',
+            '/catalog/jeans girl/WhatsApp Image 2026-05-26 at 16.12.04 (1).jpeg',
+            '/catalog/jeans girl/WhatsApp Image 2026-05-26 at 16.12.04 (2).jpeg'
+        ]
     },
     {
         id: 'hero_3',
-        name: 'Minimalist Linen Utility Pants',
-        category: 'JEANS & PANTS',
-        price: 160,
-        material: '100% Pure French Linen',
-        image: '/hero_slide_3.png',
-        description: 'Lightweight structured trousers with clean slash pockets, elasticated waist with hidden drawstrings, and a tapered silhouette.',
-        sizes: ['S', 'M', 'L']
+        name: 'Premium Sage Green Knit Top',
+        category: 'POLOS',
+        price: 1249,
+        material: 'Ribbed Cotton Linen-Blend',
+        image: '/catalog/green top girl/WhatsApp Image 2026-05-26 at 16.12.02.jpeg',
+        tagline: 'SUMMER LINEN KNIT. EXQUISITE TOUCH.',
+        description: 'Pastel sage ribbed knit with elegant micro-stitch borders. Exquisite luxury hand feel and exceptional ventilation for summer days.',
+        sizes: ['XS', 'S', 'M', 'L'],
+        gallery: [
+            '/catalog/green top girl/WhatsApp Image 2026-05-26 at 16.12.02.jpeg',
+            '/catalog/green top girl/WhatsApp Image 2026-05-26 at 16.12.01 (1).jpeg',
+            '/catalog/green top girl/WhatsApp Image 2026-05-26 at 16.12.02 (1).jpeg'
+        ]
     },
     {
         id: 'hero_4',
-        name: 'Oversized Cotton Seed Tee',
-        category: 'OVERSIZE TSHIRT',
-        price: 110,
-        material: '300GSM GOTS Organic Cotton',
-        image: '/hero_slide_4.png',
-        description: 'A relaxed, structured heavyweight tee with high crewneck collar, dropped shoulders, and tiny raw-edge cotton seed speckles embedded in the weave.',
-        sizes: ['S', 'M', 'L', 'XL']
+        name: 'Heavyweight Matte Maroon Tee',
+        category: 'T-SHIRTS',
+        price: 999,
+        material: '320GSM Long-Staple Egyptian Cotton',
+        image: '/catalog/maroon tshirt man/WhatsApp Image 2026-05-26 at 16.11.42.jpeg',
+        tagline: '320GSM ORGANIC COTTON. FLATLOCK SEAMS.',
+        description: 'Premium weighted drop-shoulder tee designed with blind side-seam construction. Features double-needle lock stitching on hem.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        gallery: [
+            '/catalog/maroon tshirt man/WhatsApp Image 2026-05-26 at 16.11.42.jpeg',
+            '/catalog/maroon tshirt man/WhatsApp Image 2026-05-26 at 16.11.42 (1).jpeg',
+            '/catalog/maroon tshirt man/WhatsApp Image 2026-05-26 at 16.11.41.jpeg',
+            '/catalog/maroon tshirt man/WhatsApp Image 2026-05-26 at 16.11.41 (1).jpeg'
+        ]
     },
     {
         id: 'hero_5',
-        name: 'Architectural Zip Jacket',
-        category: 'JACKETS',
-        price: 260,
-        material: 'Water-Repellent High-Density Nylon Blend',
-        image: '/hero_slide_5.png',
-        description: 'Modern silhouette jacket with an asymmetric dual-way zipper, storm cuffs, and clean heat-bonded seam construction.',
-        sizes: ['S', 'M', 'L', 'XL']
+        name: 'Blossom Pink Ribbed Crop',
+        category: 'POLOS',
+        price: 1199,
+        material: 'Supima Cotton & Silk Ribbed Weave',
+        image: '/catalog/pink top girl/WhatsApp Image 2026-05-26 at 16.12.00 (1).jpeg',
+        tagline: 'SUPIMA SILK KNIT. PASTEL FINISH.',
+        description: 'An elegant minimal pastel pink ribbed top featuring clean borders. Soft contour stretch fit that maintains shape after repeated wears.',
+        sizes: ['XS', 'S', 'M', 'L'],
+        gallery: [
+            '/catalog/pink top girl/WhatsApp Image 2026-05-26 at 16.12.00 (1).jpeg',
+            '/catalog/pink top girl/WhatsApp Image 2026-05-26 at 16.12.00 (2).jpeg',
+            '/catalog/pink top girl/WhatsApp Image 2026-05-26 at 16.12.01.jpeg'
+        ]
     },
     {
         id: 'hero_6',
-        name: 'Structured Terry Sweatpants',
-        category: 'SWEATPANTS',
-        price: 140,
-        material: '380GSM French Terry Fleece',
-        image: '/hero_slide_6.png',
-        description: 'Heavy-fleece loungewear pants with flatlock stitching, elasticated ankle cuffs, and minimal interior branding.',
-        sizes: ['S', 'M', 'L', 'XL']
+        name: 'Classic Walnut Brown Shirt',
+        category: 'SHIRTS',
+        price: 1299,
+        material: 'Brushed Italian Cotton-Linen',
+        image: '/catalog/brown shirt boy/WhatsApp Image 2026-05-26 at 16.11.44.jpeg',
+        tagline: 'ITALIAN COTTON LINEN. HORN BUTTONS.',
+        description: 'Earth-toned relaxed button-down shirt designed with structural chest pockets, horn buttons, and breathable medium-weight construction.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        gallery: [
+            '/catalog/brown shirt boy/WhatsApp Image 2026-05-26 at 16.11.44.jpeg',
+            '/catalog/brown shirt boy/WhatsApp Image 2026-05-26 at 16.11.44 (1).jpeg'
+        ]
     },
     {
         id: 'hero_7',
-        name: 'Minimalist Linen Short Kurti',
-        category: 'KURTI',
-        price: 150,
-        material: 'Pure Normandy Linen-Cotton Weave',
-        image: '/hero_slide_7.png',
-        description: 'A premium architectural short kurti blending traditional silhouettes with modern geometric cuts and clean flat seams.',
-        sizes: ['XS', 'S', 'M', 'L']
+        name: 'Pastel Blue Cornflower Top',
+        category: 'POLOS',
+        price: 1149,
+        material: 'Fine French Flax Linen',
+        image: '/catalog/blue top girl/WhatsApp Image 2026-05-26 at 16.11.59.jpeg',
+        tagline: 'GEOMETRIC FRENCH LINEN. BREATHABLE.',
+        description: 'Premium light-blue top designed with geometric cuts. Highly breathable fabric with elegant touchpoints and clean blind seams.',
+        sizes: ['XS', 'S', 'M', 'L'],
+        gallery: [
+            '/catalog/blue top girl/WhatsApp Image 2026-05-26 at 16.11.59.jpeg',
+            '/catalog/blue top girl/WhatsApp Image 2026-05-26 at 16.12.00.jpeg'
+        ]
     },
     {
         id: 'hero_8',
-        name: 'Normandy Structured Shirt',
-        category: 'SHIRTS',
-        price: 170,
-        material: 'Pure Normandy Long-Staple Linen',
-        image: '/hero_slide_8.png',
-        description: 'A relaxed button-down shirt featuring French seams, hidden mother-of-pearl buttons, and a clean structured collar.',
-        sizes: ['S', 'M', 'L', 'XL']
+        name: 'Vintage White Crewneck Tee',
+        category: 'T-SHIRTS',
+        price: 899,
+        material: '300GSM GOTS Organic Cotton',
+        image: '/catalog/white tshirt man/WhatsApp Image 2026-05-26 at 16.11.40.jpeg',
+        tagline: '300GSM ORGANIC COTTON. SEED SPECKLED.',
+        description: 'Classic oversized streetwear silhouette with dropped shoulders and structural heavy-weight feel. Features raw seed speckles embedded in the weave.',
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        gallery: [
+            '/catalog/white tshirt man/WhatsApp Image 2026-05-26 at 16.11.40.jpeg',
+            '/catalog/white tshirt man/WhatsApp Image 2026-05-26 at 16.11.39.jpeg',
+            '/catalog/white tshirt man/WhatsApp Image 2026-05-26 at 16.11.40 (1).jpeg'
+        ]
     },
     {
         id: 'hero_9',
-        name: 'Brushed Cashmere Cocoon Coat',
-        category: 'COATS & JACKETS',
-        price: 390,
-        material: '85% Brushed Cashmere, 15% Silk Blend',
-        image: '/hero_slide_9.png',
-        description: 'Luxurious outerwear with a soft double-breasted drape, unstructured drop-shoulders, and deep welt pockets.',
-        sizes: ['S', 'M', 'L']
+        name: 'Streetwear Off-Black Baggy Tee',
+        category: 'T-SHIRTS',
+        price: 1099,
+        material: 'Combed Giza Cotton Knit',
+        image: '/catalog/baggy tshirt girl/WhatsApp Image 2026-05-26 at 16.11.58.jpeg',
+        tagline: 'BAGGY GIZA COTTON. URBAN SILHOUETTE.',
+        description: 'Relaxed high neck and drop shoulders for a structured urban layout. Crafted in heavy combed cotton that feels cool and robust.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        gallery: [
+            '/catalog/baggy tshirt girl/WhatsApp Image 2026-05-26 at 16.11.58.jpeg',
+            '/catalog/baggy tshirt girl/WhatsApp Image 2026-05-26 at 16.11.57.jpeg'
+        ]
     },
     {
         id: 'hero_10',
-        name: 'Fine Knit Wool Cardigan',
-        category: 'CARDIGANS',
-        price: 210,
-        material: '100% Fine Merino Wool',
-        image: '/hero_slide_10.png',
-        description: 'Minimalist buttonless cardigan with flat-knit ribbed edges, low drop armholes, and an elegant structural drape.',
-        sizes: ['S', 'M', 'L']
+        name: 'Cobalt Blue Architectural Kurti',
+        category: 'PLUS-SIZE',
+        price: 1899,
+        material: 'Normandy Linen & Mulberry Silk',
+        image: '/catalog/blue kurti girl/WhatsApp Image 2026-05-26 at 16.12.04.jpeg',
+        tagline: 'LINEN MULBERRY SILK. GEOMETRIC PANELS.',
+        description: 'Short kurti featuring structured geometric panels. Blends traditional ethnic comfort with modern architectural line weights.',
+        sizes: ['M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'],
+        gallery: [
+            '/catalog/blue kurti girl/WhatsApp Image 2026-05-26 at 16.12.04.jpeg',
+            '/catalog/blue kurti girl/WhatsApp Image 2026-05-26 at 16.12.03.jpeg',
+            '/catalog/blue kurti girl/WhatsApp Image 2026-05-26 at 16.12.03 (1).jpeg'
+        ]
     }
 ];
 
-const storefrontFilters = [
-    'Delivery Time',
-    'Category',
-    'Size',
-    'Color',
-    'Pattern',
-    'Fit',
-    'Material',
-    'Collar',
-    'Sleeves',
-    'Price'
-];
+const storefrontCategories = ['ALL', 'NEW', 'SHIRTS', 'JEANS', 'T-SHIRTS', 'POLOS', 'PLUS-SIZE', 'TROUSERS', 'SHORTS'];
 
-const storefrontCategories = ['ALL', 'NEW', 'SHIRTS', 'TROUSERS', 'SHORTS', 'SLIM', 'BAGGY', 'BOXY', 'RELAXED', 'CHECKS', 'LINEN'];
+const storefrontFilterGroups = [
+    { key: 'delivery', label: 'Delivery Time', options: ['60 MINS', 'TODAY', '2 DAYS'] },
+    { key: 'size', label: 'Size', options: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL', '6XL'] },
+    { key: 'color', label: 'Color', options: ['BLACK', 'WHITE', 'BLUE', 'GREY', 'GREEN', 'BEIGE', 'NAVY', 'BROWN', 'OLIVE', 'MAROON', 'PINK'] },
+    { key: 'pattern', label: 'Pattern', options: ['SOLID', 'STRIPED', 'RIBBED', 'KNIT', 'GEOMETRIC'] },
+    { key: 'fit', label: 'Fit', options: ['REGULAR', 'RELAXED', 'BAGGY', 'CROP', 'OVERSIZED', 'STRAIGHT'] },
+    { key: 'material', label: 'Material', options: ['COTTON', 'LINEN', 'DENIM', 'SILK', 'GIZA', 'SUPIMA'] },
+    { key: 'collar', label: 'Collar', options: ['CREWNECK', 'HIGH NECK', 'STRUCTURED', 'BUTTON-DOWN'] },
+    { key: 'sleeves', label: 'Sleeves', options: ['SLEEVELESS', 'SHORT', 'LONG', 'DROP SHOULDER'] },
+    { key: 'price', label: 'Price', options: ['UNDER ₹1000', '₹1000-₹1500', '₹1500+'] }
+];
 
 const productDetailAccordions = [
     {
@@ -230,6 +287,7 @@ export default function App() {
     // --- STYLING & NAVIGATION STATES ---
     const [light, setLight] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [navHidden, setNavHidden] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('collection');
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -243,9 +301,15 @@ export default function App() {
     const [selectedStoreImage, setSelectedStoreImage] = useState(heroSlidesData[0].image);
     const [selectedStoreCategory, setSelectedStoreCategory] = useState('ALL');
     const [storeAccordionOpen, setStoreAccordionOpen] = useState('DETAILS');
+    const [copiedCode, setCopiedCode] = useState('');
+    const [filterDrawerOpen, setFilterDrawerOpen] = useState(true);
+    const [openStoreFilters, setOpenStoreFilters] = useState({});
+    const [filterDraft, setFilterDraft] = useState({});
+    const [appliedFilters, setAppliedFilters] = useState({});
+    const [sortMode, setSortMode] = useState('Featured');
     const [routePath, setRoutePath] = useState(window.location.pathname);
     const [routeTransitionPhase, setRouteTransitionPhase] = useState('idle');
-    const [routeTransitionDirection, setRouteTransitionDirection] = useState('forward');
+    const [routeTransitionDirection] = useState('forward');
 
     // --- PRODUCTS & CART & CHECKOUT STATES ---
     const [products, setProducts] = useState(defaultProducts);
@@ -264,17 +328,12 @@ export default function App() {
         placement: 'chest'
     });
     const [activePreset, setActivePreset] = useState('');
-    const [tshirtTransform, setTshirtTransform] = useState(tshirtZoomMap.chest);
+    const tshirtTransform = tshirtZoomMap[customizerState.placement];
 
     // --- INTERACTIVE FEATURES STATES ---
-    const [audioEnabled, setAudioEnabled] = useState(false);
     const [newsletterEmail, setNewsletterEmail] = useState('');
     const [newsletterMsg, setNewsletterMsg] = useState('');
     const [accordionOpen, setAccordionOpen] = useState(1);
-
-    // --- WEB AUDIO API NODE ---
-    const audioCtxRef = useRef(null);
-    const routeTransitionTimerRef = useRef(null);
 
     // --- ELEMENT REFS ---
     const collectionTrackRef = useRef(null);
@@ -282,71 +341,10 @@ export default function App() {
     const startXRef = useRef(0);
     const scrollLeftRef = useRef(0);
 
-    // Initialize Web Audio
-    const initAudio = useCallback(() => {
-        if (!audioCtxRef.current) {
-            audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
-        }
-    }, []);
-
-    // Play Synthesized Click
-    const playClickSound = useCallback(() => {
-        if (!audioEnabled) return;
-        initAudio();
-        const ctx = audioCtxRef.current;
-        if (!ctx) return;
-
-        const osc = ctx.createOscillator();
-        const gainNode = ctx.createGain();
-        osc.connect(gainNode);
-        gainNode.connect(ctx.destination);
-
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(1200, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.06);
-
-        gainNode.gain.setValueAtTime(0.04, ctx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 0.06);
-    }, [audioEnabled, initAudio]);
-
-    // Handle generic document clicks for interface sound
-    useEffect(() => {
-        const handleGlobalClick = (e) => {
-            if (e.target.closest('button, a, .swatch, .logo-art-option, .accordion-header')) {
-                playClickSound();
-            }
-        };
-        document.addEventListener('click', handleGlobalClick);
-        return () => document.removeEventListener('click', handleGlobalClick);
-    }, [playClickSound]);
-
-    // Audio Switch Toggle
-    const handleAudioToggle = () => {
-        setAudioEnabled(prev => {
-            const next = !prev;
-            if (next) {
-                initAudio();
-                setTimeout(() => playClickSound(), 80);
-            }
-            return next;
-        });
-    };
-
     // Toggle Light Theme
     useEffect(() => {
         document.body.className = light ? 'light' : '';
     }, [light]);
-
-    useEffect(() => {
-        return () => {
-            if (routeTransitionTimerRef.current) {
-                window.clearTimeout(routeTransitionTimerRef.current);
-            }
-        };
-    }, []);
 
     useEffect(() => {
         const handlePopState = () => {
@@ -377,19 +375,25 @@ export default function App() {
 
     // Scroll Effects
     useEffect(() => {
+        let lastScrollY = window.scrollY;
+
         const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
             // Sticky Navbar
-            setScrolled(window.scrollY > 50);
+            setScrolled(currentScrollY > 50);
+            setNavHidden(currentScrollY > lastScrollY && currentScrollY > 160 && !menuOpen);
+            lastScrollY = currentScrollY;
 
             // Scroll Progress
             const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            setScrollProgress((window.scrollY / docHeight) * 100);
+            setScrollProgress((currentScrollY / docHeight) * 100);
 
             // Active Section Spy
             const sections = ['collection', 'concepts', 'customizer', 'brandbook'];
             for (let sec of [...sections].reverse()) {
                 const el = document.getElementById(sec);
-                if (el && window.scrollY >= (el.offsetTop - 200)) {
+                if (el && currentScrollY >= (el.offsetTop - 200)) {
                     setActiveSection(sec);
                     break;
                 }
@@ -399,7 +403,7 @@ export default function App() {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [menuOpen]);
 
     // Intersection Observer for scroll reveal transitions
     useEffect(() => {
@@ -419,8 +423,6 @@ export default function App() {
 
     // Customizer SVG update logic
     useEffect(() => {
-        setTshirtTransform(tshirtZoomMap[customizerState.placement]);
-
         // Dynamically shift SVG Weave Pattern
         const fabricFilter = document.querySelector('#fabric-texture feTurbulence');
         const fabricColorMatrix = document.querySelector('#fabric-texture feColorMatrix');
@@ -502,6 +504,14 @@ export default function App() {
         setCartOpen(false);
         setCheckoutSuccess(false);
         setCheckoutOpen(true);
+    };
+
+    const handleCopyCode = (code) => {
+        if (navigator.clipboard?.writeText) {
+            navigator.clipboard.writeText(code).catch(() => {});
+        }
+        setCopiedCode(code);
+        window.setTimeout(() => setCopiedCode(''), 1600);
     };
 
     // --- CHECKOUT SUBMISSION ---
@@ -617,20 +627,65 @@ export default function App() {
         navigateTo(`/product/${product.id}`);
     };
 
+    const getProductFilterText = (product) => {
+        return `${product.name} ${product.category} ${product.material} ${product.description || ''}`.toUpperCase();
+    };
+
+    const matchesFilterGroup = (product, key, values = []) => {
+        if (!values.length) return true;
+        const productText = getProductFilterText(product);
+
+        if (key === 'delivery') return true;
+        if (key === 'size') return values.some((value) => product.sizes.includes(value));
+        if (key === 'price') {
+            return values.some((value) => {
+                if (value === 'UNDER ₹1000') return product.price < 1000;
+                if (value === '₹1000-₹1500') return product.price >= 1000 && product.price <= 1500;
+                if (value === '₹1500+') return product.price > 1500;
+                return false;
+            });
+        }
+
+        return values.some((value) => productText.includes(value.replace('DROP SHOULDER', 'DROP')));
+    };
+
+    const toggleFilterOption = (key, option) => {
+        setFilterDraft((prev) => {
+            const current = prev[key] || [];
+            const next = current.includes(option)
+                ? current.filter((item) => item !== option)
+                : [...current, option];
+
+            return {
+                ...prev,
+                [key]: next
+            };
+        });
+    };
+
+    const clearStoreFilters = () => {
+        setFilterDraft({});
+        setAppliedFilters({});
+    };
+
+    const activeFilterCount = Object.values(appliedFilters).reduce((sum, values) => sum + values.length, 0);
+
     const filteredStoreProducts = heroSlidesData.filter((product) => {
         if (selectedStoreCategory === 'ALL' || selectedStoreCategory === 'NEW') return true;
         const matchTarget = `${product.category} ${product.name}`.toUpperCase();
         return matchTarget.includes(selectedStoreCategory);
+    }).filter((product) => {
+        return storefrontFilterGroups.every((group) => matchesFilterGroup(product, group.key, appliedFilters[group.key] || []));
+    }).sort((a, b) => {
+        if (sortMode === 'Price Low') return a.price - b.price;
+        if (sortMode === 'Price High') return b.price - a.price;
+        if (sortMode === 'Newest') return Number(b.id.replace('hero_', '')) - Number(a.id.replace('hero_', ''));
+        return 0;
     });
 
     const relatedStoreProducts = heroSlidesData
         .filter((product) => product.id !== selectedStoreProduct.id)
         .slice(0, 5);
-
-    const storefrontGallery = [
-        selectedStoreProduct,
-        ...relatedStoreProducts.slice(0, 4)
-    ];
 
     const productRouteMatch = routePath.match(/^\/product\/([^/]+)$/);
     const routeProduct = productRouteMatch
@@ -644,15 +699,20 @@ export default function App() {
 
     useEffect(() => {
         if (routeProduct) {
-            setSelectedStoreProduct(routeProduct);
-            setSelectedStoreSize(routeProduct.sizes[0]);
-            setSelectedStoreImage(routeProduct.image);
+            const routeSyncTimer = window.setTimeout(() => {
+                setSelectedStoreProduct(routeProduct);
+                setSelectedStoreSize(routeProduct.sizes[0]);
+                setSelectedStoreImage(routeProduct.image);
+            }, 0);
+
+            return () => window.clearTimeout(routeSyncTimer);
         }
     }, [routeProduct]);
 
     useEffect(() => {
         if (routePath.startsWith('/product/') && !routeProduct) {
-            navigateTo('/shop');
+            const invalidRouteTimer = window.setTimeout(() => navigateTo('/shop'), 0);
+            return () => window.clearTimeout(invalidRouteTimer);
         }
     }, [routePath, routeProduct]);
 
@@ -677,12 +737,12 @@ export default function App() {
         { ...heroSlidesData[0], id: 'hero_clone_1' },
         { ...heroSlidesData[1], id: 'hero_clone_2' }
     ];
-    const collectionProducts = products.map((prod, idx) => ({
+    const collectionProducts = heroSlidesData.map((prod, idx) => ({
         ...prod,
+        _id: prod.id,
         primaryImage: prod.primaryImage || prod.image,
-        hoverImage: prod.hoverImage || heroSlidesData[idx % heroSlidesData.length].image
+        hoverImage: prod.hoverImage || prod.gallery?.[1] || heroSlidesData[(idx + 1) % heroSlidesData.length].image
     }));
-    const secondaryCollectionProducts = [...collectionProducts.slice(3), ...collectionProducts.slice(0, 3)];
     const storefrontRouteTransitionClass = `storefront-route-layer route-${routeTransitionPhase} route-${routeTransitionDirection}`;
 
     return (
@@ -691,7 +751,7 @@ export default function App() {
             <div className="progress-bar" style={{ transform: `scaleX(${scrollProgress / 100})` }}></div>
 
             {/* --- NAVIGATION BAR --- */}
-            <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+            <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${navHidden ? 'nav-hidden' : ''}`}>
                 <div className="container">
                     <div className="nav-left-controls">
                         <button
@@ -705,7 +765,10 @@ export default function App() {
                             <span></span>
                         </button>
                     </div>
-                    <a href="#hero" className="nav-logo">T H E L O G O L E S S</a>
+                    <a href="#hero" className="nav-logo" aria-label="THELOGOLESS home">
+                        <span className="nav-logo-mark">TL</span>
+                        <span className="nav-logo-word">THELOGOLESS</span>
+                    </a>
                     <div className="nav-right-controls">
                         <button className="nav-search-btn" type="button" aria-label="Search catalog">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -722,21 +785,6 @@ export default function App() {
                             </svg>
                         </button>
 
-                        <button className="audio-toggle-btn" onClick={handleAudioToggle} aria-label="Toggle interface sounds" title="Toggle audio feedback">
-                            {audioEnabled ? (
-                                <svg className="audio-icon audio-playing" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                            ) : (
-                                <svg className="audio-icon audio-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            )}
-                        </button>
-
                         <button className="theme-toggle-btn" onClick={() => setLight(prev => !prev)} aria-label="Toggle Theme">
                             <svg className="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="5"></circle>
@@ -749,7 +797,7 @@ export default function App() {
                                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                             </svg>
-                            <svg className="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg className="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                             </svg>
                         </button>
@@ -774,6 +822,32 @@ export default function App() {
                             <li><a href="#customizer" className={activeSection === 'customizer' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Customizer</a></li>
                             <li><a href="#brandbook" className={activeSection === 'brandbook' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Brand Book</a></li>
                         </ul>
+                    </div>
+                </div>
+                
+                {/* --- HORIZONTAL SUB-NAVIGATION TABS BAR --- */}
+                <div className="navbar-sub-nav">
+                    <div className="container sub-nav-container">
+                        <span className="deliver-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Deliver to: <strong>474006</strong> Gwalior
+                        </span>
+                        <div className="sub-nav-links">
+                            <button className={`sub-nav-link ${routePath === '/' ? 'active' : ''}`} onClick={() => navigateTo('/')}>Discover</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'SHIRTS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('SHIRTS'); navigateTo('/shop'); }}>Shirts</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'T-SHIRTS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('T-SHIRTS'); navigateTo('/shop'); }}>T-shirts</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'JEANS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('JEANS'); navigateTo('/shop'); }}>Jeans</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'POLOS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('POLOS'); navigateTo('/shop'); }}>Polos</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'PLUS-SIZE' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('PLUS-SIZE'); navigateTo('/shop'); }}>Plus-Size</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'TROUSERS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('TROUSERS'); navigateTo('/shop'); }}>Trousers</button>
+                            <button className={`sub-nav-link ${isShopRoute && selectedStoreCategory === 'SHORTS' ? 'active' : ''}`} onClick={() => { setSelectedStoreCategory('SHORTS'); navigateTo('/shop'); }}>Shorts</button>
+                            <button className="sub-nav-link" onClick={() => { setSelectedStoreCategory('ALL'); navigateTo('/shop'); alert('Quiet Luxury Shoes Collection is coming soon!'); }}>Shoes</button>
+                            <button className="sub-nav-link" onClick={() => { setSelectedStoreCategory('ALL'); navigateTo('/shop'); alert('Minimalist Sunglasses are coming soon!'); }}>Sunglasses</button>
+                            <button className="sub-nav-link" onClick={() => { setSelectedStoreCategory('ALL'); navigateTo('/shop'); alert('Premium Perfumes are coming soon!'); }}>Perfumes</button>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -810,7 +884,7 @@ export default function App() {
                                 >
                                     <div
                                         className="hero-slide-bg-img"
-                                        style={{ backgroundImage: `url(${slide.image})` }}
+                                        style={{ backgroundImage: `url("${encodeURI(slide.image)}")` }}
                                     ></div>
                                     <div className="hero-slide-overlay"></div>
                                     <div className="container hero-slide-container">
@@ -819,16 +893,7 @@ export default function App() {
                                                 {slide.name.split(' ').slice(0, -1).join(' ')} <span>{slide.name.split(' ').slice(-1)[0]}</span>
                                             </h1>
                                             <p className="hero-slide-tagline">
-                                                {slide.id === 'hero_1' && '400GSM LOOPBACK TERRY. ZERO LOGO.'}
-                                                {slide.id === 'hero_2' && 'OKAYAMA RAW INDIGO. CLASSIC CUT.'}
-                                                {slide.id === 'hero_3' && '100% PURE FRENCH LINEN. TAILORED.'}
-                                                {slide.id === 'hero_4' && '300GSM GOTS COTTON. COTTON SEED DETAIL.'}
-                                                {slide.id === 'hero_5' && 'HIGH-DENSITY SHELL. ARCHITECTURAL FORMS.'}
-                                                {slide.id === 'hero_6' && 'HEAVY FLEECE LOUNGEWEAR. QUIET LUXURY.'}
-                                                {slide.id === 'hero_7' && 'GEOMETRIC CUTS. MODERN SILHOUETTE.'}
-                                                {slide.id === 'hero_8' && 'PURE LINEN WEAVE. FRENCH SEAMS.'}
-                                                {slide.id === 'hero_9' && 'ITALIAN CASHMERE SILK. SEAMLESS DRAPE.'}
-                                                {slide.id === 'hero_10' && 'FINE MERINO WOOL. BUTTONLESS CARDIGAN.'}
+                                                {slide.tagline}
                                             </p>
                                         </div>
                                     </div>
@@ -879,23 +944,137 @@ export default function App() {
                 <div className="marquee-track">
                     <span className="marquee-item">Quiet Luxury <span className="marquee-sep">✦</span></span>
                     <span className="marquee-item">Organic Materials <span className="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Architectural Form <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Tactile Craftsmanship <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">No Logo Policy <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Premium Textiles <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Zero Noise <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Pure Garment <span class="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Architectural Form <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Tactile Craftsmanship <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">No Logo Policy <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Premium Textiles <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Zero Noise <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Pure Garment <span className="marquee-sep">✦</span></span>
                     {/* Repeated items for seamless animation loop */}
-                    <span className="marquee-item">Quiet Luxury <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Organic Materials <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Architectural Form <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Tactile Craftsmanship <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">No Logo Policy <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Premium Textiles <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Zero Noise <span class="marquee-sep">✦</span></span>
-                    <span className="marquee-item">Pure Garment <span class="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Quiet Luxury <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Organic Materials <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Architectural Form <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Tactile Craftsmanship <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">No Logo Policy <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Premium Textiles <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Zero Noise <span className="marquee-sep">✦</span></span>
+                    <span className="marquee-item">Pure Garment <span className="marquee-sep">✦</span></span>
                 </div>
             </div>
+
+            {/* --- FEATURED CATEGORIES SECTION --- */}
+            <section className="section-padding featured-categories">
+                <div className="container">
+                    <div className="text-center reveal">
+                        <span className="accent-text">Curated Silhouettes</span>
+                        <h2 className="section-title">Featured Categories</h2>
+                        <div className="divider"></div>
+                    </div>
+                    <div className="featured-categories-grid reveal">
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('SHIRTS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/blue shirt man/WhatsApp Image 2026-05-26 at 16.11.43.jpeg" alt="Shirts Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>SHIRTS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('TROUSERS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/hero_slide_3.png" alt="Trousers Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>TROUSERS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('POLOS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/green top girl/WhatsApp Image 2026-05-26 at 16.12.02.jpeg" alt="Polos Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>POLOS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('JEANS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/jeans girl/WhatsApp Image 2026-05-26 at 16.12.05.jpeg" alt="Jeans Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>JEANS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('TROUSERS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/hero_slide_2.png" alt="Cargos Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>CARGOS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('T-SHIRTS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/white tshirt man/WhatsApp Image 2026-05-26 at 16.11.40.jpeg" alt="T-Shirts Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>T-SHIRTS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('SHORTS'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/baggy tshirt girl/WhatsApp Image 2026-05-26 at 16.11.58.jpeg" alt="Shorts Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>SHORTS</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('PLUS-SIZE'); navigateTo('/shop'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/catalog/blue kurti girl/WhatsApp Image 2026-05-26 at 16.12.04.jpeg" alt="Plus Size Category" />
+                                <span className="category-card-badge">3XL TO 6XL</span>
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>PLUS SIZE</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => alert('Shoes Collection is coming soon!')}>
+                            <div className="category-card-img-wrap">
+                                <img src="/logo_concept_dots.png" alt="Shoes Category" />
+                                <span className="category-card-badge badge-launched">JUST LAUNCHED</span>
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>SHOES</h3>
+                            </div>
+                        </div>
+
+                        <div className="category-card-item" onClick={() => { setSelectedStoreCategory('ALL'); navigateTo('/shop'); alert('Minimalist Sunglasses are coming soon!'); }}>
+                            <div className="category-card-img-wrap">
+                                <img src="/hero_slide_6.png" alt="Sunglasses Category" />
+                                <div className="category-card-overlay"></div>
+                            </div>
+                            <div className="category-card-meta">
+                                <h3>SUNGLASSES</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* --- MOVING PRODUCTS SECTION --- */}
             <section id="collection" className="collection">
@@ -919,8 +1098,8 @@ export default function App() {
                                 onMouseUp={handleMouseUp}
                                 onMouseMove={handleMouseMove}
                             >
-                                {collectionProducts.map((prod) => (
-                                    <div className="product-card" key={prod._id || prod.id}>
+                                {collectionProducts.slice(0, 5).map((prod) => (
+                                    <div className="product-card" key={prod._id || prod.id} onClick={() => openStorefrontDetail(prod)}>
                                         <div className="product-img-wrapper">
                                             <div className="product-image-stack">
                                                 <img src={prod.primaryImage} alt={prod.name} className="product-image product-image-primary" draggable="false" />
@@ -928,40 +1107,40 @@ export default function App() {
                                             </div>
                                             {/* Hover Actions */}
                                             <div className="product-actions">
-                                                <button className="btn-primary" onClick={() => addToCart(prod)} style={{ width: '100%' }}>Add To Cart</button>
-                                                <button className="btn-secondary" onClick={() => handleQuickBuy(prod)} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
+                                                <button className="btn-primary" onClick={(e) => { e.stopPropagation(); addToCart(prod); }} style={{ width: '100%' }}>Add To Cart</button>
+                                                <button className="btn-secondary" onClick={(e) => { e.stopPropagation(); handleQuickBuy(prod); }} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
                                             </div>
                                         </div>
                                         <div className="product-info">
                                             <h3 className="product-name">{prod.name}</h3>
                                             <p className="product-material">{prod.material}</p>
                                             <div className="product-price-row">
-                                                <span className="product-price">${prod.price}</span>
-                                                <button className="product-add-btn" onClick={() => addToCart(prod)}>+ Add</button>
+                                                <span className="product-price">₹{prod.price}</span>
+                                                <button className="product-add-btn" onClick={(e) => { e.stopPropagation(); addToCart(prod); }}>+ Add</button>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                             <div className="collection-slider-track collection-slider-track-secondary">
-                                {secondaryCollectionProducts.map((prod) => (
-                                    <div className="product-card" key={`secondary-${prod._id || prod.id}`}>
+                                {collectionProducts.slice(5, 10).map((prod) => (
+                                    <div className="product-card" key={`secondary-${prod._id || prod.id}`} onClick={() => openStorefrontDetail(prod)}>
                                         <div className="product-img-wrapper">
                                             <div className="product-image-stack">
                                                 <img src={prod.primaryImage} alt={prod.name} className="product-image product-image-primary" draggable="false" />
                                                 <img src={prod.hoverImage} alt={`${prod.name} worn by model`} className="product-image product-image-hover" draggable="false" />
                                             </div>
                                             <div className="product-actions">
-                                                <button className="btn-primary" onClick={() => addToCart(prod)} style={{ width: '100%' }}>Add To Cart</button>
-                                                <button className="btn-secondary" onClick={() => handleQuickBuy(prod)} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
+                                                <button className="btn-primary" onClick={(e) => { e.stopPropagation(); addToCart(prod); }} style={{ width: '100%' }}>Add To Cart</button>
+                                                <button className="btn-secondary" onClick={(e) => { e.stopPropagation(); handleQuickBuy(prod); }} style={{ width: '100%', borderColor: 'rgba(255,255,255,0.2)' }}>Quick Buy</button>
                                             </div>
                                         </div>
                                         <div className="product-info">
                                             <h3 className="product-name">{prod.name}</h3>
                                             <p className="product-material">{prod.material}</p>
                                             <div className="product-price-row">
-                                                <span className="product-price">${prod.price}</span>
-                                                <button className="product-add-btn" onClick={() => addToCart(prod)}>+ Add</button>
+                                                <span className="product-price">₹{prod.price}</span>
+                                                <button className="product-add-btn" onClick={(e) => { e.stopPropagation(); addToCart(prod); }}>+ Add</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1056,14 +1235,14 @@ export default function App() {
                                 <path className="tshirt-fabric" id="tshirt-fabric" filter="url(#fabric-texture)" d="M30 18 C33 19, 37 19, 40 18 C43 15, 57 15, 60 18 C63 19, 67 19, 70 18 L76 29 C77.5 31.5, 75 33, 73 33 L67 31 L67 85 C67 87.5, 65 89, 62 89 L38 89 C35 89, 33 87.5, 33 85 L33 31 L27 33 C25 33, 22.5 31.5, 24 29 Z" fill="#0D0E10" />
                                 <path className="tshirt-collar" d="M40 18 C43 22, 57 22, 60 18" fill="none" stroke="#FFFFFF" strokeWidth="0.6" opacity="0.08" />
                                 <path d="M40.5 18 C43.5 21.5, 56.5 21.5, 59.5 18" fill="none" stroke="#000000" strokeWidth="0.8" opacity="0.4" />
-                                <path d="M33 31 C34 33, 35 34, 37 35" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.3" />
-                                <path d="M67 31 C66 33, 65 34, 63 35" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.3" />
-                                <path d="M24 29 L27.2 32.5" fill="none" stroke="#000000" stroke-width="0.4" opacity="0.2" />
-                                <path d="M76 29 L72.8 32.5" fill="none" stroke="#000000" stroke-width="0.4" opacity="0.2" />
-                                <path d="M33 31 C35 48, 35 68, 37 89" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.25" />
-                                <path d="M67 31 C65 48, 65 68, 63 89" fill="none" stroke="#000000" stroke-width="0.6" opacity="0.25" />
-                                <path d="M38 18 C36 40, 42 65, 40 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
-                                <path d="M60 18 C62 40, 56 65, 58 89" fill="none" stroke="#000" stroke-width="1.2" opacity="0.1" />
+                                <path d="M33 31 C34 33, 35 34, 37 35" fill="none" stroke="#000000" strokeWidth="0.5" opacity="0.3" />
+                                <path d="M67 31 C66 33, 65 34, 63 35" fill="none" stroke="#000000" strokeWidth="0.5" opacity="0.3" />
+                                <path d="M24 29 L27.2 32.5" fill="none" stroke="#000000" strokeWidth="0.4" opacity="0.2" />
+                                <path d="M76 29 L72.8 32.5" fill="none" stroke="#000000" strokeWidth="0.4" opacity="0.2" />
+                                <path d="M33 31 C35 48, 35 68, 37 89" fill="none" stroke="#000000" strokeWidth="0.6" opacity="0.25" />
+                                <path d="M67 31 C65 48, 65 68, 63 89" fill="none" stroke="#000000" strokeWidth="0.6" opacity="0.25" />
+                                <path d="M38 18 C36 40, 42 65, 40 89" fill="none" stroke="#000" strokeWidth="1.2" opacity="0.1" />
+                                <path d="M60 18 C62 40, 56 65, 58 89" fill="none" stroke="#000" strokeWidth="1.2" opacity="0.1" />
 
                                 <g id="tee-logo-group" className="tee-logo-element" transform={placementMap[customizerState.placement]}>
                                     <line
@@ -1526,29 +1705,89 @@ export default function App() {
                         <button className="storefront-utility-btn" type="button" onClick={() => setCartOpen(true)}>Bag ({cartCount})</button>
                     </div>
                     <div className="storefront-route-shell storefront-route-shell-listing">
-                        <div className="storefront-layout storefront-layout-full">
+                        <div className={`storefront-layout storefront-layout-full ${filterDrawerOpen ? '' : 'filters-collapsed'}`}>
                             <aside className="storefront-sidebar">
+                                <div className="storefront-filter-header">
+                                    <button
+                                        className="storefront-filter-menu-btn"
+                                        type="button"
+                                        aria-label={filterDrawerOpen ? 'Minimize filters' : 'Open filters'}
+                                        onClick={() => setFilterDrawerOpen((prev) => !prev)}
+                                    >
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
+                                    <strong>Filters</strong>
+                                    {activeFilterCount > 0 && <em>{activeFilterCount}</em>}
+                                </div>
                                 <div className="storefront-filter-list">
-                                    {storefrontFilters.map((filter) => (
-                                        <button className="storefront-filter-item" key={filter} type="button">
-                                            <span>{filter}</span>
-                                            <span>+</span>
-                                        </button>
+                                    {storefrontFilterGroups.map((filter) => (
+                                        <div className={`storefront-filter-group ${openStoreFilters[filter.key] ? 'open' : ''}`} key={filter.key}>
+                                            <button
+                                                className="storefront-filter-item"
+                                                type="button"
+                                                onClick={() => setOpenStoreFilters((prev) => ({
+                                                    ...prev,
+                                                    [filter.key]: !prev[filter.key]
+                                                }))}
+                                            >
+                                                <span>{filter.label}</span>
+                                                <span>{openStoreFilters[filter.key] ? '−' : '+'}</span>
+                                            </button>
+                                            {openStoreFilters[filter.key] && (
+                                                <div className="storefront-filter-options">
+                                                    {filter.options.map((option) => {
+                                                        const selected = (filterDraft[filter.key] || []).includes(option);
+                                                        return (
+                                                            <button
+                                                                key={option}
+                                                                type="button"
+                                                                className={`storefront-filter-option ${selected ? 'selected' : ''}`}
+                                                                onClick={() => toggleFilterOption(filter.key, option)}
+                                                            >
+                                                                {option}
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
                                 <div className="storefront-sidebar-actions">
-                                    <button className="storefront-clear-btn" type="button">Clear</button>
-                                    <button className="storefront-apply-btn" type="button">Apply</button>
+                                    <button className="storefront-clear-btn" type="button" onClick={clearStoreFilters}>Clear</button>
+                                    <button className="storefront-apply-btn" type="button" onClick={() => setAppliedFilters(filterDraft)}>Apply</button>
                                 </div>
                             </aside>
 
                             <div className="storefront-main storefront-main-full">
                                 <div className="storefront-toolbar">
+                                    <button
+                                        className="storefront-mobile-filter-btn"
+                                        type="button"
+                                        aria-label="Toggle filters"
+                                        onClick={() => setFilterDrawerOpen((prev) => !prev)}
+                                    >
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
                                     <div>
                                         <span className="accent-text">Featured Edit</span>
                                         <h3>{listingTitle}</h3>
                                     </div>
-                                    <div className="storefront-sort">Sort</div>
+                                    <select
+                                        className="storefront-sort"
+                                        value={sortMode}
+                                        onChange={(event) => setSortMode(event.target.value)}
+                                        aria-label="Sort products"
+                                    >
+                                        <option>Featured</option>
+                                        <option>Newest</option>
+                                        <option>Price Low</option>
+                                        <option>Price High</option>
+                                    </select>
                                 </div>
 
                                 <div className="storefront-category-row">
@@ -1565,7 +1804,7 @@ export default function App() {
                                 </div>
 
                                 <div className="storefront-product-grid storefront-product-grid-full">
-                                    {filteredStoreProducts.map((product) => (
+                                    {filteredStoreProducts.length > 0 ? filteredStoreProducts.map((product) => (
                                         <article
                                             key={product.id}
                                             className={`store-card ${selectedStoreProduct.id === product.id ? 'active' : ''}`}
@@ -1581,12 +1820,18 @@ export default function App() {
                                                 <h4>{product.name}</h4>
                                                 <p>{product.material}</p>
                                                 <div className="store-card-price-row">
-                                                    <span className="store-card-compare">₹{Math.round(product.price * 102)}</span>
-                                                    <strong>₹{Math.round(product.price * 72)}</strong>
+                                                    <span className="store-card-compare">₹{Math.round(product.price * 1.35)}</span>
+                                                    <strong>₹{product.price}</strong>
                                                 </div>
                                             </div>
                                         </article>
-                                    ))}
+                                    )) : (
+                                        <div className="storefront-empty-state">
+                                            <h4>No products found</h4>
+                                            <p>Clear filters or choose another category.</p>
+                                            <button type="button" onClick={clearStoreFilters}>Clear filters</button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -1606,14 +1851,14 @@ export default function App() {
                             <div className="storefront-detail-grid">
                                 <div className="storefront-gallery-column">
                                     <div className="storefront-thumb-rail">
-                                        {storefrontGallery.map((product) => (
+                                        {(selectedStoreProduct.gallery || [selectedStoreProduct.image]).map((imgSrc, idx) => (
                                             <button
-                                                key={product.id}
+                                                key={idx}
                                                 type="button"
-                                                className={`storefront-thumb ${selectedStoreImage === product.image ? 'active' : ''}`}
-                                                onClick={() => setSelectedStoreImage(product.image)}
+                                                className={`storefront-thumb ${selectedStoreImage === imgSrc ? 'active' : ''}`}
+                                                onClick={() => setSelectedStoreImage(imgSrc)}
                                             >
-                                                <img src={product.image} alt={product.name} />
+                                                <img src={imgSrc} alt={`${selectedStoreProduct.name} view ${idx + 1}`} />
                                             </button>
                                         ))}
                                     </div>
@@ -1629,33 +1874,62 @@ export default function App() {
                                             <h3>{selectedStoreProduct.name}</h3>
                                         </div>
                                         <div className="storefront-price-block">
-                                            <span>₹{Math.round(selectedStoreProduct.price * 102)}</span>
-                                            <strong>₹{Math.round(selectedStoreProduct.price * 72)}</strong>
+                                            <span>₹{Math.round(selectedStoreProduct.price * 1.35)}</span>
+                                            <strong>₹{selectedStoreProduct.price}</strong>
                                         </div>
                                     </div>
 
                                     <p className="storefront-detail-copy">{selectedStoreProduct.description}</p>
 
+                                    {/* --- INTERACTIVE COUPON CODE SECTION --- */}
+                                    <div className="detail-coupon-section">
+                                        <div className="coupon-card" onClick={() => handleCopyCode('TRYSNITCH5')}>
+                                            <div className="coupon-details">
+                                                <span className="coupon-title">TRYSNITCH5</span>
+                                                <p className="coupon-desc">Enjoy 5% off on your first order</p>
+                                            </div>
+                                            <button className="coupon-copy-btn" type="button">
+                                                {copiedCode === 'TRYSNITCH5' ? 'COPIED!' : 'COPY'}
+                                            </button>
+                                        </div>
+                                        <div className="coupon-card" onClick={() => handleCopyCode('NEW10')}>
+                                            <div className="coupon-details">
+                                                <span className="coupon-title">NEW10</span>
+                                                <p className="coupon-desc">Enjoy 10% off on all fresh arrivals</p>
+                                            </div>
+                                            <button className="coupon-copy-btn" type="button">
+                                                {copiedCode === 'NEW10' ? 'COPIED!' : 'COPY'}
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div className="storefront-detail-section">
-                                        <div className="storefront-section-label">COLORS</div>
+                                        <div className="storefront-section-label">COLORS / STYLES</div>
                                         <div className="storefront-color-swatches">
-                                            {storefrontGallery.slice(0, 3).map((product) => (
-                                                <button
-                                                    key={product.id}
-                                                    type="button"
-                                                    className={`storefront-swatch-card ${selectedStoreProduct.id === product.id ? 'active' : ''}`}
-                                                    onClick={() => openStorefrontDetail(product)}
-                                                >
-                                                    <img src={product.image} alt={product.name} />
-                                                </button>
-                                            ))}
+                                            {heroSlidesData
+                                                .filter(p => p.category === selectedStoreProduct.category)
+                                                .slice(0, 4)
+                                                .map((product) => (
+                                                    <button
+                                                        key={product.id}
+                                                        type="button"
+                                                        className={`storefront-swatch-card ${selectedStoreProduct.id === product.id ? 'active' : ''}`}
+                                                        onClick={() => {
+                                                            openStorefrontDetail(product);
+                                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                        }}
+                                                        title={product.name}
+                                                    >
+                                                        <img src={product.image} alt={product.name} />
+                                                    </button>
+                                                ))}
                                         </div>
                                     </div>
 
                                     <div className="storefront-detail-section">
                                         <div className="storefront-size-row">
                                             <span className="storefront-section-label">SIZES</span>
-                                            <span className="storefront-size-chart">SIZE CHART</span>
+                                            <span className="storefront-size-chart" onClick={() => alert('Size Chart: Standard sizes S through XXL, regular tailored fit.')}>SIZE CHART</span>
                                         </div>
                                         <div className="storefront-size-grid">
                                             {selectedStoreProduct.sizes.map((size) => (
@@ -1733,7 +2007,10 @@ export default function App() {
                                                 </button>
                                             </div>
                                             <h4>{product.name}</h4>
-                                            <strong>₹{Math.round(product.price * 72)}</strong>
+                                            <div className="store-card-price-row" style={{ marginTop: '4px' }}>
+                                                <span className="store-card-compare" style={{ fontSize: '0.84rem' }}>₹{Math.round(product.price * 1.35)}</span>
+                                                <strong style={{ fontSize: '0.94rem' }}>₹{product.price}</strong>
+                                            </div>
                                         </article>
                                     ))}
                                 </div>
