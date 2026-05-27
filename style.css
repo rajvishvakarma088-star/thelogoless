@@ -1063,7 +1063,8 @@ body.light .philosophy-image-container::after {
 
 .philosophy-text-content {
     max-width: 580px;
-    padding-top: 5px; /* Perfect top alignment with image edge */
+    padding-top: 5px;
+    /* Perfect top alignment with image edge */
 }
 
 .philosophy-text-content .section-title {
@@ -2296,7 +2297,8 @@ body.theme-light #preset-group {
 /* --- NIKE-STYLE EDITORIAL TYPOGRAPHY & LAYOUT --- */
 
 /* Campaign Hero Headlines */
-.hero-title, .hero-slide-title {
+.hero-title,
+.hero-slide-title {
     font-family: var(--font-display) !important;
     font-size: 96px !important;
     font-weight: 500 !important;
@@ -2306,7 +2308,8 @@ body.theme-light #preset-group {
     margin-bottom: 25px;
 }
 
-.hero-title span, .hero-slide-title span {
+.hero-title span,
+.hero-slide-title span {
     font-family: var(--font-display) !important;
     font-size: 96px !important;
     letter-spacing: 0 !important;
@@ -2315,7 +2318,8 @@ body.theme-light #preset-group {
     font-weight: 500 !important;
 }
 
-.hero-description, .hero-slide-description {
+.hero-description,
+.hero-slide-description {
     font-family: var(--font-sans) !important;
     font-size: 16px !important;
     line-height: 1.5 !important;
@@ -2420,14 +2424,20 @@ body.light .btn-secondary {
 }
 
 /* Compact pill items */
-.btn-pill, .size-btn, .product-add-btn, .qty-btn {
+.btn-pill,
+.size-btn,
+.product-add-btn,
+.qty-btn {
     border-radius: 24px !important;
     font-family: var(--font-sans) !important;
     font-weight: 500 !important;
     transition: transform 0.1s ease, opacity 0.1s ease;
 }
 
-.btn-pill:active, .size-btn:active, .product-add-btn:active, .qty-btn:active {
+.btn-pill:active,
+.size-btn:active,
+.product-add-btn:active,
+.qty-btn:active {
     transform: scale(0.95);
     opacity: 0.8;
 }
@@ -2437,18 +2447,19 @@ body.light .btn-secondary {
 }
 
 /* Form Inputs as Pills */
-.form-group input, .newsletter-form input {
+.form-group input,
+.newsletter-form input {
     border-radius: 24px !important;
     padding: 12px 20px !important;
 }
 
 /* Razor-Sharp Flat Containers */
-.product-card, 
-.concept-card, 
-.carousel-slide, 
-.accordion-item, 
-.look-modal-content, 
-.cart-drawer, 
+.product-card,
+.concept-card,
+.carousel-slide,
+.accordion-item,
+.look-modal-content,
+.cart-drawer,
 .checkout-modal,
 .product-img-wrapper,
 .product-image,
@@ -2460,7 +2471,7 @@ body.light .btn-secondary {
     box-shadow: none !important;
 }
 
-.product-card:hover, 
+.product-card:hover,
 .concept-card:hover {
     transform: none !important;
     box-shadow: none !important;
@@ -2472,7 +2483,10 @@ body.light .btn-secondary {
 }
 
 /* Swatches remain circular */
-.swatch, .slider-dot, .indicator-dot, .swatch-dot {
+.swatch,
+.slider-dot,
+.indicator-dot,
+.swatch-dot {
     border-radius: 50% !important;
 }
 
@@ -2649,8 +2663,13 @@ body.light .hero-slide-overlay {
     background: rgba(11, 11, 12, 0.8);
 }
 
-.hero-slider-btn.prev { left: 40px; }
-.hero-slider-btn.next { right: 40px; }
+.hero-slider-btn.prev {
+    left: 40px;
+}
+
+.hero-slider-btn.next {
+    right: 40px;
+}
 
 body.theme-light .hero-slider-btn,
 body.light .hero-slider-btn {
@@ -2907,8 +2926,13 @@ body.light .size-btn {
 
 /* Animations */
 @keyframes modalFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes modalContentSlide {
@@ -2916,6 +2940,7 @@ body.light .size-btn {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2924,10 +2949,14 @@ body.light .size-btn {
 
 /* Responsive downscales */
 @media (max-width: 1023px) {
-    .hero-title, .hero-slide-title {
+
+    .hero-title,
+    .hero-slide-title {
         font-size: 64px !important;
     }
-    .hero-title span, .hero-slide-title span {
+
+    .hero-title span,
+    .hero-slide-title span {
         font-size: 64px !important;
     }
 }
@@ -2937,36 +2966,51 @@ body.light .size-btn {
         --slide-width: 80vw;
         --slide-peek: 10vw;
     }
+
     .look-modal-content {
         flex-direction: column;
         height: 90vh;
         max-height: 90vh;
     }
+
     .look-modal-grid {
         grid-template-columns: 1fr;
         grid-template-rows: 250px 1fr;
         height: 100%;
         overflow-y: auto;
     }
+
     .look-modal-details-pane {
         padding: 30px 25px;
     }
+
     .look-modal-title {
         font-size: 24px !important;
     }
+
     .hero-slider-btn {
         width: 40px;
         height: 40px;
     }
-    .hero-slider-btn.prev { left: 15px; }
-    .hero-slider-btn.next { right: 15px; }
+
+    .hero-slider-btn.prev {
+        left: 15px;
+    }
+
+    .hero-slider-btn.next {
+        right: 15px;
+    }
 }
 
 @media (max-width: 599px) {
-    .hero-title, .hero-slide-title {
+
+    .hero-title,
+    .hero-slide-title {
         font-size: 48px !important;
     }
-    .hero-title span, .hero-slide-title span {
+
+    .hero-title span,
+    .hero-slide-title span {
         font-size: 48px !important;
     }
 }

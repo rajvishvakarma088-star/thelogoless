@@ -353,25 +353,9 @@ export default function App() {
             const nextPath = window.location.pathname;
             if (nextPath === routePath) return;
 
-            const currentDepth = routePath.startsWith('/product/') ? 2 : routePath === '/shop' ? 1 : 0;
-            const nextDepth = nextPath.startsWith('/product/') ? 2 : nextPath === '/shop' ? 1 : 0;
-
-            if (routeTransitionTimerRef.current) {
-                window.clearTimeout(routeTransitionTimerRef.current);
-            }
-
-            setRouteTransitionDirection(nextDepth >= currentDepth ? 'forward' : 'backward');
-            setRouteTransitionPhase('exit');
-
-            routeTransitionTimerRef.current = window.setTimeout(() => {
-                setRoutePath(nextPath);
-                window.scrollTo({ top: 0, behavior: 'auto' });
-                setRouteTransitionPhase('enter');
-
-                routeTransitionTimerRef.current = window.setTimeout(() => {
-                    setRouteTransitionPhase('idle');
-                }, 440);
-            }, 220);
+            setRoutePath(nextPath);
+            window.scrollTo({ top: 0, behavior: 'auto' });
+            setRouteTransitionPhase('idle');
         };
 
         window.addEventListener('popstate', handlePopState);
@@ -612,26 +596,10 @@ export default function App() {
     const navigateTo = (path) => {
         if (window.location.pathname === path) return;
 
-        const currentDepth = routePath.startsWith('/product/') ? 2 : routePath === '/shop' ? 1 : 0;
-        const nextDepth = path.startsWith('/product/') ? 2 : path === '/shop' ? 1 : 0;
-
-        if (routeTransitionTimerRef.current) {
-            window.clearTimeout(routeTransitionTimerRef.current);
-        }
-
-        setRouteTransitionDirection(nextDepth >= currentDepth ? 'forward' : 'backward');
-        setRouteTransitionPhase('exit');
-
-        routeTransitionTimerRef.current = window.setTimeout(() => {
-            window.history.pushState({}, '', path);
-            setRoutePath(path);
-            window.scrollTo({ top: 0, behavior: 'auto' });
-            setRouteTransitionPhase('enter');
-
-            routeTransitionTimerRef.current = window.setTimeout(() => {
-                setRouteTransitionPhase('idle');
-            }, 440);
-        }, 220);
+        window.history.pushState({}, '', path);
+        setRoutePath(path);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        setRouteTransitionPhase('idle');
     };
 
     const openStorefrontProduct = (product) => {
@@ -725,17 +693,35 @@ export default function App() {
             {/* --- NAVIGATION BAR --- */}
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
                 <div className="container">
+                    <div className="nav-left-controls">
+                        <button
+                            className={`nav-menu-btn ${menuOpen ? 'active' : ''}`}
+                            onClick={() => setMenuOpen(!menuOpen)}
+                            aria-label="Toggle categories menu"
+                            type="button"
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
                     <a href="#hero" className="nav-logo">T H E L O G O L E S S</a>
-                    <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-                        <li><a href="/shop" onClick={(e) => { e.preventDefault(); navigateTo('/shop'); setMenuOpen(false); }}>Shop</a></li>
-                        <li><a href="#collection" className={activeSection === 'collection' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Collection</a></li>
-                        <li><a href="#concepts" className={activeSection === 'concepts' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Signatures</a></li>
-                        <li><a href="#customizer" className={activeSection === 'customizer' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Customizer</a></li>
-                        <li><a href="#brandbook" className={activeSection === 'brandbook' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Brand Book</a></li>
-                    </ul>
+                    <div className="nav-right-controls">
+                        <button className="nav-search-btn" type="button" aria-label="Search catalog">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span>Search "PINK SHIRTS"</span>
+                        </button>
 
-                    <div className="nav-right-controls" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                        {/* Interactive audio click switch */}
+                        <button className="nav-icon-btn" type="button" aria-label="Account">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M20 21a8 8 0 0 0-16 0"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </button>
+
                         <button className="audio-toggle-btn" onClick={handleAudioToggle} aria-label="Toggle interface sounds" title="Toggle audio feedback">
                             {audioEnabled ? (
                                 <svg className="audio-icon audio-playing" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -751,17 +737,6 @@ export default function App() {
                             )}
                         </button>
 
-                        {/* Shopping cart trigger */}
-                        <button className="cart-btn" onClick={() => setCartOpen(true)} aria-label="Open Cart" title="View Cart">
-                            <svg className="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            </svg>
-                            {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-                        </button>
-
-                        {/* Light/Dark Toggle */}
                         <button className="theme-toggle-btn" onClick={() => setLight(prev => !prev)} aria-label="Toggle Theme">
                             <svg className="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="5"></circle>
@@ -779,12 +754,26 @@ export default function App() {
                             </svg>
                         </button>
 
-                        {/* Mobile menu trigger */}
-                        <div className={`nav-menu-btn ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+                        <button className="cart-btn" onClick={() => setCartOpen(true)} aria-label="Open Cart" title="View Cart">
+                            <svg className="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+                        </button>
+                    </div>
+                </div>
+                <div className={`nav-menu-panel ${menuOpen ? 'active' : ''}`}>
+                    <div className="nav-menu-panel-inner">
+                        <span className="nav-menu-label">Categories</span>
+                        <ul className="nav-links">
+                            <li><a href="/shop" onClick={(e) => { e.preventDefault(); navigateTo('/shop'); setMenuOpen(false); }}>Shop All</a></li>
+                            <li><a href="#collection" className={activeSection === 'collection' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Collection</a></li>
+                            <li><a href="#concepts" className={activeSection === 'concepts' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Signatures</a></li>
+                            <li><a href="#customizer" className={activeSection === 'customizer' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Customizer</a></li>
+                            <li><a href="#brandbook" className={activeSection === 'brandbook' ? 'active' : ''} onClick={() => setMenuOpen(false)}>Brand Book</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -1442,10 +1431,10 @@ export default function App() {
                                 <h3 className="look-modal-title">{selectedHeroProduct.name}</h3>
                                 <div className="look-modal-price">${selectedHeroProduct.price}</div>
                                 <div className="look-modal-divider"></div>
-                                
+
                                 <p className="look-modal-desc">{selectedHeroProduct.description}</p>
                                 <p className="look-modal-material">Material: <strong>{selectedHeroProduct.material}</strong></p>
-                                
+
                                 {/* Sizes Selection */}
                                 <div className="look-modal-sizes">
                                     <span className="look-modal-section-title">Select Size</span>
@@ -1461,7 +1450,7 @@ export default function App() {
                                         ))}
                                     </div>
                                 </div>
-                                
+
                                 {/* Actions */}
                                 <div className="look-modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                     <div style={{ display: 'flex', gap: '12px' }}>
