@@ -283,6 +283,30 @@ const productDetailAccordions = [
     }
 ];
 
+const API_BASE_URL = 'http://localhost:5001';
+
+const getSavedUser = () => {
+    try {
+        const saved = localStorage.getItem('thelogoless_user');
+        return saved ? JSON.parse(saved) : null;
+    } catch {
+        return null;
+    }
+};
+
+const backendCartToLocalCart = (apiCart) => {
+    return (apiCart?.items || []).map(item => ({
+        product: {
+            _id: item.productId,
+            name: item.name,
+            price: item.price,
+            image: item.image
+        },
+        quantity: item.quantity,
+        size: item.size || null
+    }));
+};
+
 export default function App() {
     // --- STYLING & NAVIGATION STATES ---
     const [light, setLight] = useState(false);
@@ -316,9 +340,19 @@ export default function App() {
     const [cart, setCart] = useState([]);
     const [cartOpen, setCartOpen] = useState(false);
     const [checkoutOpen, setCheckoutOpen] = useState(false);
-    const [checkoutForm, setCheckoutForm] = useState({ name: '', email: '', location: '' });
+    const [checkoutForm, setCheckoutForm] = useState(() => {
+        const savedUser = getSavedUser();
+        return { name: savedUser?.name || '', email: savedUser?.email || '', location: '' };
+    });
     const [checkoutLoading, setCheckoutLoading] = useState(false);
     const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+    const [accountOpen, setAccountOpen] = useState(false);
+    const [authMode, setAuthMode] = useState('login');
+    const [authLoading, setAuthLoading] = useState(false);
+    const [authMessage, setAuthMessage] = useState('');
+    const [authForm, setAuthForm] = useState({ name: '', email: '', password: '' });
+    const [authToken, setAuthToken] = useState(() => localStorage.getItem('thelogoless_token') || '');
+    const [currentUser, setCurrentUser] = useState(() => getSavedUser());
 
     // --- CUSTOMIZER STATES ---
     const [customizerState, setCustomizerState] = useState({
@@ -360,9 +394,45 @@ export default function App() {
         return () => window.removeEventListener('popstate', handlePopState);
     }, [routePath]);
 
+    useEffect(() => {
+        if (!authToken) return;
+
+        fetch(`${API_BASE_URL}/api/auth/me`, {
+            headers: { Authorization: `Bearer ${authToken}` }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Session expired');
+                return res.json();
+            })
+            .then(data => {
+                setCurrentUser(data.user);
+                localStorage.setItem('thelogoless_user', JSON.stringify(data.user));
+            })
+            .catch(() => {
+                setAuthToken('');
+                setCurrentUser(null);
+                localStorage.removeItem('thelogoless_token');
+                localStorage.removeItem('thelogoless_user');
+            });
+    }, [authToken]);
+
+    useEffect(() => {
+        if (!authToken) return;
+
+        fetch(`${API_BASE_URL}/api/cart`, {
+            headers: { Authorization: `Bearer ${authToken}` }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Cart unavailable');
+                return res.json();
+            })
+            .then(data => setCart(backendCartToLocalCart(data)))
+            .catch(() => {});
+    }, [authToken]);
+
     // Fetch Products from API
     useEffect(() => {
-        fetch('http://localhost:5001/api/products')
+        fetch(`${API_BASE_URL}/api/products`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) setProducts(data);
@@ -465,7 +535,7 @@ export default function App() {
     }, [selectedHeroProduct]);
 
     // --- CART FUNCTIONALITY ---
-    const addToCart = (product) => {
+    const applyLocalAddToCart = (product) => {
         setCart(prev => {
             const exists = prev.find(item => item.product._id === product._id);
             if (exists) {
@@ -477,10 +547,56 @@ export default function App() {
             }
             return [...prev, { product, quantity: 1 }];
         });
+    };
+
+    const addToCart = (product) => {
+        if (authToken) {
+            fetch(`${API_BASE_URL}/api/cart/items`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${authToken}`
+                },
+                body: JSON.stringify({
+                    productId: product._id,
+                    quantity: 1,
+                    size: product.size || null
+                })
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Backend cart unavailable');
+                    return res.json();
+                })
+                .then(data => setCart(backendCartToLocalCart(data)))
+                .catch(() => applyLocalAddToCart(product));
+        } else {
+            applyLocalAddToCart(product);
+        }
         setCartOpen(true);
     };
 
     const updateCartQty = (productId, change) => {
+        const target = cart.find(item => item.product._id === productId);
+        const nextQty = Math.max(0, (target?.quantity || 0) + change);
+
+        if (authToken && target) {
+            fetch(`${API_BASE_URL}/api/cart/items/${productId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${authToken}`
+                },
+                body: JSON.stringify({ quantity: nextQty, size: target.size || null })
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Backend cart unavailable');
+                    return res.json();
+                })
+                .then(data => setCart(backendCartToLocalCart(data)))
+                .catch(() => {});
+            return;
+        }
+
         setCart(prev => {
             return prev.map(item => {
                 if (item.product._id === productId) {
@@ -493,6 +609,23 @@ export default function App() {
     };
 
     const removeFromCart = (productId) => {
+        const target = cart.find(item => item.product._id === productId);
+
+        if (authToken && target) {
+            const sizeQuery = target.size ? `?size=${encodeURIComponent(target.size)}` : '';
+            fetch(`${API_BASE_URL}/api/cart/items/${productId}${sizeQuery}`, {
+                method: 'DELETE',
+                headers: { Authorization: `Bearer ${authToken}` }
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Backend cart unavailable');
+                    return res.json();
+                })
+                .then(data => setCart(backendCartToLocalCart(data)))
+                .catch(() => {});
+            return;
+        }
+
         setCart(prev => prev.filter(item => item.product._id !== productId));
     };
 
@@ -503,6 +636,13 @@ export default function App() {
         setCart([{ product, quantity: 1 }]);
         setCartOpen(false);
         setCheckoutSuccess(false);
+        if (currentUser) {
+            setCheckoutForm(prev => ({
+                ...prev,
+                name: prev.name || currentUser.name || '',
+                email: prev.email || currentUser.email || ''
+            }));
+        }
         setCheckoutOpen(true);
     };
 
@@ -514,6 +654,82 @@ export default function App() {
         window.setTimeout(() => setCopiedCode(''), 1600);
     };
 
+    const openAccountModal = (mode = 'login') => {
+        setAuthMode(mode);
+        setAuthMessage('');
+        setAccountOpen(true);
+    };
+
+    const handleAuthSubmit = (e) => {
+        e.preventDefault();
+        setAuthLoading(true);
+        setAuthMessage('');
+
+        const endpoint = authMode === 'signup' ? '/api/auth/signup' : '/api/auth/login';
+        const payload = authMode === 'signup'
+            ? authForm
+            : { email: authForm.email, password: authForm.password };
+
+        fetch(`${API_BASE_URL}${endpoint}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(async res => {
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Authentication failed');
+                return data;
+            })
+            .then(data => {
+                setAuthToken(data.token);
+                setCurrentUser(data.user);
+                setCheckoutForm(prev => ({
+                    ...prev,
+                    name: prev.name || data.user.name || '',
+                    email: prev.email || data.user.email || ''
+                }));
+                localStorage.setItem('thelogoless_token', data.token);
+                localStorage.setItem('thelogoless_user', JSON.stringify(data.user));
+                setAuthForm({ name: '', email: '', password: '' });
+                setAuthMessage(authMode === 'signup' ? 'Account created.' : 'Signed in.');
+                if (cart.length > 0) {
+                    Promise.all(cart.map(item => fetch(`${API_BASE_URL}/api/cart/items`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${data.token}`
+                        },
+                        body: JSON.stringify({
+                            productId: item.product._id,
+                            quantity: item.quantity,
+                            size: item.size || null
+                        })
+                    })))
+                        .then(() => fetch(`${API_BASE_URL}/api/cart`, {
+                            headers: { Authorization: `Bearer ${data.token}` }
+                        }))
+                        .then(res => res.ok ? res.json() : null)
+                        .then(apiCart => {
+                            if (apiCart) setCart(backendCartToLocalCart(apiCart));
+                        })
+                        .catch(() => {});
+                }
+                window.setTimeout(() => setAccountOpen(false), 700);
+            })
+            .catch(error => {
+                setAuthMessage(error.message || 'Unable to continue.');
+            })
+            .finally(() => setAuthLoading(false));
+    };
+
+    const handleLogout = () => {
+        setAuthToken('');
+        setCurrentUser(null);
+        localStorage.removeItem('thelogoless_token');
+        localStorage.removeItem('thelogoless_user');
+        setAuthMessage('Signed out.');
+    };
+
     // --- CHECKOUT SUBMISSION ---
     const handleCheckoutSubmit = (e) => {
         e.preventDefault();
@@ -522,18 +738,23 @@ export default function App() {
         const orderData = {
             customerName: checkoutForm.name,
             customerEmail: checkoutForm.email,
+            location: checkoutForm.location,
             items: cart.map(item => ({
                 productId: item.product._id,
                 name: item.product.name,
                 price: item.product.price,
-                quantity: item.quantity
+                quantity: item.quantity,
+                size: item.size || null
             })),
             total: subtotal
         };
 
-        fetch('http://localhost:5001/api/checkout', {
+        fetch(`${API_BASE_URL}/api/checkout`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                ...(authToken ? { Authorization: `Bearer ${authToken}` } : {})
+            },
             body: JSON.stringify(orderData)
         })
             .then(res => res.json())
@@ -559,7 +780,7 @@ export default function App() {
         e.preventDefault();
         if (!newsletterEmail) return;
 
-        fetch('http://localhost:5001/api/newsletter', {
+        fetch(`${API_BASE_URL}/api/newsletter`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: newsletterEmail })
@@ -777,7 +998,13 @@ export default function App() {
                             <span>Search "PINK SHIRTS"</span>
                         </button>
 
-                        <button className="nav-icon-btn" type="button" aria-label="Account">
+                        <button
+                            className={`nav-icon-btn ${currentUser ? 'signed-in' : ''}`}
+                            type="button"
+                            aria-label="Account"
+                            onClick={() => openAccountModal(currentUser ? 'account' : 'login')}
+                            title={currentUser ? currentUser.name : 'Login or signup'}
+                        >
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M20 21a8 8 0 0 0-16 0"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
@@ -1491,10 +1718,11 @@ export default function App() {
                         <div className="cart-empty-msg">Your wardrobe is empty.</div>
                     ) : (
                         cart.map(item => (
-                            <div className="cart-item" key={item.product._id}>
+                            <div className="cart-item" key={`${item.product._id}-${item.size || 'default'}`}>
                                 <img src={item.product.image} alt={item.product.name} className="cart-item-img" />
                                 <div className="cart-item-info">
                                     <div className="cart-item-name">{item.product.name}</div>
+                                    {item.size && <div className="cart-item-price">Size {item.size}</div>}
                                     <div className="cart-item-price">${item.product.price}</div>
                                     <div className="cart-item-qty">
                                         <button className="qty-btn" onClick={() => updateCartQty(item.product._id, -1)}>-</button>
@@ -1519,6 +1747,13 @@ export default function App() {
                             onClick={() => {
                                 setCartOpen(false);
                                 setCheckoutSuccess(false);
+                                if (currentUser) {
+                                    setCheckoutForm(prev => ({
+                                        ...prev,
+                                        name: prev.name || currentUser.name || '',
+                                        email: prev.email || currentUser.email || ''
+                                    }));
+                                }
                                 setCheckoutOpen(true);
                             }}
                         >
@@ -1526,6 +1761,103 @@ export default function App() {
                         </button>
                     </div>
                 )}
+            </div>
+
+            {/* --- ACCOUNT MODAL --- */}
+            <div className={`auth-modal-overlay ${accountOpen ? 'open' : ''}`} onClick={() => setAccountOpen(false)}>
+                <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+                    <button className="auth-close-btn" type="button" onClick={() => setAccountOpen(false)} aria-label="Close account modal">&times;</button>
+
+                    {currentUser && authMode === 'account' ? (
+                        <>
+                            <h3>Account</h3>
+                            <p className="auth-modal-sub">{currentUser.name}</p>
+                            <div className="account-panel">
+                                <div>
+                                    <span>Email</span>
+                                    <strong>{currentUser.email}</strong>
+                                </div>
+                                <div>
+                                    <span>Role</span>
+                                    <strong>{currentUser.role}</strong>
+                                </div>
+                            </div>
+                            <div className="auth-actions">
+                                <button type="button" className="btn-secondary" onClick={() => setAccountOpen(false)}>Close</button>
+                                <button type="button" className="btn-primary" onClick={handleLogout}>Logout</button>
+                            </div>
+                            <div className={`form-response-msg ${authMessage ? 'active' : ''}`}>{authMessage}</div>
+                        </>
+                    ) : (
+                        <>
+                            <h3>{authMode === 'signup' ? 'Create Account' : 'Login'}</h3>
+                            <p className="auth-modal-sub">
+                                {authMode === 'signup' ? 'Create your private wardrobe account.' : 'Access your private wardrobe account.'}
+                            </p>
+                            <div className="auth-tabs">
+                                <button
+                                    type="button"
+                                    className={authMode === 'login' ? 'active' : ''}
+                                    onClick={() => {
+                                        setAuthMode('login');
+                                        setAuthMessage('');
+                                    }}
+                                >
+                                    Login
+                                </button>
+                                <button
+                                    type="button"
+                                    className={authMode === 'signup' ? 'active' : ''}
+                                    onClick={() => {
+                                        setAuthMode('signup');
+                                        setAuthMessage('');
+                                    }}
+                                >
+                                    Signup
+                                </button>
+                            </div>
+                            <form className="auth-form" onSubmit={handleAuthSubmit}>
+                                {authMode === 'signup' && (
+                                    <div className="form-group">
+                                        <label htmlFor="auth-name">Full Name</label>
+                                        <input
+                                            type="text"
+                                            id="auth-name"
+                                            required
+                                            value={authForm.name}
+                                            onChange={(e) => setAuthForm(prev => ({ ...prev, name: e.target.value }))}
+                                        />
+                                    </div>
+                                )}
+                                <div className="form-group">
+                                    <label htmlFor="auth-email">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="auth-email"
+                                        required
+                                        value={authForm.email}
+                                        onChange={(e) => setAuthForm(prev => ({ ...prev, email: e.target.value }))}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="auth-password">Password</label>
+                                    <input
+                                        type="password"
+                                        id="auth-password"
+                                        required
+                                        minLength={6}
+                                        value={authForm.password}
+                                        onChange={(e) => setAuthForm(prev => ({ ...prev, password: e.target.value }))}
+                                    />
+                                </div>
+                                <button type="submit" className="btn-primary" disabled={authLoading}>
+                                    {authLoading ? 'Please Wait' : authMode === 'signup' ? 'Create Account' : 'Login'}
+                                </button>
+                                <div className={`form-response-msg ${authMessage ? 'active' : ''}`}>{authMessage}</div>
+                            </form>
+                        </>
+                    )}
+                </div>
             </div>
 
             {/* --- DYNAMIC CHECKOUT MODAL --- */}
@@ -1639,7 +1971,8 @@ export default function App() {
                                                 const productToCart = {
                                                     ...selectedHeroProduct,
                                                     _id: selectedHeroProduct.id,
-                                                    name: `${selectedHeroProduct.name} (${selectedSize})`
+                                                    name: selectedHeroProduct.name,
+                                                    size: selectedSize
                                                 };
                                                 addToCart(productToCart);
                                                 setSelectedHeroProduct(null);
@@ -1654,7 +1987,8 @@ export default function App() {
                                                 const productToCart = {
                                                     ...selectedHeroProduct,
                                                     _id: selectedHeroProduct.id,
-                                                    name: `${selectedHeroProduct.name} (${selectedSize})`
+                                                    name: selectedHeroProduct.name,
+                                                    size: selectedSize
                                                 };
                                                 handleQuickBuy(productToCart);
                                                 setSelectedHeroProduct(null);
@@ -1952,7 +2286,8 @@ export default function App() {
                                             onClick={() => addToCart({
                                                 ...selectedStoreProduct,
                                                 _id: selectedStoreProduct.id,
-                                                name: `${selectedStoreProduct.name} (${selectedStoreSize})`
+                                                name: selectedStoreProduct.name,
+                                                size: selectedStoreSize
                                             })}
                                         >
                                             Add To Bag
