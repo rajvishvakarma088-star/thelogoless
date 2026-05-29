@@ -283,7 +283,7 @@ const productDetailAccordions = [
     }
 ];
 
-const API_BASE_URL = 'http://localhost:5001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const getSavedUser = () => {
     try {
@@ -551,6 +551,7 @@ export default function App() {
 
     const addToCart = (product) => {
         if (authToken) {
+            const productId = product._id || product.id;
             fetch(`${API_BASE_URL}/api/cart/items`, {
                 method: 'POST',
                 headers: {
@@ -558,7 +559,7 @@ export default function App() {
                     Authorization: `Bearer ${authToken}`
                 },
                 body: JSON.stringify({
-                    productId: product._id,
+                    productId: productId,
                     quantity: 1,
                     size: product.size || null
                 })
@@ -568,7 +569,10 @@ export default function App() {
                     return res.json();
                 })
                 .then(data => setCart(backendCartToLocalCart(data)))
-                .catch(() => applyLocalAddToCart(product));
+                .catch((err) => {
+                    console.warn('Backend cart failed, using local cart:', err);
+                    applyLocalAddToCart(product);
+                });
         } else {
             applyLocalAddToCart(product);
         }
@@ -990,7 +994,7 @@ export default function App() {
                     <a href="#hero" className="nav-logo">T H E L O G O L E S S</a>
 
                     <div className="nav-right-controls">
-                        <button className="nav-search-btn" type="button" aria-label="Search catalog">
+                        <button className="nav-search-btn" type="button" aria-label="Search catalog" onClick={() => { setSelectedStoreCategory('PINK'); navigateTo('/shop'); setMenuOpen(false); }}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="11" cy="11" r="7"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
